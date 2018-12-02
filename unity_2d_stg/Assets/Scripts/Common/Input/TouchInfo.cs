@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TouchInfo {
 
-    public enum TouchStatus : int
-    {
+    public enum TouchStatus : int {
         kNone,        // タッチ状態が何もない
         kBegan,       // 押し始め
         kMoved,       // 押し続けていて移動中
@@ -14,89 +13,76 @@ public class TouchInfo {
         kCanceled     // タッチ状態がキャンセルされた
     };
 
-    // 無効なタッチId(直接値を参照するのは非推奨調べるときはIsTouchIdInvalidを使用する)
+    // 無効なタッチId(直接値を参照するのは非推奨 調べるときはIsTouchIdInvalidを使用する)
     public static int kInvalidTouchId = -1;
 
     // 現在のタッチID(デフォルトは-1)
-    public int touch_id_ { set; get; }
+    public int touchId { set; get; }
     // タッチ位置
-    public Vector3 position_ { set; get; }
+    public Vector3 position { set; get; }
     // タッチ状態
-    public TouchStatus status_ { set; get; }
+    public TouchStatus status { set; get; }
 
-    public TouchInfo()
-    {
+    public TouchInfo() {
         Clear();
     }
 
     // 初期状態にする
-    public void Clear()
-    {
-        touch_id_ = kInvalidTouchId;
-        position_ = Vector3.zero; // (0, 0, 0)に設定
-        status_ = TouchStatus.kNone;
+    public void Clear() {
+        touchId = kInvalidTouchId;
+        position = Vector3.zero; // (0, 0, 0)に設定
+        status = TouchStatus.kNone;
     }
 
     // 情報をコピーする
-    public void Copy(TouchInfo copy_source)
-    {
-        touch_id_ = copy_source.touch_id_;
-        position_ = copy_source.position_;
-        status_ = copy_source.status_;
+    public void Copy(TouchInfo copySource) {
+        touchId = copySource.touchId;
+        position = copySource.position;
+        status = copySource.status;
     }
 
     // 位置が等しいかを比較
-    public bool IsPositionEquals(TouchInfo copy_source)
-    {
-        if ((position_.x == copy_source.position_.x)
-            && (position_.y == copy_source.position_.y)
-            && (position_.z == copy_source.position_.z))
-        {
+    public bool IsPositionEquals(TouchInfo copySource) {
+        if ((position.x == copySource.position.x)
+            && (position.y == copySource.position.y)
+            && (position.z == copySource.position.z)) {
             return true;
         }
         return false;
     }
 
-    public bool Equals(TouchInfo info)
-    {
-        if (info == null)
-        {
+    public bool Equals(TouchInfo info) {
+        if (info == null) {
             return false;
         }
 
-        if ((touch_id_ == info.touch_id_)
-            && (position_.x == info.position_.x)
-            && (position_.y == info.position_.y)
-            && (position_.z == info.position_.z)
-            && (status_ == info.status_)
-            )
-        {
+        if ((touchId == info.touchId)
+            && (position.x == info.position.x)
+            && (position.y == info.position.y)
+            && (position.z == info.position.z)
+            && (status == info.status)
+            ) {
             return true;
         }
         return false;
     }
 
     // タッチIdが無効かどうか
-    public bool IsTouchIdInvalid()
-    {
-        return IsTouchIdInvalid(touch_id_);
+    public bool IsTouchIdInvalid() {
+        return IsTouchIdInvalid(touchId);
     }
 
     // タッチIdが無効かどうか
-    public static bool IsTouchIdInvalid(int id)
-    {
-        if (id == kInvalidTouchId)
-        {
+    public static bool IsTouchIdInvalid(int id) {
+        if (id == kInvalidTouchId) {
             return true;
         }
         return false;
     }
 
     // ステータスによって文字列を返す
-    public static string GetStatusString(TouchStatus touch_status)
-    {
-        switch (touch_status)
-        {
+    public static string GetStatusString(TouchStatus touchStatus) {
+        switch (touchStatus) {
             case TouchStatus.kNone:
                 return "None";
             case TouchStatus.kBegan:
@@ -117,10 +103,9 @@ public class TouchInfo {
     /**
      * 現在の状態の出力
      */
-    public void Print()
-    {
-        MhCommon.Print("TouchInfo::Print touch_id_=" + touch_id_ +
-            " position x=" + position_.x + " y=" + position_.y + " z=" + position_.z +
-            "status=" + GetStatusString(status_));
+    public void Print() {
+        MhCommon.Print("TouchInfo::Print touchId=" + touchId +
+            " position x=" + position.x + " y=" + position.y + " z=" + position.z +
+            "status=" + GetStatusString(status));
     }
 }

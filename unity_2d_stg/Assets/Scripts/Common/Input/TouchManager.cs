@@ -58,7 +58,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchNone()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kNone)
+        if (current_info_.status == TouchInfo.TouchStatus.kNone)
         {
             return true;
         }
@@ -68,7 +68,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchBegan()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kBegan)
+        if (current_info_.status == TouchInfo.TouchStatus.kBegan)
         {
             return true;
         }
@@ -77,7 +77,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchMoved()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kMoved)
+        if (current_info_.status == TouchInfo.TouchStatus.kMoved)
         {
             return true;
         }
@@ -86,7 +86,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchStationary()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kStationary)
+        if (current_info_.status == TouchInfo.TouchStatus.kStationary)
         {
             return true;
         }
@@ -95,7 +95,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchEnded()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kEnded)
+        if (current_info_.status == TouchInfo.TouchStatus.kEnded)
         {
             return true;
         }
@@ -104,7 +104,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
     public bool IsTouchCanceled()
     {
-        if (current_info_.status_ == TouchInfo.TouchStatus.kCanceled)
+        if (current_info_.status == TouchInfo.TouchStatus.kCanceled)
         {
             return true;
         }
@@ -124,7 +124,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
      */
     public Vector3 GetRawTouchPosition()
     {
-        return current_info_.position_;
+        return current_info_.position;
     }
 
     /**
@@ -140,9 +140,9 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
 
         //float offset_x = width - ((float)Screen.width * ratio_x) / 2;
 
-        v.x = current_info_.position_.x * ratio_x;
-        v.y = current_info_.position_.y * ratio_y;
-        v.z = current_info_.position_.z;
+        v.x = current_info_.position.x * ratio_x;
+        v.y = current_info_.position.y * ratio_y;
+        v.z = current_info_.position.z;
 
         /*
     int32_t offsetX = (YukiApplication::getWidth() - (width * m_adjustRatio.x)) / 2;
@@ -181,25 +181,25 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
     // TouchからTouchInfoへ設定
     private void SetTouchToTouchInfo(Touch touch)
     {
-        current_info_.touch_id_ = touch.fingerId;
-        current_info_.position_ = touch.position;
+        current_info_.touchId = touch.fingerId;
+        current_info_.position = touch.position;
 
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                current_info_.status_ = TouchInfo.TouchStatus.kBegan;
+                current_info_.status = TouchInfo.TouchStatus.kBegan;
                 break;
             case TouchPhase.Moved:
-                current_info_.status_ = TouchInfo.TouchStatus.kMoved;
+                current_info_.status = TouchInfo.TouchStatus.kMoved;
                 break;
             case TouchPhase.Stationary:
-                current_info_.status_ = TouchInfo.TouchStatus.kStationary;
+                current_info_.status = TouchInfo.TouchStatus.kStationary;
                 break;
             case TouchPhase.Ended:
-                current_info_.status_ = TouchInfo.TouchStatus.kEnded;
+                current_info_.status = TouchInfo.TouchStatus.kEnded;
                 break;
             case TouchPhase.Canceled:
-                current_info_.status_ = TouchInfo.TouchStatus.kCanceled;
+                current_info_.status = TouchInfo.TouchStatus.kCanceled;
                 break;
             default:
                 break;
@@ -213,7 +213,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
         past_touch_info_.Copy(current_info_);
 
         //MhCommon.Print("TouchManager::SetTouchInfoForTouchPlatform");
-        int id = current_info_.touch_id_;
+        int id = current_info_.touchId;
         // 情報をリセットしておく
         current_info_.Clear();
 
@@ -256,7 +256,7 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
         // 前の状態を保存
         past_touch_info_.Copy(current_info_);
 
-        TouchInfo.TouchStatus status = current_info_.status_;
+        TouchInfo.TouchStatus status = current_info_.status;
         switch (status)
         {
             case TouchInfo.TouchStatus.kNone:
@@ -264,10 +264,10 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
                 if (Input.GetMouseButtonDown(0) == true)
                 {
                     // タッチidは0固定
-                    current_info_.touch_id_ = 0;
+                    current_info_.touchId = 0;
                     // 位置
-                    current_info_.position_ = Input.mousePosition;
-                    current_info_.status_ = TouchInfo.TouchStatus.kBegan;
+                    current_info_.position = Input.mousePosition;
+                    current_info_.status = TouchInfo.TouchStatus.kBegan;
                 }
                 else
                 {
@@ -277,65 +277,65 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
                 break;
             case TouchInfo.TouchStatus.kBegan:
                 // 位置を設定
-                current_info_.position_ = Input.mousePosition;
+                current_info_.position = Input.mousePosition;
                 if (Input.GetMouseButton(0) == true)
                 {
                     // 押しっぱなしなのでMovedかStationaryへ移行
                     if (current_info_.IsPositionEquals(past_touch_info_) == true)
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kStationary;
+                        current_info_.status = TouchInfo.TouchStatus.kStationary;
                     }
                     else
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kMoved;
+                        current_info_.status = TouchInfo.TouchStatus.kMoved;
                     }
                 }
                 else
                 {
                     // 持ち上げられたのでkEndedへ
-                    current_info_.status_ = TouchInfo.TouchStatus.kEnded;
+                    current_info_.status = TouchInfo.TouchStatus.kEnded;
                 }
                 break;
             case TouchInfo.TouchStatus.kMoved:
-                current_info_.position_ = Input.mousePosition;
+                current_info_.position = Input.mousePosition;
                 if (Input.GetMouseButton(0) == false)
                 {
                     // 持ち上げられたのでkEndedへ
-                    current_info_.status_ = TouchInfo.TouchStatus.kEnded;
+                    current_info_.status = TouchInfo.TouchStatus.kEnded;
                 }
                 else
                 {
                     // MovedかStationaryへ移行
                     if (current_info_.IsPositionEquals(past_touch_info_) == true)
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kStationary;
+                        current_info_.status = TouchInfo.TouchStatus.kStationary;
                     }
                     else
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kMoved;
+                        current_info_.status = TouchInfo.TouchStatus.kMoved;
                     }
                 }
                 break;
             case TouchInfo.TouchStatus.kStationary:
 
-                current_info_.position_ = Input.mousePosition;
-                MhCommon.Print("x " + current_info_.position_.x + " y " + current_info_.position_.y + " z " + current_info_.position_.z);
+                current_info_.position = Input.mousePosition;
+                MhCommon.Print("x " + current_info_.position.x + " y " + current_info_.position.y + " z " + current_info_.position.z);
 
                 if (Input.GetMouseButton(0) == false)
                 {
                     // 持ち上げられたのでkEndedへ
-                    current_info_.status_ = TouchInfo.TouchStatus.kEnded;
+                    current_info_.status = TouchInfo.TouchStatus.kEnded;
                 }
                 else
                 {
                     // MovedかStationaryへ移行
                     if (current_info_.IsPositionEquals(past_touch_info_) == true)
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kStationary;
+                        current_info_.status = TouchInfo.TouchStatus.kStationary;
                     }
                     else
                     {
-                        current_info_.status_ = TouchInfo.TouchStatus.kMoved;
+                        current_info_.status = TouchInfo.TouchStatus.kMoved;
                     }
                 }
                 break;
@@ -345,10 +345,10 @@ public class TouchManager : SingletonMonoBehaviour<TouchManager>
                 if (Input.GetMouseButton(0) == true)
                 {
                     // タッチidは0固定
-                    current_info_.touch_id_ = 0;
+                    current_info_.touchId = 0;
                     // 位置
-                    current_info_.position_ = Input.mousePosition;
-                    current_info_.status_ = TouchInfo.TouchStatus.kBegan;
+                    current_info_.position = Input.mousePosition;
+                    current_info_.status = TouchInfo.TouchStatus.kBegan;
                 }
                 else
                 {
