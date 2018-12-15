@@ -60,19 +60,25 @@ public class TouchInfo {
             && (position.x == info.position.x)
             && (position.y == info.position.y)
             && (position.z == info.position.z)
-            && (status == info.status)
-            ) {
+            && (status == info.status)) {
             return true;
         }
         return false;
     }
 
-    // タッチIdが無効かどうか
+    /// <summary>
+    /// タッチIdが無効かどうか
+    /// </summary>
+    /// <returns></returns>
     public bool IsTouchIdInvalid() {
         return IsTouchIdInvalid(touchId);
     }
 
-    // タッチIdが無効かどうか
+    /// <summary>
+    /// タッチIdが無効かどうか
+    /// </summary>
+    /// <param name="id">チェックするタッチId</param>
+    /// <returns></returns>
     public static bool IsTouchIdInvalid(int id) {
         if (id == kInvalidTouchId) {
             return true;
@@ -80,7 +86,11 @@ public class TouchInfo {
         return false;
     }
 
-    // ステータスによって文字列を返す
+    /// <summary>
+    /// ステータスによって文字列を返す
+    /// </summary>
+    /// <param name="touchStatus">ステータス</param>
+    /// <returns>状態の文字列</returns>
     public static string GetStatusString(TouchStatus touchStatus) {
         switch (touchStatus) {
             case TouchStatus.kNone:
@@ -100,9 +110,9 @@ public class TouchInfo {
         }
     }
 
-    /**
-     * 現在の状態の出力
-     */
+    /// <summary>
+    /// 現在の状態を出力(デバッグ用)
+    /// </summary>
     public void Print() {
         MhCommon.Print("TouchInfo::Print touchId=" + touchId +
             " position x=" + position.x + " y=" + position.y + " z=" + position.z +

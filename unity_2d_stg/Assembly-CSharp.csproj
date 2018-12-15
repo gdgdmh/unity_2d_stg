@@ -61,9 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Common\Input\InputManager.cs" />
     <Compile Include="Assets\Scripts\Common\Input\ITouchActionable.cs" />
     <Compile Include="Assets\Scripts\Common\Input\MoveInputInfo.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\TouchActionSmartPhone.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInfo.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInterface.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchManager.cs" />
