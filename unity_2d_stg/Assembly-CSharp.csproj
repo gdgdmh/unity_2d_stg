@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Common\Input\TouchManager.cs" />
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchAction.cs" />
     <Compile Include="Assets\Scripts\Common\System\ApplicationConstant.cs" />
+    <Compile Include="Assets\Scripts\Common\System\ISceneTask.cs" />
     <Compile Include="Assets\Scripts\Common\System\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Common\Util\MhCommon.cs" />
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
