@@ -61,18 +61,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Common\Input\ITouchActionable.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\ISingleTouchActionable.cs" />
     <Compile Include="Assets\Scripts\Common\Input\MoveInputInfo.cs" />
-    <Compile Include="Assets\Scripts\Common\Input\TouchActionPc.cs" />
-    <Compile Include="Assets\Scripts\Common\Input\TouchActionSmartPhone.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionPc.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionSmartPhone.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInfo.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInterface.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchManager.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchAction.cs" />
     <Compile Include="Assets\Scripts\Common\System\ApplicationConstant.cs" />
     <Compile Include="Assets\Scripts\Common\System\SingletonMonoBehaviour.cs" />
     <Compile Include="Assets\Scripts\Common\Util\MhCommon.cs" />
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
     <Compile Include="Assets\Scripts\Scene\TestScene\TestSceneTask.cs" />
+    <Compile Include="Assets\Scripts\Stg\Input\InputSystem.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\SceneShare.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>F:/data/github/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
