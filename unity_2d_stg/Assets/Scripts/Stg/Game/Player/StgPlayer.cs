@@ -35,9 +35,6 @@ public class StgPlayer : MonoBehaviour {
             float speed = 1.0f;
             Vector2 direction = new Vector2(x, y).normalized;
             GetComponent<Rigidbody2D>().velocity = direction * speed;
-            //Transform transform = GetComponent<Transform>();
-            //transform
-
         }
     }
 

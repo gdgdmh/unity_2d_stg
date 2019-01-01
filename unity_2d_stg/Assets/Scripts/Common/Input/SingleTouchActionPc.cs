@@ -91,6 +91,15 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     }
 
     /// <summary>
+    /// ドラッグ動作をしているか
+    /// </summary>
+    /// <returns><c>true</c>ドラッグ動作をしている<c>false</c>ドラッグ動作をしていない</returns>
+    bool ISingleTouchActionable.IsDragging() {
+        return false;
+    }
+
+
+    /// <summary>
     /// アプリケーション上でのタッチ位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>
@@ -99,6 +108,7 @@ public class SingleTouchActionPc : ISingleTouchActionable {
         return GetTouchPosition(displayWidth, displayHeight, currentInfo.position);
     }
 
+
     /// <summary>
     /// システムから取得できる無加工のタッチ位置を取得する
     /// </summary>
@@ -106,6 +116,31 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     Vector3 ISingleTouchActionable.GetRawTouchPosition() {
         return currentInfo.position;
     }
+
+    /// <summary>
+    /// ドラッグ開始位置を取得する
+    /// </summary>
+    /// <returns>ドラッグを開始した位置を取得する</returns>
+    Vector3 ISingleTouchActionable.GetDragStartPosition() {
+        return new Vector3(0, 0, 0);
+    }
+
+    /// <summary>
+    /// ドラッグ中の現在位置を取得する
+    /// </summary>
+    /// <returns>ドラッグ中の現在位置</returns>
+    Vector3 ISingleTouchActionable.GetDragCurrentPosition() {
+        return new Vector3(0, 0, 0);
+    }
+
+    /// <summary>
+    /// ドラッグ終了位置を取得する
+    /// </summary>
+    /// <returns>ドラッグを終了した位置を取得する</returns>
+    Vector3 ISingleTouchActionable.GetDragEndPosition() {
+        return new Vector3(0, 0, 0);
+    }
+
 
     /// <summary>
     /// 初期化
