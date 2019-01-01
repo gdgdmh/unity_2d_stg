@@ -1,0 +1,34 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class StgPlayer : MonoBehaviour {
+
+    StgPlayer() {
+
+    }
+
+    private void Awake() {
+        // 動的にスクリプトを追加
+        if (stgPlayerController == null) {
+            stgPlayerController = this.gameObject.AddComponent<StgPlayerController>() as StgPlayerController;
+            MhCommon.Assert(stgPlayerController != null, "StgPlayer::Awake() StgPlayerController AddComponent failure");
+        }
+
+        // 試しにcall
+        stgPlayerController.Update();
+        MhCommon.Print("update");
+    }
+
+    // Start is called before the first frame update
+    void Start() {
+        
+    }
+
+    // Update is called once per frame
+    void Update() {
+        
+    }
+
+    private IStgPlayerController stgPlayerController;
+}
