@@ -17,7 +17,7 @@ public class StgPlayer : MonoBehaviour {
 
         // 試しにcall
         stgPlayerController.Update();
-        MhCommon.Print("update");
+        //MhCommon.Print("update");
     }
 
     // Start is called before the first frame update
@@ -27,8 +27,20 @@ public class StgPlayer : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        
+        UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
+        touchAction.Update();
+        if (touchAction.IsTouchBegan()) {
+            float x = 0.0f;
+            float y = -0.2f;
+            float speed = 1.0f;
+            Vector2 direction = new Vector2(x, y).normalized;
+            GetComponent<Rigidbody2D>().velocity = direction * speed;
+            //Transform transform = GetComponent<Transform>();
+            //transform
+
+        }
     }
 
     private IStgPlayerController stgPlayerController;
+    private I2dFloatPositionable position;
 }
