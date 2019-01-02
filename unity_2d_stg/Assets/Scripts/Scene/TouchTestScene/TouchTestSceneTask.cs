@@ -5,15 +5,13 @@ using UnityEngine;
 public class TouchTestSceneTask : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         SceneShare.Instance.Initialize();
         
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
         touchAction.Update();
         if (touchAction.IsDragging()) {
