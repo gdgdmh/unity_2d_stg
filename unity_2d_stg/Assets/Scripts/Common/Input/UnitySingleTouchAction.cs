@@ -66,6 +66,14 @@ public class UnitySingleTouchAction {
     }
 
     /// <summary>
+    /// ドラッグ動作をしているか
+    /// </summary>
+    /// <returns><c>true</c>ドラッグ動作をしている<c>false</c>ドラッグ動作をしていない</returns>
+    public bool IsDragging() {
+        return singleTouchActionMain.IsDragging();
+    }
+
+    /// <summary>
     /// アプリケーション上でのタッチ位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>
@@ -81,6 +89,32 @@ public class UnitySingleTouchAction {
     public Vector3 GetRawTouchPosition() {
         return singleTouchActionMain.GetRawTouchPosition();
     }
+
+    /// <summary>
+    /// ドラッグ開始位置を取得する
+    /// </summary>
+    /// <returns>ドラッグを開始した位置を取得する</returns>
+    public Vector3 GetDragStartPosition() {
+        return singleTouchActionMain.GetDragStartPosition();
+    }
+
+    /// <summary>
+    /// ドラッグ中の現在位置を取得する
+    /// </summary>
+    /// <returns>ドラッグ中の現在位置</returns>
+    public Vector3 GetDragCurrentPosition() {
+        return singleTouchActionMain.GetDragCurrentPosition();
+    }
+
+    /// <summary>
+    /// ドラッグ終了位置を取得する
+    /// </summary>
+    /// <returns>ドラッグを終了した位置を取得する</returns>
+    public Vector3 GetDragEndPosition() {
+        return singleTouchActionMain.GetDragEndPosition();
+    }
+
+
 
     /// <summary>
     /// 初期化

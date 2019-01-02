@@ -24,6 +24,7 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
     public void Initialize() {
         inputSystem = new InputSystem(); //GetComponent<InputSystem>();
         inputSystem.Initialize();
+        inputSystem.SetDisplaySize(ApplicationConstant.GetDisplayWidth(), ApplicationConstant.GetDisplayHeight());
     }
 
     public InputSystem GetInput() {
@@ -39,5 +40,6 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 	//}
 
     private InputSystem inputSystem;
+    private ApplicationConstant applicationConstant;
 
 }

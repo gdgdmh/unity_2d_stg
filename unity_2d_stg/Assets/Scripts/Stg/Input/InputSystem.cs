@@ -12,6 +12,10 @@ public class InputSystem {
         unitySingleTouchAction.Initialize();
     }
 
+    public void SetDisplaySize(int width, int height) {
+        unitySingleTouchAction.SetDisplaySize(width, height);
+    }
+
     public UnitySingleTouchAction GetSingleTouchAction() {
         return unitySingleTouchAction;
     }

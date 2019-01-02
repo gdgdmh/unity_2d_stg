@@ -6,6 +6,9 @@ public class SingleTouchActionPc : ISingleTouchActionable {
 
     private TouchInfo currentInfo { set; get; }
     private TouchInfo pastTouchInfo { set; get; }
+    private Vector3 dragStartPosition { set; get; }
+    private Vector3 dragCurrentPosition { set; get; }
+    private Vector3 dragEndPosition { set; get; }
     private int displayWidth { set; get; }
     private int displayHeight { set; get; }
 
@@ -95,9 +98,13 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     /// </summary>
     /// <returns><c>true</c>ドラッグ動作をしている<c>false</c>ドラッグ動作をしていない</returns>
     bool ISingleTouchActionable.IsDragging() {
-        return false;
+        TouchInfo.TouchStatus status = currentInfo.status;
+        if ((status == TouchInfo.TouchStatus.kBegan) || (status == TouchInfo.TouchStatus.kMoved) || (status == TouchInfo.TouchStatus.kStationary)) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
 
     /// <summary>
     /// アプリケーション上でのタッチ位置を取得する
@@ -122,7 +129,7 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     /// </summary>
     /// <returns>ドラッグを開始した位置を取得する</returns>
     Vector3 ISingleTouchActionable.GetDragStartPosition() {
-        return new Vector3(0, 0, 0);
+        return GetTouchPosition(displayWidth, displayHeight, dragStartPosition);
     }
 
     /// <summary>
@@ -130,7 +137,7 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     /// </summary>
     /// <returns>ドラッグ中の現在位置</returns>
     Vector3 ISingleTouchActionable.GetDragCurrentPosition() {
-        return new Vector3(0, 0, 0);
+        return GetTouchPosition(displayWidth, displayHeight, dragCurrentPosition);
     }
 
     /// <summary>
@@ -138,9 +145,8 @@ public class SingleTouchActionPc : ISingleTouchActionable {
     /// </summary>
     /// <returns>ドラッグを終了した位置を取得する</returns>
     Vector3 ISingleTouchActionable.GetDragEndPosition() {
-        return new Vector3(0, 0, 0);
+        return GetTouchPosition(displayWidth, displayHeight, dragEndPosition);
     }
-
 
     /// <summary>
     /// 初期化
@@ -228,6 +234,8 @@ public class SingleTouchActionPc : ISingleTouchActionable {
                     currentInfo.touchId = 0;
                     currentInfo.position = Input.mousePosition;
                     currentInfo.status = TouchInfo.TouchStatus.kBegan;
+                    dragStartPosition = Input.mousePosition;
+                    dragCurrentPosition = Input.mousePosition;
                 } else {
                     // デフォルト
                     currentInfo.Clear();
@@ -236,23 +244,29 @@ public class SingleTouchActionPc : ISingleTouchActionable {
             case TouchInfo.TouchStatus.kBegan:
                 // 位置を設定
                 currentInfo.position = Input.mousePosition;
+                dragCurrentPosition = Input.mousePosition;
                 if (Input.GetMouseButton(0) == true) {
                     if (currentInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentInfo.status = TouchInfo.TouchStatus.kStationary;
                     } else {
                         currentInfo.status = TouchInfo.TouchStatus.kMoved;
                     }
-                } else {
+                }
+                else {
+                    dragEndPosition = Input.mousePosition;
                     // 持ち上げられたのでkEndedへ
                     currentInfo.status = TouchInfo.TouchStatus.kEnded;
                 }
                 break;
             case TouchInfo.TouchStatus.kMoved:
                 currentInfo.position = Input.mousePosition;
+                dragCurrentPosition = Input.mousePosition;
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
                     currentInfo.status = TouchInfo.TouchStatus.kEnded;
-                } else {
+                    dragEndPosition = Input.mousePosition;
+                }
+                else {
                     // 移動してないならkStationary 移動していたらkMoved
                     if (currentInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentInfo.status = TouchInfo.TouchStatus.kStationary;
@@ -263,10 +277,13 @@ public class SingleTouchActionPc : ISingleTouchActionable {
                 break;
             case TouchInfo.TouchStatus.kStationary:
                 currentInfo.position = Input.mousePosition;
+                dragCurrentPosition = Input.mousePosition;
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
                     currentInfo.status = TouchInfo.TouchStatus.kEnded;
-                } else {
+                    dragEndPosition = Input.mousePosition;
+                }
+                else {
                     // 移動してないならkStationary 移動していたらkMoved
                     if (currentInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentInfo.status = TouchInfo.TouchStatus.kStationary;
@@ -288,6 +305,7 @@ public class SingleTouchActionPc : ISingleTouchActionable {
                     // 位置
                     currentInfo.position = Input.mousePosition;
                     currentInfo.status = TouchInfo.TouchStatus.kBegan;
+                    dragCurrentPosition = Input.mousePosition;
                 }
                 break;
             default:
