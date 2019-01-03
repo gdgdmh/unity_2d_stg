@@ -62,15 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Common\Camera\CameraBase.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\DragInfo.cs" />
     <Compile Include="Assets\Scripts\Common\Input\ISingleTouchActionable.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\ISingleTouchDragActionable.cs" />
     <Compile Include="Assets\Scripts\Common\Input\MoveInputInfo.cs" />
     <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionPc.cs" />
     <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionSmartPhone.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\SingleTouchDragActionPc.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInfo.cs" />
     <Compile Include="Assets\Scripts\Common\Input\TouchInterface.cs" />
-    <Compile Include="Assets\Scripts\Common\Input\TouchManager.cs" />
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchAction.cs" />
-    <Compile Include="Assets\Scripts\Common\System\ApplicationConstant.cs" />
     <Compile Include="Assets\Scripts\Common\System\Scene\ISceneTask.cs" />
     <Compile Include="Assets\Scripts\Common\System\Scene\SceneBase.cs" />
     <Compile Include="Assets\Scripts\Common\System\SingletonMonoBehaviour.cs" />
@@ -78,12 +79,14 @@
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
     <Compile Include="Assets\Scripts\Scene\TestScene\TestSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\TitleScene\TitleSceneTask.cs" />
+    <Compile Include="Assets\Scripts\Scene\TouchTestScene\TouchTestSceneTask.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayer.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\I2dFloatPositionable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\Object2dFloatPosition.cs" />
     <Compile Include="Assets\Scripts\Stg\Input\InputSystem.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\ApplicationConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\SceneShare.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>/Users/Hiroshi.Miyazawa/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
