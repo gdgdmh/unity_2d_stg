@@ -14,14 +14,14 @@ public class TouchTestSceneTask : MonoBehaviour
     void Update() {
         UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
         touchAction.Update();
-        if (touchAction.IsDragging()) {
+        //if (touchAction.IsDragging()) {
             //MhCommon.Print("dragging");
-            Vector3 sp = touchAction.GetDragEndPosition();
+            //Vector3 sp = touchAction.GetDragEndPosition();
             //Vector3 sp = touchAction.GetDragCurrentPosition();
 
-            MhCommon.Print("x = " + sp.x + " y = " + sp.y + " z = " + sp.z);
+            //MhCommon.Print("x = " + sp.x + " y = " + sp.y + " z = " + sp.z);
 
-        }
+        //}
 
     }
 }
