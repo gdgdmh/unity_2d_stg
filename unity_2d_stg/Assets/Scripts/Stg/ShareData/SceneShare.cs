@@ -22,7 +22,7 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
     }
 
     public void Initialize() {
-        inputSystem = new InputSystem(); //GetComponent<InputSystem>();
+        inputSystem = new InputSystem();
         inputSystem.Initialize();
         inputSystem.SetDisplaySize(ApplicationConstant.GetDisplayWidth(), ApplicationConstant.GetDisplayHeight());
     }
