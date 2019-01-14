@@ -13,7 +13,13 @@ public class TouchTestSceneTask : MonoBehaviour
     // Update is called once per frame
     void Update() {
         UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
+        UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
         touchAction.Update();
+        dragAction.Update();
+
+        if (dragAction.IsDragBegan()) {
+            MhCommon.Print("dragBegan");
+        }
         //if (touchAction.IsDragging()) {
             //MhCommon.Print("dragging");
             //Vector3 sp = touchAction.GetDragEndPosition();

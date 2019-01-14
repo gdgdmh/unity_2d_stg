@@ -13,6 +13,7 @@ public class UnitySingleTouchDragAction
     /// <param name="width"></param>
     /// <param name="height"></param>
     public void SetDisplaySize(int width, int height) {
+        singleTouchDragActionable.SetDisplaySize(width, height);
     }
 
     /// <summary>
@@ -20,7 +21,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチが全くされていない状態ならtrue</returns>
     public bool IsDragNone() {
-        return false;
+        return singleTouchDragActionable.IsDragNone();
     }
 
     /// <summary>
@@ -28,7 +29,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチが開始された状態ならtrue</returns>
     public bool IsDragBegan() {
-        return false;
+        return singleTouchDragActionable.IsDragBegan();
     }
 
     /// <summary>
@@ -36,7 +37,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチをし続けていて移動中ならtrue</returns>
     public bool IsDragMoved() {
-        return false;
+        return singleTouchDragActionable.IsDragMoved();
     }
 
     /// <summary>
@@ -44,7 +45,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチをし続けていて移動していないならtrue</returns>
     public bool IsDragStationary() {
-        return false;
+        return singleTouchDragActionable.IsDragStationary();
     }
 
     /// <summary>
@@ -52,7 +53,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチが終了したならtrue</returns>
     public bool IsDragEnded() {
-        return false;
+        return singleTouchDragActionable.IsDragEnded();
     }
 
     /// <summary>
@@ -60,7 +61,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns>タッチがキャンセルされたならtrue</returns>
     public bool IsDragCanceled() {
-        return false;
+        return singleTouchDragActionable.IsDragCanceled();
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     public Vector3 GetApplicationDragStartPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetApplicationDragStartPosition();
     }
 
     /// <summary>
@@ -77,7 +78,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     public Vector3 GetRawDragStartPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetRawDragStartPosition();
     }
 
     /// <summary>
@@ -86,7 +87,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     public Vector3 GetApplicationDragCurrentPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetApplicationDragCurrentPosition();
     }
 
     /// <summary>
@@ -94,7 +95,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     public Vector3 GetRawDragCurrentPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetRawDragCurrentPosition();
     }
 
     /// <summary>
@@ -103,7 +104,7 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     Vector3 GetApplicationDragEndPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetApplicationDragEndPosition();
     }
 
     /// <summary>
@@ -111,13 +112,15 @@ public class UnitySingleTouchDragAction
     /// </summary>
     /// <returns></returns>
     Vector3 GetRawDragEndPosition() {
-        return new Vector3(0, 0, 0);
+        return singleTouchDragActionable.GetRawDragEndPosition();
     }
 
     /// <summary>
     /// 初期化
     /// </summary>
     public void Initialize() {
+        singleTouchDragActionable = new SingleTouchDragActionPc();
+        singleTouchDragActionable.Initialize();
     }
 
     /// <summary>
@@ -125,6 +128,7 @@ public class UnitySingleTouchDragAction
     /// (毎フレーム処理する)
     /// </summary>
     public void Update() {
+        singleTouchDragActionable.Update();
     }
 
     /// <summary>
@@ -132,12 +136,14 @@ public class UnitySingleTouchDragAction
     /// シーン移動などで以前のデータが残らないようにする
     /// </summary>
     public void Reset() {
+        singleTouchDragActionable.Reset();
     }
 
     /// <summary>
     /// デバッグ用データの出力
     /// </summary>
     public void Print() {
+        singleTouchDragActionable.Print();
     }
 
     /// <summary>
@@ -145,6 +151,8 @@ public class UnitySingleTouchDragAction
     /// 前回のフレームからタッチ状態から異なっていたら出力
     /// </summary>
     public void PrintDifference() {
+        singleTouchDragActionable.PrintDifference();
     }
 
+    private ISingleTouchDragActionable singleTouchDragActionable;
 }

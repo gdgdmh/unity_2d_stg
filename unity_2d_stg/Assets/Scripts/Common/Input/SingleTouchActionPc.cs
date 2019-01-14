@@ -4,17 +4,9 @@ using UnityEngine;
 
 public class SingleTouchActionPc : ISingleTouchActionable {
 
-    private TouchInfo currentInfo { set; get; }
-    private TouchInfo pastTouchInfo { set; get; }
-    private Vector3 dragStartPosition { set; get; }
-    private Vector3 dragCurrentPosition { set; get; }
-    private Vector3 dragEndPosition { set; get; }
-    private int displayWidth { set; get; }
-    private int displayHeight { set; get; }
-
     public SingleTouchActionPc() {
-        this.displayWidth = 0;
-        this.displayHeight = 0;
+        displayWidth = 0;
+        displayHeight = 0;
     }
 
     public SingleTouchActionPc(int displayWidth, int displayHeight) {
@@ -312,4 +304,12 @@ public class SingleTouchActionPc : ISingleTouchActionable {
                 break;
         }
     }
+
+    private TouchInfo currentInfo { set; get; }
+    private TouchInfo pastTouchInfo { set; get; }
+    private Vector3 dragStartPosition { set; get; }
+    private Vector3 dragCurrentPosition { set; get; }
+    private Vector3 dragEndPosition { set; get; }
+    private int displayWidth { set; get; }
+    private int displayHeight { set; get; }
 }
