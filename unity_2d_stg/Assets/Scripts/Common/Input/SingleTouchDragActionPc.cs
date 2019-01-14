@@ -96,7 +96,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetApplicationDragStartPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentInfo.position);
+        return GetTouchPosition(displayWidth, displayHeight, dragStartPosition);
     }
 
     /// <summary>
@@ -104,7 +104,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetRawDragStartPosition() {
-        return currentInfo.position;
+        return dragStartPosition;
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetApplicationDragCurrentPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentInfo.position);
+        return GetTouchPosition(displayWidth, displayHeight, dragCurrentPosition);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetRawDragCurrentPosition() {
-        return currentInfo.position;
+        return dragCurrentPosition;
     }
 
     /// <summary>
@@ -130,7 +130,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetApplicationDragEndPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentInfo.position);
+        return GetTouchPosition(displayWidth, displayHeight, dragEndPosition);
     }
 
     /// <summary>
@@ -138,7 +138,7 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetRawDragEndPosition() {
-        return currentInfo.position;
+        return dragEndPosition;
     }
 
     /// <summary>
@@ -158,12 +158,33 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     }
 
     /// <summary>
-    /// データのリセットを行う
+    /// データのリセットを行う(displayWidthなどは例外)
     /// シーン移動などで以前のデータが残らないようにする
     /// </summary>
     void ISingleTouchDragActionable.Reset() {
         currentInfo.Clear();
         pastTouchInfo.Clear();
+        {
+            Vector3 resetPosition = dragStartPosition;
+            resetPosition.x = 0.0f;
+            resetPosition.y = 0.0f;
+            resetPosition.z = 0.0f;
+            dragStartPosition = resetPosition;
+        }
+        {
+            Vector3 resetPosition = dragCurrentPosition;
+            resetPosition.x = 0.0f;
+            resetPosition.y = 0.0f;
+            resetPosition.z = 0.0f;
+            dragCurrentPosition = resetPosition;
+        }
+        {
+            Vector3 resetPosition = dragEndPosition;
+            resetPosition.x = 0.0f;
+            resetPosition.y = 0.0f;
+            resetPosition.z = 0.0f;
+            dragEndPosition = resetPosition;
+        }
     }
 
     /// <summary>
