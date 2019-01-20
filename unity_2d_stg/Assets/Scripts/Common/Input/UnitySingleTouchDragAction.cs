@@ -65,6 +65,14 @@ public class UnitySingleTouchDragAction
     }
 
     /// <summary>
+    /// ドラッグ中かどうか
+    /// </summary>
+    /// <returns>ドラッグ中ならtrue</returns>
+    public bool IsDragging() {
+        return singleTouchDragActionable.IsDragging();
+    }
+
+    /// <summary>
     /// アプリケーション上でのドラッグ開始位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>

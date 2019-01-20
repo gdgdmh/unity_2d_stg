@@ -91,6 +91,18 @@ public class SingleTouchDragActionPc : ISingleTouchDragActionable {
     }
 
     /// <summary>
+    /// ドラッグ中かどうか
+    /// </summary>
+    /// <returns>ドラッグ中ならtrue</returns>
+    bool ISingleTouchDragActionable.IsDragging() {
+        TouchInfo.TouchStatus status = currentInfo.status;
+        if ((status == TouchInfo.TouchStatus.kBegan) || (status == TouchInfo.TouchStatus.kMoved) || (status == TouchInfo.TouchStatus.kStationary)) {
+            return true;
+        }
+        return false;
+    }
+
+    /// <summary>
     /// アプリケーション上でのドラッグ開始位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>

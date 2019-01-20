@@ -17,9 +17,9 @@ public class TouchTestSceneTask : MonoBehaviour
         touchAction.Update();
         dragAction.Update();
 
-        if (dragAction.IsDragBegan()) {
-            MhCommon.Print("dragBegan");
-        }
+        //if (dragAction.IsDragBegan()) {
+        //    MhCommon.Print("dragBegan");
+        //}
         //if (touchAction.IsDragging()) {
             //MhCommon.Print("dragging");
             //Vector3 sp = touchAction.GetDragEndPosition();

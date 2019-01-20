@@ -48,6 +48,12 @@ interface ISingleTouchDragActionable {
     bool IsDragCanceled();
 
     /// <summary>
+    /// ドラッグ中かどうか
+    /// </summary>
+    /// <returns>ドラッグ中ならtrue</returns>
+    bool IsDragging();
+
+    /// <summary>
     /// アプリケーション上でのドラッグ開始位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>
