@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\Common\Input\ISingleTouchActionable.cs" />
     <Compile Include="Assets\Scripts\Common\Input\ISingleTouchDragActionable.cs" />
     <Compile Include="Assets\Scripts\Common\Input\MoveInputInfo.cs" />
+    <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionBase.cs" />
     <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionPc.cs" />
     <Compile Include="Assets\Scripts\Common\Input\SingleTouchActionSmartPhone.cs" />
     <Compile Include="Assets\Scripts\Common\Input\SingleTouchDragActionPc.cs" />
