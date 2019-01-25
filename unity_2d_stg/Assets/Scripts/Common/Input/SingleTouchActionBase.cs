@@ -7,9 +7,60 @@ public abstract class SingleTouchActionBase {
 	public SingleTouchActionBase() {
 	}
 
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	public virtual void Initialize() {
+		currentTouchInfo = new TouchInfo();
+		pastTouchInfo = new TouchInfo();
+		displayWidth = 0;
+		displayHeight = 0;
 	}
 
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	public virtual void Update() {
+	}
+
+    /// <summary>
+    /// データのリセットを行う
+    /// シーン移動などで以前のデータが残らないようにする
+    /// </summary>
+	public virtual void Reset() {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::Reset currentTouchInfo null");
+		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::Reset pastTouchInfo null");
+		currentTouchInfo.Clear();
+		pastTouchInfo.Clear();
+	}
+
+    /// <summary>
+    /// デバッグ用データの出力
+    /// </summary>
+	public virtual void Print() {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::Print currentTouchInfo null");
+		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::Print pastTouchInfo null");
+		currentTouchInfo.Print();
+		pastTouchInfo.Print();
+	}
+
+    /// <summary>
+    /// デバッグ用のデータ出力
+    /// 前回のフレームからタッチ状態から異なっていたら出力
+    /// </summary>
+	public virtual void PrintDifference() {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::PrintDifference currentTouchInfo null");
+		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::PrintDifference pastTouchInfo null");
+        if (currentTouchInfo.Equals(pastTouchInfo) == false) {
+            currentTouchInfo.Print();
+        }
+	}
+
+	/// <summary>
+	/// ディスプレイサイズを設定(初期化後に行うこと)
+	/// </summary>
+	/// <param name="width">ディスプレイサイズ横幅</param>
+	/// <param name="height">ディスプレイサイズ縦幅</param>
     public virtual void SetDisplaySize(int width, int height) {
         displayWidth = width;
         displayHeight = height;
@@ -19,6 +70,9 @@ public abstract class SingleTouchActionBase {
     /// システムから取得した情報から現在の情報を設定
     /// </summary>
     protected virtual void SetTouchInfoPc() {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetTouchInfoPc currentTouchInfo null");
+		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::SetTouchInfoPc pastTouchInfo null");
+
         // 前の状態を保存
         pastTouchInfo.Copy(currentTouchInfo);
 
@@ -133,6 +187,8 @@ public abstract class SingleTouchActionBase {
     /// </summary>
     /// <param name="touch"></param>
     protected virtual void SetCurrentInfoByTouch(Touch touch) {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetCurrentInfoByTouch currentTouchInfo null");
+
         currentTouchInfo.touchId = touch.fingerId;
         currentTouchInfo.position = touch.position;
 
@@ -176,6 +232,9 @@ public abstract class SingleTouchActionBase {
 	}
 
 	protected virtual void SetTouchInfoSmartPhone() {
+		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetTouchInfoSmartPhone currentTouchInfo null");
+		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::SetTouchInfoSmartPhone pastTouchInfo null");
+
         // 前の状態を保存
         pastTouchInfo.Copy(currentTouchInfo);
 
@@ -248,8 +307,8 @@ public abstract class SingleTouchActionBase {
         return v;
     }
 
-    private TouchInfo currentTouchInfo { set; get; }
-    private TouchInfo pastTouchInfo { set; get; }
+    protected TouchInfo currentTouchInfo { set; get; }
+    protected TouchInfo pastTouchInfo { set; get; }
     protected int displayWidth { set; get; }
     protected int displayHeight { set; get; }
 }

@@ -431,8 +431,8 @@ F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.Timeline.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.Networking.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
-F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.pdb
+F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache

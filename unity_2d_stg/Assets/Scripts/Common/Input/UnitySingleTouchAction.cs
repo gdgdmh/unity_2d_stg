@@ -120,6 +120,7 @@ public class UnitySingleTouchAction {
     /// 初期化
     /// </summary>
     public void Initialize() {
+		// プラットフォームに応じて対応したクラスを生成
         if ((Application.platform == RuntimePlatform.Android)
             || (Application.platform == RuntimePlatform.IPhonePlayer)) {
             // iOS,Android
