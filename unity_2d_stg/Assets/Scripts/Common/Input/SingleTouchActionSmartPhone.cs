@@ -2,26 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTouchActionSmartPhone : ISingleTouchActionable {
-
-    private TouchInfo currentInfo { set; get; }
-    private TouchInfo pastTouchInfo { set; get; }
-    private int displayWidth { set; get; }
-    private int displayHeight { set; get; }
+public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchActionable {
 
     public SingleTouchActionSmartPhone() {
-        this.displayWidth = 0;
-        this.displayHeight = 0;
+		Initialize();
     }
 
     public SingleTouchActionSmartPhone(int displayWidth, int displayHeight) {
+		Initialize();
         this.displayWidth = displayWidth;
         this.displayHeight = displayHeight;
     }
 
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	public override void Initialize() {
+		base.Initialize();
+	}
+
+	/// <summary>
+	/// 更新処理
+	/// </summary>
+	public override void Update() {
+		SetTouchInfoSmartPhone();
+	}
+
     void ISingleTouchActionable.SetDisplaySize(int width, int height) {
-        displayWidth = width;
-        displayHeight = height;
+		SetDisplaySize(width, height);
     }
 
     /// <summary>
@@ -29,7 +37,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチが全くされていない状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchNone() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kNone) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kNone) {
             return true;
         }
         return false;
@@ -40,7 +48,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチが開始された状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchBegan() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kBegan) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
             return true;
         }
         return false;
@@ -51,7 +59,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチをし続けていて移動中ならtrue</returns>
     bool ISingleTouchActionable.IsTouchMoved() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kMoved) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
             return true;
         }
         return false;
@@ -62,7 +70,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチをし続けていて移動していないならtrue</returns>
     bool ISingleTouchActionable.IsTouchStationary() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kStationary) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
             return true;
         }
         return false;
@@ -73,7 +81,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチが終了したならtrue</returns>
     bool ISingleTouchActionable.IsTouchEnded() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kEnded) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
             return true;
         }
         return false;
@@ -84,7 +92,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns>タッチがキャンセルされたならtrue</returns>
     bool ISingleTouchActionable.IsTouchCanceled() {
-        if (currentInfo.status == TouchInfo.TouchStatus.kCanceled) {
+        if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
             return true;
         }
         return false;
@@ -105,7 +113,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetApplicationTouchPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentInfo.position);
+        return GetTouchPosition(displayWidth, displayHeight, currentTouchInfo.position);
     }
 
     /// <summary>
@@ -113,7 +121,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetRawTouchPosition() {
-        return currentInfo.position;
+        return currentTouchInfo.position;
     }
 
 
@@ -145,8 +153,7 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// 初期化
     /// </summary>
     void ISingleTouchActionable.Initialize() {
-        currentInfo = new TouchInfo();
-        pastTouchInfo = new TouchInfo();
+		Initialize();
     }
 
     /// <summary>
@@ -154,7 +161,8 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// (毎フレーム処理する)
     /// </summary>
     void ISingleTouchActionable.Update() {
-        SetTouchInfo();
+		Update();
+        //SetTouchInfo();
     }
 
     /// <summary>
@@ -162,15 +170,14 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// シーン移動などで以前のデータが残らないようにする
     /// </summary>
     void ISingleTouchActionable.Reset() {
-        currentInfo.Clear();
-        pastTouchInfo.Clear();
+		Reset();
     }
 
     /// <summary>
     /// デバッグ用データの出力
     /// </summary>
     void ISingleTouchActionable.Print() {
-        currentInfo.Print();
+		Print();
     }
 
     /// <summary>
@@ -178,31 +185,10 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
     /// 前回のフレームからタッチ状態から異なっていたら出力
     /// </summary>
     void ISingleTouchActionable.PrintDifference() {
-        if (currentInfo.Equals(pastTouchInfo) == false) {
-            currentInfo.Print();
-        }
+		PrintDifference();
     }
 
-    /// <summary>
-    /// ディスプレイの縦横比を加味したpositionを取得
-    /// </summary>
-    /// <param name="width"></param>
-    /// <param name="height"></param>
-    /// <param name="position"></param>
-    /// <returns></returns>
-    private Vector3 GetTouchPosition(float width, float height, Vector3 position) {
-        Vector3 v;
-        float ratioX = ((float)width / (float)Screen.width);
-        float ratioY = ((float)height / (float)Screen.height);
-
-        //float offset_x = width - ((float)Screen.width * ratio_x) / 2;
-
-        v.x = position.x * ratioX;
-        v.y = position.y * ratioY;
-        v.z = position.z;
-        return v;
-    }
-
+	/*
     /// <summary>
     /// システムの情報から現在の情報を設定
     /// </summary>
@@ -266,4 +252,5 @@ public class SingleTouchActionSmartPhone : ISingleTouchActionable {
             }
         }
     }
+	*/
 }
