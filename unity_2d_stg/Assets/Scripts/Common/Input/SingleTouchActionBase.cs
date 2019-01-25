@@ -77,6 +77,7 @@ public abstract class SingleTouchActionBase {
         pastTouchInfo.Copy(currentTouchInfo);
 
         TouchInfo.TouchStatus status = currentTouchInfo.status;
+		TouchInfo.TouchStatus beforeStatus = pastTouchInfo.status;
         switch (status) {
             case TouchInfo.TouchStatus.kNone:
                 // 押したりしていない状態で押されたらBeganへ移行
@@ -84,10 +85,12 @@ public abstract class SingleTouchActionBase {
                     currentTouchInfo.touchId = 0;
                     currentTouchInfo.position = Input.mousePosition;
                     currentTouchInfo.status = TouchInfo.TouchStatus.kBegan;
-					ChangeTouchStatusBeganPlatformPc();
+					ChangeTouchStatusBeganPlatformPc(beforeStatus);
+					OnTouchStatusBeganPlatformPc();
                 } else {
                     // デフォルト
                     currentTouchInfo.Clear();
+					OnTouchStatusNonePlatformPc();
                 }
                 break;
             case TouchInfo.TouchStatus.kBegan:
@@ -96,15 +99,18 @@ public abstract class SingleTouchActionBase {
                 if (Input.GetMouseButton(0) == true) {
                     if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
-						ChangeTouchStatusStationaryPlatformPc();
+						ChangeTouchStatusStationaryPlatformPc(beforeStatus);
+						OnTouchStatusStationaryPlatformPc();
                     } else {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
-						ChangeTouchStatusMovedPlatformPc();
+						ChangeTouchStatusMovedPlatformPc(beforeStatus);
+						OnTouchStatusMovedPlatformPc();
                     }
                 } else {
                     // 持ち上げられたのでkEndedへ
                     currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
-					ChangeTouchStatusEndedPlatformPc();
+					ChangeTouchStatusEndedPlatformPc(beforeStatus);
+					OnTouchStatusEndedPlatformPc();
                 }
                 break;
             case TouchInfo.TouchStatus.kMoved:
@@ -112,16 +118,18 @@ public abstract class SingleTouchActionBase {
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
                     currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
-					ChangeTouchStatusEndedPlatformPc();
-                }
-                else {
+					ChangeTouchStatusEndedPlatformPc(beforeStatus);
+					OnTouchStatusEndedPlatformPc();
+                } else {
                     // 移動してないならkStationary 移動していたらkMoved
                     if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
-						ChangeTouchStatusStationaryPlatformPc();
+						ChangeTouchStatusStationaryPlatformPc(beforeStatus);
+						OnTouchStatusStationaryPlatformPc();
                     } else {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
-						ChangeTouchStatusMovedPlatformPc();
+						//ChangeTouchStatusMovedPlatformPc(beforeStatus);
+						OnTouchStatusMovedPlatformPc();
                     }
                 }
                 break;
@@ -130,16 +138,19 @@ public abstract class SingleTouchActionBase {
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
                     currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
-					ChangeTouchStatusEndedPlatformPc();
+					ChangeTouchStatusEndedPlatformPc(beforeStatus);
+					OnTouchStatusEndedPlatformPc();
                 }
                 else {
                     // 移動してないならkStationary 移動していたらkMoved
                     if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
-						ChangeTouchStatusStationaryPlatformPc();
+						//ChangeTouchStatusStationaryPlatformPc(beforeStatus);
+						OnTouchStatusStationaryPlatformPc();
                     } else {
                         currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
-						ChangeTouchStatusMovedPlatformPc();
+						ChangeTouchStatusMovedPlatformPc(beforeStatus);
+						OnTouchStatusMovedPlatformPc();
                     }
                 }
                 break;
@@ -149,14 +160,16 @@ public abstract class SingleTouchActionBase {
                 if (Input.GetMouseButton(0) == false) {
                     // デフォルト状態に戻す
                     currentTouchInfo.Clear();
-					ChangeTouchStatusNonePlatformPc();
+					ChangeTouchStatusNonePlatformPc(beforeStatus);
+					OnTouchStatusNonePlatformPc();
                 } else {
                     // タッチIDは0固定
                     currentTouchInfo.touchId = 0;
                     // 位置
                     currentTouchInfo.position = Input.mousePosition;
                     currentTouchInfo.status = TouchInfo.TouchStatus.kBegan;
-					ChangeTouchStatusBeganPlatformPc();
+					ChangeTouchStatusBeganPlatformPc(beforeStatus);
+					OnTouchStatusBeganPlatformPc();
                 }
                 break;
             default:
@@ -164,23 +177,49 @@ public abstract class SingleTouchActionBase {
         }
     }
 
-	protected virtual void ChangeTouchStatusNonePlatformPc() {
+	/// <summary>
+	/// ステータスがなしに切り替わり時に呼ばれる
+	/// </summary>
+	/// <param name="beforeStatus"></param>
+	protected virtual void ChangeTouchStatusNonePlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusBeganPlatformPc() {
+	protected virtual void ChangeTouchStatusBeganPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusMovedPlatformPc() {
+	protected virtual void ChangeTouchStatusMovedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusStationaryPlatformPc() {
+	protected virtual void ChangeTouchStatusStationaryPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusEndedPlatformPc() {
+	protected virtual void ChangeTouchStatusEndedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusCanceledPlatformPc() {
+	protected virtual void ChangeTouchStatusCanceledPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 	}
+
+	/// <summary>
+	/// ステータスがなしのときにずっと呼ばれる
+	/// </summary>
+	protected virtual void OnTouchStatusNonePlatformPc() {
+	}
+
+	protected virtual void OnTouchStatusBeganPlatformPc() {
+	}
+
+	protected virtual void OnTouchStatusMovedPlatformPc() {
+	}
+
+	protected virtual void OnTouchStatusStationaryPlatformPc() {
+	}
+
+	protected virtual void OnTouchStatusEndedPlatformPc() {
+	}
+
+	protected virtual void OnTouchStatusCanceledPlatformPc() {
+	}
+
 
     /// <summary>
     /// システムの情報から現在の情報を設定
@@ -213,22 +252,22 @@ public abstract class SingleTouchActionBase {
         }
     }
 
-	protected virtual void ChangeTouchStatusNonePlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusNonePlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusBeganPlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusBeganPlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusMovedPlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusMovedPlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusStationaryPlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusStationaryPlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusEndedPlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusEndedPlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
-	protected virtual void ChangeTouchStatusCanceledPlatformSmartPhone() {
+	protected virtual void ChangeTouchStatusCanceledPlatformSmartPhone(TouchInfo.TouchStatus beforeStatus) {
 	}
 
 	protected virtual void SetTouchInfoSmartPhone() {
@@ -240,6 +279,7 @@ public abstract class SingleTouchActionBase {
 
         int id = currentTouchInfo.touchId;
         int touchCount = Input.touchCount;
+		TouchInfo.TouchStatus beforeStatus = pastTouchInfo.status;
         // 情報をリセット
         currentTouchInfo.Clear();
 
@@ -247,7 +287,7 @@ public abstract class SingleTouchActionBase {
             // タッチ情報なし
 			if (pastTouchInfo.status != TouchInfo.TouchStatus.kNone) {
 				// タッチ情報なしに切り替わった
-				ChangeTouchStatusNonePlatformSmartPhone();
+				ChangeTouchStatusNonePlatformSmartPhone(beforeStatus);
 			}
             return;
         }
@@ -260,15 +300,15 @@ public abstract class SingleTouchActionBase {
                     SetCurrentInfoByTouch(Input.GetTouch(i));
 					if (pastTouchInfo.status != currentTouchInfo.status) {
 						if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
-							ChangeTouchStatusBeganPlatformSmartPhone();
+							ChangeTouchStatusBeganPlatformSmartPhone(beforeStatus);
 						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
-							ChangeTouchStatusMovedPlatformSmartPhone();
+							ChangeTouchStatusMovedPlatformSmartPhone(beforeStatus);
 						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
-							ChangeTouchStatusStationaryPlatformSmartPhone();
+							ChangeTouchStatusStationaryPlatformSmartPhone(beforeStatus);
 						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
-							ChangeTouchStatusEndedPlatformSmartPhone();
+							ChangeTouchStatusEndedPlatformSmartPhone(beforeStatus);
 						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
-							ChangeTouchStatusCanceledPlatformSmartPhone();
+							ChangeTouchStatusCanceledPlatformSmartPhone(beforeStatus);
 						}
 					}
                     return;
@@ -282,7 +322,7 @@ public abstract class SingleTouchActionBase {
             // 将来的には検証して有りにするは可能性あり
             if (Input.GetTouch(0).phase == TouchPhase.Began) {
                 SetCurrentInfoByTouch(Input.GetTouch(0));
-				ChangeTouchStatusBeganPlatformSmartPhone();
+				ChangeTouchStatusBeganPlatformSmartPhone(beforeStatus);
             }
         }
 	}
