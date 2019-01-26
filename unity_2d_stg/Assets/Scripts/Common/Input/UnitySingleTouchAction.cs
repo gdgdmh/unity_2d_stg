@@ -91,32 +91,6 @@ public class UnitySingleTouchAction {
     }
 
     /// <summary>
-    /// ドラッグ開始位置を取得する
-    /// </summary>
-    /// <returns>ドラッグを開始した位置を取得する</returns>
-    public Vector3 GetDragStartPosition() {
-        return singleTouchActionMain.GetDragStartPosition();
-    }
-
-    /// <summary>
-    /// ドラッグ中の現在位置を取得する
-    /// </summary>
-    /// <returns>ドラッグ中の現在位置</returns>
-    public Vector3 GetDragCurrentPosition() {
-        return singleTouchActionMain.GetDragCurrentPosition();
-    }
-
-    /// <summary>
-    /// ドラッグ終了位置を取得する
-    /// </summary>
-    /// <returns>ドラッグを終了した位置を取得する</returns>
-    public Vector3 GetDragEndPosition() {
-        return singleTouchActionMain.GetDragEndPosition();
-    }
-
-
-
-    /// <summary>
     /// 初期化
     /// </summary>
     public void Initialize() {

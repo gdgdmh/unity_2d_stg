@@ -68,24 +68,6 @@ interface ISingleTouchActionable {
     Vector3 GetRawTouchPosition();
 
     /// <summary>
-    /// ドラッグ開始位置を取得する
-    /// </summary>
-    /// <returns>ドラッグを開始した位置を取得する</returns>
-    Vector3 GetDragStartPosition();
-
-    /// <summary>
-    /// ドラッグ中の現在位置を取得する
-    /// </summary>
-    /// <returns>ドラッグ中の現在位置</returns>
-    Vector3 GetDragCurrentPosition();
-
-    /// <summary>
-    /// ドラッグ終了位置を取得する
-    /// </summary>
-    /// <returns>ドラッグを終了した位置を取得する</returns>
-    Vector3 GetDragEndPosition();
-
-    /// <summary>
     /// 初期化
     /// </summary>
     void Initialize();
