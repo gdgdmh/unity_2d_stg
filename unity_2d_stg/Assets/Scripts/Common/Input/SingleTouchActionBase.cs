@@ -11,8 +11,10 @@ public abstract class SingleTouchActionBase {
 	/// 初期化
 	/// </summary>
 	public virtual void Initialize() {
-		currentTouchInfo = new TouchInfo();
-		pastTouchInfo = new TouchInfo();
+		touchInfo = new TouchInfo[kTouchInfoMax];
+		for (int i = 0; i < kTouchInfoMax; ++i) {
+			touchInfo[i] = new TouchInfo();
+		}
 		displayWidth = 0;
 		displayHeight = 0;
 	}
@@ -28,20 +30,23 @@ public abstract class SingleTouchActionBase {
     /// シーン移動などで以前のデータが残らないようにする
     /// </summary>
 	public virtual void Reset() {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::Reset currentTouchInfo null");
-		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::Reset pastTouchInfo null");
-		currentTouchInfo.Clear();
-		pastTouchInfo.Clear();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::Reset touchInfo null");
+		int size = touchInfo.Length;
+		for (int i = 0; i < size; ++i) {
+			MhCommon.Assert(touchInfo[i] != null, "SingleTouchActionBase::Reset touchInfo[i] null");
+			touchInfo[i].Clear();
+		}
 	}
 
     /// <summary>
     /// デバッグ用データの出力
     /// </summary>
 	public virtual void Print() {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::Print currentTouchInfo null");
-		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::Print pastTouchInfo null");
-		currentTouchInfo.Print();
-		pastTouchInfo.Print();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::Print touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionBase::Print touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionBase::Print touchInfo[kBefore1Frame] null");
+		touchInfo[kCurrentFrame].Print();
+		touchInfo[kBefore1Frame].Print();
 	}
 
     /// <summary>
@@ -49,10 +54,11 @@ public abstract class SingleTouchActionBase {
     /// 前回のフレームからタッチ状態から異なっていたら出力
     /// </summary>
 	public virtual void PrintDifference() {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::PrintDifference currentTouchInfo null");
-		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::PrintDifference pastTouchInfo null");
-        if (currentTouchInfo.Equals(pastTouchInfo) == false) {
-            currentTouchInfo.Print();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::PrintDifference touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionBase::PrintDifference touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionBase::PrintDifference touchInfo[kBefore1Frame] null");
+        if (touchInfo[kCurrentFrame].Equals(touchInfo[kBefore1Frame]) == false) {
+            touchInfo[kCurrentFrame].Print();
         }
 	}
 
@@ -70,85 +76,86 @@ public abstract class SingleTouchActionBase {
     /// システムから取得した情報から現在の情報を設定
     /// </summary>
     protected virtual void SetTouchInfoPc() {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetTouchInfoPc currentTouchInfo null");
-		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::SetTouchInfoPc pastTouchInfo null");
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::SetTouchInfoPc touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionBase::SetTouchInfoPc touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionBase::SetTouchInfoPc touchInfo[kBefore1Frame] null");
 
         // 前の状態を保存
-        pastTouchInfo.Copy(currentTouchInfo);
+        touchInfo[kBefore1Frame].Copy(touchInfo[kCurrentFrame]);
 
-        TouchInfo.TouchStatus status = currentTouchInfo.status;
-		TouchInfo.TouchStatus beforeStatus = pastTouchInfo.status;
+        TouchInfo.TouchStatus status = touchInfo[kCurrentFrame].status;
+		TouchInfo.TouchStatus beforeStatus = touchInfo[kBefore1Frame].status;
         switch (status) {
             case TouchInfo.TouchStatus.kNone:
                 // 押したりしていない状態で押されたらBeganへ移行
                 if (Input.GetMouseButtonDown(0) == true) {
-                    currentTouchInfo.touchId = 0;
-                    currentTouchInfo.position = Input.mousePosition;
-                    currentTouchInfo.status = TouchInfo.TouchStatus.kBegan;
+                    touchInfo[kCurrentFrame].touchId = 0;
+                    touchInfo[kCurrentFrame].position = Input.mousePosition;
+                    touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kBegan;
 					ChangeTouchStatusBeganPlatformPc(beforeStatus);
 					OnTouchStatusBeganPlatformPc();
                 } else {
                     // デフォルト
-                    currentTouchInfo.Clear();
+                    touchInfo[kCurrentFrame].Clear();
 					OnTouchStatusNonePlatformPc();
                 }
                 break;
             case TouchInfo.TouchStatus.kBegan:
                 // 位置を設定
-                currentTouchInfo.position = Input.mousePosition;
+                touchInfo[kCurrentFrame].position = Input.mousePosition;
                 if (Input.GetMouseButton(0) == true) {
-                    if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
+                    if (touchInfo[kCurrentFrame].IsPositionEquals(touchInfo[kBefore1Frame]) == true) {
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kStationary;
 						ChangeTouchStatusStationaryPlatformPc(beforeStatus);
 						OnTouchStatusStationaryPlatformPc();
                     } else {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kMoved;
 						ChangeTouchStatusMovedPlatformPc(beforeStatus);
 						OnTouchStatusMovedPlatformPc();
                     }
                 } else {
                     // 持ち上げられたのでkEndedへ
-                    currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
+                    touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kEnded;
 					ChangeTouchStatusEndedPlatformPc(beforeStatus);
 					OnTouchStatusEndedPlatformPc();
                 }
                 break;
             case TouchInfo.TouchStatus.kMoved:
-                currentTouchInfo.position = Input.mousePosition;
+                touchInfo[kCurrentFrame].position = Input.mousePosition;
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
-                    currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
+                    touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kEnded;
 					ChangeTouchStatusEndedPlatformPc(beforeStatus);
 					OnTouchStatusEndedPlatformPc();
                 } else {
                     // 移動してないならkStationary 移動していたらkMoved
-                    if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
+                    if (touchInfo[kCurrentFrame].IsPositionEquals(touchInfo[kBefore1Frame]) == true) {
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kStationary;
 						ChangeTouchStatusStationaryPlatformPc(beforeStatus);
 						OnTouchStatusStationaryPlatformPc();
                     } else {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kMoved;
 						//ChangeTouchStatusMovedPlatformPc(beforeStatus);
 						OnTouchStatusMovedPlatformPc();
                     }
                 }
                 break;
             case TouchInfo.TouchStatus.kStationary:
-                currentTouchInfo.position = Input.mousePosition;
+                touchInfo[kCurrentFrame].position = Input.mousePosition;
                 if (Input.GetMouseButton(0) == false) {
                     // 持ち上げられたのでkEndedへ
-                    currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
+                    touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kEnded;
 					ChangeTouchStatusEndedPlatformPc(beforeStatus);
 					OnTouchStatusEndedPlatformPc();
                 }
                 else {
                     // 移動してないならkStationary 移動していたらkMoved
-                    if (currentTouchInfo.IsPositionEquals(pastTouchInfo) == true) {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
+                    if (touchInfo[kCurrentFrame].IsPositionEquals(touchInfo[kBefore1Frame]) == true) {
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kStationary;
 						//ChangeTouchStatusStationaryPlatformPc(beforeStatus);
 						OnTouchStatusStationaryPlatformPc();
                     } else {
-                        currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
+                        touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kMoved;
 						ChangeTouchStatusMovedPlatformPc(beforeStatus);
 						OnTouchStatusMovedPlatformPc();
                     }
@@ -159,15 +166,15 @@ public abstract class SingleTouchActionBase {
                 // 終わった後に押されたらkBeganへ移行
                 if (Input.GetMouseButton(0) == false) {
                     // デフォルト状態に戻す
-                    currentTouchInfo.Clear();
+                    touchInfo[kCurrentFrame].Clear();
 					ChangeTouchStatusNonePlatformPc(beforeStatus);
 					OnTouchStatusNonePlatformPc();
                 } else {
                     // タッチIDは0固定
-                    currentTouchInfo.touchId = 0;
+                    touchInfo[kCurrentFrame].touchId = 0;
                     // 位置
-                    currentTouchInfo.position = Input.mousePosition;
-                    currentTouchInfo.status = TouchInfo.TouchStatus.kBegan;
+                    touchInfo[kCurrentFrame].position = Input.mousePosition;
+                    touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kBegan;
 					ChangeTouchStatusBeganPlatformPc(beforeStatus);
 					OnTouchStatusBeganPlatformPc();
                 }
@@ -226,26 +233,27 @@ public abstract class SingleTouchActionBase {
     /// </summary>
     /// <param name="touch"></param>
     protected virtual void SetCurrentInfoByTouch(Touch touch) {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetCurrentInfoByTouch currentTouchInfo null");
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::SetCurrentInfoByTouch touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionBase::SetCurrentInfoByTouch touchInfo[kCurrentFrame] null");
 
-        currentTouchInfo.touchId = touch.fingerId;
-        currentTouchInfo.position = touch.position;
+        touchInfo[kCurrentFrame].touchId = touch.fingerId;
+        touchInfo[kCurrentFrame].position = touch.position;
 
         switch (touch.phase) {
             case TouchPhase.Began:
-                currentTouchInfo.status = TouchInfo.TouchStatus.kBegan;
+                touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kBegan;
                 break;
             case TouchPhase.Moved:
-                currentTouchInfo.status = TouchInfo.TouchStatus.kMoved;
+                touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kMoved;
                 break;
             case TouchPhase.Stationary:
-                currentTouchInfo.status = TouchInfo.TouchStatus.kStationary;
+                touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kStationary;
                 break;
             case TouchPhase.Ended:
-                currentTouchInfo.status = TouchInfo.TouchStatus.kEnded;
+                touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kEnded;
                 break;
             case TouchPhase.Canceled:
-                currentTouchInfo.status = TouchInfo.TouchStatus.kCanceled;
+                touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kCanceled;
                 break;
             default:
                 break;
@@ -271,21 +279,22 @@ public abstract class SingleTouchActionBase {
 	}
 
 	protected virtual void SetTouchInfoSmartPhone() {
-		MhCommon.Assert(currentTouchInfo != null, "SingleTouchActionBase::SetTouchInfoSmartPhone currentTouchInfo null");
-		MhCommon.Assert(pastTouchInfo != null, "SingleTouchActionBase::SetTouchInfoSmartPhone pastTouchInfo null");
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionBase::SetTouchInfoSmartPhone touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionBase::SetTouchInfoSmartPhone touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionBase::SetTouchInfoSmartPhone touchInfo[kBefore1Frame] null");
 
         // 前の状態を保存
-        pastTouchInfo.Copy(currentTouchInfo);
+        touchInfo[kBefore1Frame].Copy(touchInfo[kCurrentFrame]);
 
-        int id = currentTouchInfo.touchId;
+        int id = touchInfo[kCurrentFrame].touchId;
         int touchCount = Input.touchCount;
-		TouchInfo.TouchStatus beforeStatus = pastTouchInfo.status;
+		TouchInfo.TouchStatus beforeStatus = touchInfo[kBefore1Frame].status;
         // 情報をリセット
-        currentTouchInfo.Clear();
+        touchInfo[kCurrentFrame].Clear();
 
         if (touchCount <= 0) {
             // タッチ情報なし
-			if (pastTouchInfo.status != TouchInfo.TouchStatus.kNone) {
+			if (touchInfo[kBefore1Frame].status != TouchInfo.TouchStatus.kNone) {
 				// タッチ情報なしに切り替わった
 				ChangeTouchStatusNonePlatformSmartPhone(beforeStatus);
 			}
@@ -298,16 +307,16 @@ public abstract class SingleTouchActionBase {
                 if (id == Input.GetTouch(i).fingerId) {
                     // 情報をセット
                     SetCurrentInfoByTouch(Input.GetTouch(i));
-					if (pastTouchInfo.status != currentTouchInfo.status) {
-						if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
+					if (touchInfo[kBefore1Frame].status != touchInfo[kCurrentFrame].status) {
+						if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kBegan) {
 							ChangeTouchStatusBeganPlatformSmartPhone(beforeStatus);
-						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
+						} else if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kMoved) {
 							ChangeTouchStatusMovedPlatformSmartPhone(beforeStatus);
-						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
+						} else if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kStationary) {
 							ChangeTouchStatusStationaryPlatformSmartPhone(beforeStatus);
-						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
+						} else if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kEnded) {
 							ChangeTouchStatusEndedPlatformSmartPhone(beforeStatus);
-						} else if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
+						} else if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kCanceled) {
 							ChangeTouchStatusCanceledPlatformSmartPhone(beforeStatus);
 						}
 					}
@@ -347,8 +356,13 @@ public abstract class SingleTouchActionBase {
         return v;
     }
 
-    protected TouchInfo currentTouchInfo { set; get; }
-    protected TouchInfo pastTouchInfo { set; get; }
+	protected static readonly int kTouchInfoMax = 2;
+	protected static readonly int kCurrentFrame = 0;
+	protected static readonly int kBefore1Frame = 1;
+
+	protected TouchInfo[] touchInfo { set; get; } // タッチ情報配列[0]が最新[1]が前フレーム[2]が前々フレーム
+    //protected TouchInfo currentTouchInfo { set; get; }
+    //protected TouchInfo touchInfo[kBefore1Frame] { set; get; }
     protected int displayWidth { set; get; }
     protected int displayHeight { set; get; }
 }

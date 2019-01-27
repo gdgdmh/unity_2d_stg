@@ -59,30 +59,30 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
 
 	protected override void ChangeTouchStatusBeganPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusBeganPlatformPc(beforeStatus);
-		dragStartPosition = currentTouchInfo.position;
-		dragCurrentPosition = currentTouchInfo.position;
+		dragStartPosition = touchInfo[kCurrentFrame].position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusMovedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusMovedPlatformPc(beforeStatus);
-		dragCurrentPosition = currentTouchInfo.position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusStationaryPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusStationaryPlatformPc(beforeStatus);
-		dragCurrentPosition = currentTouchInfo.position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusEndedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusEndedPlatformPc(beforeStatus);
-		dragEndPosition = currentTouchInfo.position;
-		dragCurrentPosition = currentTouchInfo.position;
+		dragEndPosition = touchInfo[kCurrentFrame].position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusCanceledPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusCanceledPlatformPc(beforeStatus);
-		dragEndPosition = currentTouchInfo.position;
-		dragCurrentPosition = currentTouchInfo.position;
+		dragEndPosition = touchInfo[kCurrentFrame].position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	/// <summary>
@@ -99,7 +99,7 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
 	protected override void OnTouchStatusMovedPlatformPc() {
 		base.OnTouchStatusMovedPlatformPc();
 		// 位置を更新
-		dragCurrentPosition = currentTouchInfo.position;
+		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void OnTouchStatusStationaryPlatformPc() {
@@ -222,7 +222,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチが全くされていない状態ならtrue</returns>
     bool ISingleTouchDragActionable.IsDragNone() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kNone) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragNone touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragNone touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kNone) {
             return true;
         }
         return false;
@@ -233,7 +235,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチが開始された状態ならtrue</returns>
     bool ISingleTouchDragActionable.IsDragBegan() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragBegan touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragBegan touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kBegan) {
             return true;
         }
         return false;
@@ -244,7 +248,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチをし続けていて移動中ならtrue</returns>
     bool ISingleTouchDragActionable.IsDragMoved() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragMoved touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragMoved touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kMoved) {
             return true;
         }
         return false;
@@ -255,7 +261,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチをし続けていて移動していないならtrue</returns>
     bool ISingleTouchDragActionable.IsDragStationary() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragStationary touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragStationary touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kStationary) {
             return true;
         }
         return false;
@@ -266,7 +274,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチが終了したならtrue</returns>
     bool ISingleTouchDragActionable.IsDragEnded() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragEnded touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragEnded touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kEnded) {
             return true;
         }
         return false;
@@ -277,7 +287,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>タッチがキャンセルされたならtrue</returns>
     bool ISingleTouchDragActionable.IsDragCanceled() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragCanceled touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragCanceled touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kCanceled) {
             return true;
         }
         return false;
@@ -288,7 +300,9 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     /// </summary>
     /// <returns>ドラッグ中ならtrue</returns>
     bool ISingleTouchDragActionable.IsDragging() {
-        TouchInfo.TouchStatus status = currentTouchInfo.status;
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchDragActionPc::IsDragging touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchDragActionPc::IsDragging touchInfo[kCurrentFrame] null");
+       TouchInfo.TouchStatus status = touchInfo[kCurrentFrame].status;
         if ((status == TouchInfo.TouchStatus.kBegan) || (status == TouchInfo.TouchStatus.kMoved) || (status == TouchInfo.TouchStatus.kStationary)) {
             return true;
         }

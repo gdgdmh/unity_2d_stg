@@ -37,7 +37,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチが全くされていない状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchNone() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kNone) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchNone touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchNone touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kNone) {
             return true;
         }
         return false;
@@ -48,7 +50,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチが開始された状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchBegan() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchBegan touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchBegan touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kBegan) {
             return true;
         }
         return false;
@@ -59,7 +63,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチをし続けていて移動中ならtrue</returns>
     bool ISingleTouchActionable.IsTouchMoved() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchMoved touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchMoved touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kMoved) {
             return true;
         }
         return false;
@@ -70,7 +76,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチをし続けていて移動していないならtrue</returns>
     bool ISingleTouchActionable.IsTouchStationary() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchStationary touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchStationary touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kStationary) {
             return true;
         }
         return false;
@@ -81,7 +89,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチが終了したならtrue</returns>
     bool ISingleTouchActionable.IsTouchEnded() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchEnded touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchEnded touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kEnded) {
             return true;
         }
         return false;
@@ -92,7 +102,9 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns>タッチがキャンセルされたならtrue</returns>
     bool ISingleTouchActionable.IsTouchCanceled() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
+ 		MhCommon.Assert(touchInfo != null, "SingleTouchActionSmartPhone::IsTouchCanceled touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionSmartPhone::IsTouchCanceled touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kCanceled) {
             return true;
         }
         return false;
@@ -113,7 +125,7 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetApplicationTouchPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentTouchInfo.position);
+        return GetTouchPosition(displayWidth, displayHeight, touchInfo[kCurrentFrame].position);
     }
 
     /// <summary>
@@ -121,7 +133,7 @@ public class SingleTouchActionSmartPhone : SingleTouchActionBase, ISingleTouchAc
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetRawTouchPosition() {
-        return currentTouchInfo.position;
+        return touchInfo[kCurrentFrame].position;
     }
 
     /// <summary>

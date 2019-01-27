@@ -37,7 +37,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチが全くされていない状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchNone() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kNone) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchNone touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchNone touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kNone) {
             return true;
         }
         return false;
@@ -48,7 +50,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチが開始された状態ならtrue</returns>
     bool ISingleTouchActionable.IsTouchBegan() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kBegan) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchBegan touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchBegan touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kBegan) {
             return true;
         }
         return false;
@@ -59,7 +63,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチをし続けていて移動中ならtrue</returns>
     bool ISingleTouchActionable.IsTouchMoved() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kMoved) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchMoved touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchMoved touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kMoved) {
             return true;
         }
         return false;
@@ -70,7 +76,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチをし続けていて移動していないならtrue</returns>
     bool ISingleTouchActionable.IsTouchStationary() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kStationary) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchStationary touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchStationary touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kStationary) {
             return true;
         }
         return false;
@@ -81,7 +89,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチが終了したならtrue</returns>
     bool ISingleTouchActionable.IsTouchEnded() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kEnded) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchEnded touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchEnded touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kEnded) {
             return true;
         }
         return false;
@@ -92,7 +102,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns>タッチがキャンセルされたならtrue</returns>
     bool ISingleTouchActionable.IsTouchCanceled() {
-        if (currentTouchInfo.status == TouchInfo.TouchStatus.kCanceled) {
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsTouchCanceled touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsTouchCanceled touchInfo[kCurrentFrame] null");
+        if (touchInfo[kCurrentFrame].status == TouchInfo.TouchStatus.kCanceled) {
             return true;
         }
         return false;
@@ -103,7 +115,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns><c>true</c>ドラッグ動作をしている<c>false</c>ドラッグ動作をしていない</returns>
     bool ISingleTouchActionable.IsDragging() {
-        TouchInfo.TouchStatus status = currentTouchInfo.status;
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::IsDragging touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::IsDragging touchInfo[kCurrentFrame] null");
+        TouchInfo.TouchStatus status = touchInfo[kCurrentFrame].status;
         if ((status == TouchInfo.TouchStatus.kBegan) || (status == TouchInfo.TouchStatus.kMoved) || (status == TouchInfo.TouchStatus.kStationary)) {
             return true;
         } else {
@@ -117,7 +131,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetApplicationTouchPosition() {
-        return GetTouchPosition(displayWidth, displayHeight, currentTouchInfo.position);
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::GetApplicationTouchPosition touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::GetApplicationTouchPosition touchInfo[kCurrentFrame] null");
+        return GetTouchPosition(displayWidth, displayHeight, touchInfo[kCurrentFrame].position);
     }
 
 
@@ -126,7 +142,9 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchActionable.GetRawTouchPosition() {
-        return currentTouchInfo.position;
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::GetRawTouchPosition touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::GetRawTouchPosition touchInfo[kCurrentFrame] null");
+        return touchInfo[kCurrentFrame].position;
     }
 
     /// <summary>
@@ -149,15 +167,19 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// シーン移動などで以前のデータが残らないようにする
     /// </summary>
     void ISingleTouchActionable.Reset() {
-        currentTouchInfo.Clear();
-        pastTouchInfo.Clear();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::Reset touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::Reset touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionPc::Reset touchInfo[kBefore1Frame] null");
+		base.Reset();
     }
 
     /// <summary>
     /// デバッグ用データの出力
     /// </summary>
     void ISingleTouchActionable.Print() {
-        currentTouchInfo.Print();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::Print touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::Print touchInfo[kCurrentFrame] null");
+        touchInfo[kCurrentFrame].Print();
     }
 
     /// <summary>
@@ -165,8 +187,11 @@ public class SingleTouchActionPc : SingleTouchActionBase, ISingleTouchActionable
     /// 前回のフレームからタッチ状態から異なっていたら出力
     /// </summary>
     void ISingleTouchActionable.PrintDifference() {
-        if (currentTouchInfo.Equals(pastTouchInfo) == false) {
-            currentTouchInfo.Print();
+		MhCommon.Assert(touchInfo != null, "SingleTouchActionPc::PrintDifference touchInfo null");
+		MhCommon.Assert(touchInfo[kCurrentFrame] != null, "SingleTouchActionPc::PrintDifference touchInfo[kCurrentFrame] null");
+		MhCommon.Assert(touchInfo[kBefore1Frame] != null, "SingleTouchActionPc::PrintDifference touchInfo[kBefore1Frame] null");
+        if (touchInfo[kCurrentFrame].Equals(touchInfo[kBefore1Frame]) == false) {
+            touchInfo[kCurrentFrame].Print();
         }
     }
 }
