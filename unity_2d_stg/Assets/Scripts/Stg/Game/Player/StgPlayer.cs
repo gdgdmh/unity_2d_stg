@@ -28,7 +28,27 @@ public class StgPlayer : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
+		UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
         touchAction.Update();
+		dragAction.Update();
+
+		//dragAction.PrintDifference();
+		if ((dragAction.IsDragMoved()) || (dragAction.IsDragStationary())) {
+			// 前フレームとの差分からドラッグ移動を算出
+			Vector3 before = dragAction.GetApplicationDragBefore1FramePosition();
+			Vector3 current = dragAction.GetApplicationDragCurrentPosition();
+
+			Vector3 diffarence = current - before;
+			float speed = 9.0f;
+			Vector2 direction = new Vector2(diffarence.x, diffarence.y).normalized;
+            GetComponent<Rigidbody2D>().velocity = direction * speed;
+		} else {
+			Vector2 direction = new Vector2(0, 0).normalized;
+            GetComponent<Rigidbody2D>().velocity = direction;
+		}
+
+
+		/*
         if (touchAction.IsTouchBegan()) {
             float x = 0.0f;
             float y = -0.2f;
@@ -36,6 +56,7 @@ public class StgPlayer : MonoBehaviour {
             Vector2 direction = new Vector2(x, y).normalized;
             GetComponent<Rigidbody2D>().velocity = direction * speed;
         }
+		*/
     }
 
     private IStgPlayerController stgPlayerController;

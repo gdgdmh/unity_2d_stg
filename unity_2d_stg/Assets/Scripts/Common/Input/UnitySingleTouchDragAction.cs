@@ -107,6 +107,23 @@ public class UnitySingleTouchDragAction
     }
 
     /// <summary>
+    /// アプリケーション上でのドラッグ中の現在位置を取得する
+    /// 必ずしもディスプレイサイズと同じではない
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetApplicationDragBefore1FramePosition() {
+        return singleTouchDragActionable.GetApplicationDragBefore1FramePosition();
+    }
+
+    /// <summary>
+    /// システムから取得できる無加工のドラッグ中現在位置を取得する
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 GetRawDragBefore1FramePosition() {
+        return singleTouchDragActionable.GetRawDragBefore1FramePosition();
+    }
+
+    /// <summary>
     /// アプリケーション上でのドラッグ終了位置を取得する
     /// 必ずしもディスプレイサイズと同じではない
     /// </summary>

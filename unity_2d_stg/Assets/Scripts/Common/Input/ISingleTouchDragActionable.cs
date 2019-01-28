@@ -74,10 +74,23 @@ interface ISingleTouchDragActionable {
     Vector3 GetApplicationDragCurrentPosition();
 
     /// <summary>
+    /// アプリケーション上でのドラッグ中の前フレームの位置を取得する
+    /// 必ずしもディスプレイサイズと同じではない
+    /// </summary>
+    /// <returns></returns>
+	Vector3 GetApplicationDragBefore1FramePosition();
+
+    /// <summary>
     /// システムから取得できる無加工のドラッグ中現在位置を取得する
     /// </summary>
     /// <returns></returns>
     Vector3 GetRawDragCurrentPosition();
+
+    /// <summary>
+    /// システムから取得できる無加工のドラッグ中現在位置を取得する
+    /// </summary>
+    /// <returns></returns>
+	Vector3 GetRawDragBefore1FramePosition();
 
     /// <summary>
     /// アプリケーション上でのドラッグ終了位置を取得する

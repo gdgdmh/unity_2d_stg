@@ -147,8 +147,7 @@ public abstract class SingleTouchActionBase {
                     touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kEnded;
 					ChangeTouchStatusEndedPlatformPc(beforeStatus);
 					OnTouchStatusEndedPlatformPc();
-                }
-                else {
+                } else {
                     // 移動してないならkStationary 移動していたらkMoved
                     if (touchInfo[kCurrentFrame].IsPositionEquals(touchInfo[kBefore1Frame]) == true) {
                         touchInfo[kCurrentFrame].status = TouchInfo.TouchStatus.kStationary;

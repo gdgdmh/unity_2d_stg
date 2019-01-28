@@ -61,25 +61,28 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
 		base.ChangeTouchStatusBeganPlatformPc(beforeStatus);
 		dragStartPosition = touchInfo[kCurrentFrame].position;
 		dragCurrentPosition = touchInfo[kCurrentFrame].position;
+		dragBefore1FramePosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusMovedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
 		base.ChangeTouchStatusMovedPlatformPc(beforeStatus);
-		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusStationaryPlatformPc(TouchInfo.TouchStatus beforeStatus) {
+		dragBefore1FramePosition = dragCurrentPosition;
 		base.ChangeTouchStatusStationaryPlatformPc(beforeStatus);
 		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusEndedPlatformPc(TouchInfo.TouchStatus beforeStatus) {
+		dragBefore1FramePosition = dragCurrentPosition;
 		base.ChangeTouchStatusEndedPlatformPc(beforeStatus);
 		dragEndPosition = touchInfo[kCurrentFrame].position;
 		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
 	protected override void ChangeTouchStatusCanceledPlatformPc(TouchInfo.TouchStatus beforeStatus) {
+		dragBefore1FramePosition = dragCurrentPosition;
 		base.ChangeTouchStatusCanceledPlatformPc(beforeStatus);
 		dragEndPosition = touchInfo[kCurrentFrame].position;
 		dragCurrentPosition = touchInfo[kCurrentFrame].position;
@@ -99,6 +102,7 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
 	protected override void OnTouchStatusMovedPlatformPc() {
 		base.OnTouchStatusMovedPlatformPc();
 		// 位置を更新
+		dragBefore1FramePosition = dragCurrentPosition;
 		dragCurrentPosition = touchInfo[kCurrentFrame].position;
 	}
 
@@ -336,12 +340,29 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
     }
 
     /// <summary>
+    /// アプリケーション上でのドラッグ中の前フレームの位置を取得する
+    /// 必ずしもディスプレイサイズと同じではない
+    /// </summary>
+    /// <returns></returns>
+    Vector3 ISingleTouchDragActionable.GetApplicationDragBefore1FramePosition() {
+        return GetTouchPosition(displayWidth, displayHeight, dragBefore1FramePosition);
+    }
+
+    /// <summary>
     /// システムから取得できる無加工のドラッグ中現在位置を取得する
     /// </summary>
     /// <returns></returns>
     Vector3 ISingleTouchDragActionable.GetRawDragCurrentPosition() {
         return dragCurrentPosition;
     }
+
+    /// <summary>
+    /// システムから取得できる無加工のドラッグ中現在位置を取得する
+    /// </summary>
+    /// <returns></returns>
+	Vector3 ISingleTouchDragActionable.GetRawDragBefore1FramePosition() {
+		return dragBefore1FramePosition;
+	}
 
     /// <summary>
     /// アプリケーション上でのドラッグ終了位置を取得する
@@ -401,5 +422,6 @@ public class SingleTouchDragActionPc : SingleTouchActionBase, ISingleTouchDragAc
 
     private Vector3 dragStartPosition { set; get; }
     private Vector3 dragCurrentPosition { set; get; }
+	private Vector3 dragBefore1FramePosition { set; get; }
     private Vector3 dragEndPosition { set; get; }
 }
