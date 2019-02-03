@@ -30,6 +30,10 @@ public class ObjectHealth {
 		ChangeHealthBeforeProc(EventType.kSetter, beforeHealth);
 		this.health = health;
 		ChangeHealthAfterProc(EventType.kSetter, beforeHealth, this.health);
+		// 1以上が設定されているなら生きていることにする
+		if (health > 0) {
+			isAlive = true;
+		}
 	}
 
 	/// <summary>
@@ -48,7 +52,15 @@ public class ObjectHealth {
 	}
 
 	/// <summary>
-	/// 生命力の増加
+	/// 強制死亡
+	/// </summary>
+	public void ForceDead() {
+		health = 0;
+		isAlive = false;
+	}
+
+	/// <summary>
+	/// 生命力の増加(isAliveの設定はしない)
 	/// </summary>
 	/// <param name="health"></param>
 	public void Add(int health) {
@@ -59,7 +71,7 @@ public class ObjectHealth {
 	}
 
 	/// <summary>
-	/// 生命力の減少
+	/// 生命力の減少(isAliveの設定はしない)
 	/// </summary>
 	/// <param name="health"></param>
 	public void Sub(int health) {

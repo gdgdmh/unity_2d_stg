@@ -8,21 +8,25 @@ public class StgGameObject {
 	}
 
 	public void Initialize() {
+		health = new ObjectHealth();
+
+		health.Initialize();
+		health.SetMaxHealth(1);
+		health.SetHealth(1);
 	}
 
     // Update is called once per frame
     public void Update() {
     }
 
-	public bool IsActive() {
-		return isActive;
-	}
+	//public bool IsActive() {
+	//	return isActive;
+	//}
 
 	public bool IsAlive() {
-		return isAlive;
+		return health.IsAlive();
 	}
 
-	//protected 
-	protected bool isActive; // そのオブジェクトが活動しているか(生きているかは無関係)
-	protected bool isAlive; // そのオブジェクトが生きているか
+	protected ObjectHealth health; // 生命力
+	//protected bool isActive; // そのオブジェクトが活動しているか(生きているかは無関係)
 }
