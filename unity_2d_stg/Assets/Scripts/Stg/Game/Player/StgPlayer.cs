@@ -5,6 +5,7 @@ using UnityEngine;
 public class StgPlayer : MonoBehaviour {
 
     StgPlayer() {
+		isDragRaw = true;
 
     }
 
@@ -39,9 +40,16 @@ public class StgPlayer : MonoBehaviour {
 			Vector3 current = dragAction.GetApplicationDragCurrentPosition();
 
 			Vector3 diffarence = current - before;
-			float speed = 9.0f;
-			Vector2 direction = new Vector2(diffarence.x, diffarence.y).normalized;
-            GetComponent<Rigidbody2D>().velocity = direction * speed;
+			if (!isDragRaw) {
+				// 正規化+速度をかけ合わせてドラッグを反映
+				float speed = 9.0f;
+				Vector2 direction = new Vector2(diffarence.x, diffarence.y).normalized;
+				GetComponent<Rigidbody2D>().velocity = direction * speed;
+			} else {
+				// ほぼ無加工でドラッグを反映
+				Vector2 direction = new Vector2(diffarence.x, diffarence.y);
+				GetComponent<Rigidbody2D>().velocity = direction;
+			}
 		} else {
 			Vector2 direction = new Vector2(0, 0).normalized;
             GetComponent<Rigidbody2D>().velocity = direction;
@@ -61,4 +69,5 @@ public class StgPlayer : MonoBehaviour {
 
     private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
+	private bool isDragRaw;
 }
