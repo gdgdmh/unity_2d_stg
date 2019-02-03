@@ -21,7 +21,9 @@ public class NormalEnemy : EnemyBase
 		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 		MhCommon.Assert(rigidbody2D != null, "NormalEnemy::Update transform null");
 
+		// Z軸回転するようにする
 		rigidbody2D.angularVelocity = 30.0f;
 
+		rigidbody2D.velocity = new Vector2(0.0f, -0.5f);
     }
 }
