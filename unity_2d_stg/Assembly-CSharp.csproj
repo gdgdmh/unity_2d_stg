@@ -83,12 +83,14 @@
     <Compile Include="Assets\Scripts\Scene\TestScene\TestSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\TitleScene\TitleSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\TouchTestScene\TouchTestSceneTask.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgBulletBase.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\NormalEnemy.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayer.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\I2dFloatPositionable.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\System\IStgAttack.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\Object2dFloatPosition.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\ObjectHealth.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObject.cs" />

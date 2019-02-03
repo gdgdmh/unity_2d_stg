@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StgPlayer : MonoBehaviour {
+public class StgPlayer : StgGameObject {
 
     StgPlayer() {
 		isDragRaw = true;
@@ -22,12 +22,12 @@ public class StgPlayer : MonoBehaviour {
     }
 
     // Start is called before the first frame update
-    void Start() {
+    public override void Start() {
         
     }
 
     // Update is called once per frame
-    void Update() {
+    public override void Update() {
         UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
 		UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
         touchAction.Update();
