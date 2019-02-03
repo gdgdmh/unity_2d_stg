@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StgGameObject {
+public class StgGameObject : MonoBehaviour {
 
 	public StgGameObject() {
 	}
 
-	public void Initialize() {
+	public virtual void Initialize() {
 		health = new ObjectHealth();
 
 		health.Initialize();
@@ -15,8 +15,11 @@ public class StgGameObject {
 		health.SetHealth(1);
 	}
 
+	public virtual void Start() {
+	}
+
     // Update is called once per frame
-    public void Update() {
+    public virtual void Update() {
     }
 
 	//public bool IsActive() {
