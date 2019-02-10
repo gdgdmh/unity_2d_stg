@@ -18,7 +18,8 @@ public class StgPlayerBulletFactory : AStgBulletFactory {
 	//public override StgBulletBase Create(StgBulletConstant.Type type, Object2dFloatPosition position) {
 	public override GameObject Create(StgBulletConstant.Type type, Object2dFloatPosition position) {
 		if (type == StgBulletConstant.Type.kPlayerNormal) {
-			GameObject bullet = (GameObject)Resources.Load("PlayerBullet");
+			GameObject bullet = (GameObject)Resources.Load("Prefabs/Game/Bullet/PlayerBullet");
+			//GameObject bullet = (GameObject)Resources.Load("PlayerBullet");
 			//StgPlayerBullet bullet = Resources.Load<StgPlayerBullet>("PlayerBullet");//"Prefabs/Game/Bullet/PlayerBullet");
 			MhCommon.Assert(bullet != null, "StgPlayerBulletFactory::Create() kPlayerNormal null");
 			//Instantiate(bullet, new Vector3(0.0f, -3.0f, 0.0f), Quaternion.identity);
