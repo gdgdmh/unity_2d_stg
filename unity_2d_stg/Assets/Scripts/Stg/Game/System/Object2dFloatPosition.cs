@@ -4,26 +4,42 @@ using UnityEngine;
 
 public class Object2dFloatPosition : I2dFloatPositionable {
 
+	public Object2dFloatPosition() {
+	}
+
+	public Object2dFloatPosition(float x, float y) {
+		Position = new Vector2(x, y);
+		//Position.Set(x, y);
+	}
+
+	/*
     public Vector2 Position {
         set { Position = value; }
         get { return Position; }
     }
+	*/
 
-    void I2dFloatPositionable.SetX(float x) {
-        //Position
+	public Vector2 Position;
+
+    public void SetX(float x) {
+    //void I2dFloatPositionable.SetX(float x) {
+		Position = new Vector2(x, Position.y);
     }
 
-    void I2dFloatPositionable.SetY(float y) {
+    public void SetY(float y) {
+		Position = new Vector2(Position.x, y);
         //Position.y = y;
     }
 
-    float I2dFloatPositionable.GetX() {
-        return 0;
+    public float GetX() {
+		return Position.x;
+        //return 0;
         //return Position.x;
     }
 
-    float I2dFloatPositionable.GetY() {
-        return 0;
+    public float GetY() {
+		return Position.y;
+        //return 0;
         //return Position.y;
     }
 

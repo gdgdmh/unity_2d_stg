@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface I2dFloatPositionable {
 
-    Vector2 Position { set; get; }
+    //Vector2 Position { set; get; }
     void SetX(float x);
     void SetY(float y);
     float GetX();
