@@ -23,7 +23,7 @@ public class NormalEnemy : EnemyBase
 
 		// Z軸回転するようにする
 		rigidbody2D.angularVelocity = 30.0f;
-
+		// 真下に進む
 		rigidbody2D.velocity = new Vector2(0.0f, -0.5f);
     }
 }
