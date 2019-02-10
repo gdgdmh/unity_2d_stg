@@ -6,7 +6,6 @@ public class StgPlayer : StgGameObject {
 
     StgPlayer() {
 		isDragRaw = true;
-
     }
 
     private void Awake() {
@@ -14,11 +13,15 @@ public class StgPlayer : StgGameObject {
         if (stgPlayerController == null) {
             stgPlayerController = this.gameObject.AddComponent<StgPlayerController>() as StgPlayerController;
             MhCommon.Assert(stgPlayerController != null, "StgPlayer::Awake() StgPlayerController AddComponent failure");
+			// 試しにcall
+			stgPlayerController.Update();
         }
 
-        // 試しにcall
-        stgPlayerController.Update();
-        //MhCommon.Print("update");
+		// 攻撃クラス作成
+		if (attack == null) {
+			attack = this.gameObject.AddComponent<StgPlayerAttack>() as StgPlayerAttack;
+			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
+		}
     }
 
     // Start is called before the first frame update
@@ -33,6 +36,17 @@ public class StgPlayer : StgGameObject {
         touchAction.Update();
 		dragAction.Update();
 
+		// 移動処理
+		Move();
+
+		// 攻撃処理
+		Attack();
+
+    }
+
+	private void Move() {
+        //UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
+		UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
 		//dragAction.PrintDifference();
 		if ((dragAction.IsDragMoved()) || (dragAction.IsDragStationary())) {
 			// 前フレームとの差分からドラッグ移動を算出
@@ -55,7 +69,6 @@ public class StgPlayer : StgGameObject {
             GetComponent<Rigidbody2D>().velocity = direction;
 		}
 
-
 		/*
         if (touchAction.IsTouchBegan()) {
             float x = 0.0f;
@@ -64,10 +77,16 @@ public class StgPlayer : StgGameObject {
             Vector2 direction = new Vector2(x, y).normalized;
             GetComponent<Rigidbody2D>().velocity = direction * speed;
         }
-		*/
-    }
+		*/		
+	}
 
-    private IStgPlayerController stgPlayerController;
+	private void Attack() {
+		MhCommon.Assert(attack != null, "StgPlayer::Attack() StgPlayerAttack null");
+		attack.Update();
+	}
+
+	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
+	private StgPlayerAttack attack;
 	private bool isDragRaw;
 }
