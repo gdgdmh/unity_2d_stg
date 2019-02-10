@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Scene\TitleScene\TitleSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\TouchTestScene\TouchTestSceneTask.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgBulletBase.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgPlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\NormalEnemy.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
