@@ -81,7 +81,11 @@ public class StgPlayer : StgGameObject {
 	}
 
 	private void Attack() {
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
 		MhCommon.Assert(attack != null, "StgPlayer::Attack() StgPlayerAttack null");
+		// 発射位置を設定
+		attack.SetAttackPosition(rigidbody2D.position);
 		attack.Update();
 	}
 

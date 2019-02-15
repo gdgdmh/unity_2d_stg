@@ -6,6 +6,11 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 
 	public StgPlayerAttack() {
 		ResetAttackTime();
+		attackPositon = new Vector3(0.0f, -3.0f, 0.0f);
+	}
+
+	public void SetAttackPosition(Vector3 position) {
+		attackPositon = position;
 	}
 
     // Start is called before the first frame update
@@ -38,9 +43,10 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 		// PlayerBulletを動的生成
 		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
-		Instantiate(bullet, new Vector3(0.0f, -3.0f, 0.0f), Quaternion.identity);
+		Instantiate(bullet, attackPositon, Quaternion.identity);
 	}
 
 	private static readonly float kAttackInterval = 2.0f; // 攻撃の再間隔時間(sec)
 	private float attackInterval = kAttackInterval; // 現在の攻撃再間隔時間
+	private Vector3 attackPositon; // 攻撃位置
 }
