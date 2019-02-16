@@ -22,6 +22,10 @@ public class StgPlayer : StgGameObject {
 			attack = this.gameObject.AddComponent<StgPlayerAttack>() as StgPlayerAttack;
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 		}
+
+		//if (stgGameObjectSubject == null) {
+		//	stgGameObjectSubject = new StgGameObjectSubject();
+		//}
     }
 
     // Start is called before the first frame update
@@ -92,5 +96,6 @@ public class StgPlayer : StgGameObject {
 	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
 	private StgPlayerAttack attack;
+	//private StgGameObjectSubject stgGameObjectSubject;
 	private bool isDragRaw;
 }

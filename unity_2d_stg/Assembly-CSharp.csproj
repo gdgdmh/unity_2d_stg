@@ -99,6 +99,8 @@
     <Compile Include="Assets\Scripts\Stg\Game\System\Object2dFloatPosition.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\ObjectHealth.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObject.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObjectObserver.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObjectSubject.cs" />
     <Compile Include="Assets\Scripts\Stg\Input\InputSystem.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\ApplicationConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\SceneShare.cs" />
