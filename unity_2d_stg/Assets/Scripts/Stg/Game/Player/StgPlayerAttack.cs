@@ -7,10 +7,13 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 	public StgPlayerAttack() {
 		ResetAttackTime();
 		attackPositon = new Vector3(0.0f, -3.0f, 0.0f);
+
 	}
 
-	public void SetAttackPosition(Vector3 position) {
-		attackPositon = position;
+	public void SetPlayer(ref GameObject player) {
+		MhCommon.Print("SetPlayer");
+		this.player = player;
+		MhCommon.Assert(this.player != null, "StgPlayerAttack::SetPlayer() player null");
 	}
 
     // Start is called before the first frame update
@@ -31,6 +34,10 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 		}
     }
 
+	/// <summary>
+	/// 攻撃した際の挙動
+	/// </summary>
+	/// <param name="stgGameObject"></param>
 	public void Attack(StgGameObject stgGameObject) {
 	}
 
@@ -39,14 +46,24 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 	}
 
 	private void AttackProcess() {
-		//MhCommon.Print("AttackProcess");
 		// PlayerBulletを動的生成
-		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
+		StgPlayerBulletFactory factory = new StgPlayerBulletFactory(player);
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
+
+		if (playerScript == null) {
+			// SetPlayerの時点ではStgPlayerを取得できないのでここで一度だけ取得する
+			playerScript = this.player.GetComponent<StgPlayer>();
+		}
+		MhCommon.Assert(playerScript != null, "StgPlayerAttack::AttackProcess() playerScript null");
+		Vector3 shootPosition = playerScript.GetShootPosition();
+		attackPositon = shootPosition;
+
 		Instantiate(bullet, attackPositon, Quaternion.identity);
 	}
 
 	private static readonly float kAttackInterval = 2.0f; // 攻撃の再間隔時間(sec)
+	protected GameObject player;
+	protected StgPlayer playerScript;
 	private float attackInterval = kAttackInterval; // 現在の攻撃再間隔時間
 	private Vector3 attackPositon; // 攻撃位置
 }

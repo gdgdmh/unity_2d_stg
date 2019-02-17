@@ -6,6 +6,8 @@ public class StgEnemyFactory : AStgEnemyFactory {
 
 	public StgEnemyFactory(GameObject player) {
 		this.player = player;
+		StgPlayer playerScript = this.player.GetComponent<StgPlayer>();
+		MhCommon.Assert(playerScript != null, "StgEnemyFactory::StgEnemyFactory() playerScript null");
 	}
 
 	public override GameObject Create(StgEnemyConstant.Type type) {
@@ -20,4 +22,5 @@ public class StgEnemyFactory : AStgEnemyFactory {
 	}
 
 	protected GameObject player;
+	protected StgPlayer playerScript;
 }

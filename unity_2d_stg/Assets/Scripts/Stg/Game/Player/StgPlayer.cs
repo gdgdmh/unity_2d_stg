@@ -19,7 +19,12 @@ public class StgPlayer : StgGameObject {
 
 		// 攻撃クラス作成
 		if (attack == null) {
+			// プレイヤーのGameObjectを取得
+			GameObject player = GameObject.Find("Player");
+			MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
+
 			attack = this.gameObject.AddComponent<StgPlayerAttack>() as StgPlayerAttack;
+			attack.SetPlayer(ref player);
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 		}
 
@@ -42,11 +47,16 @@ public class StgPlayer : StgGameObject {
 
 		// 移動処理
 		Move();
-
 		// 攻撃処理
 		Attack();
 
     }
+
+	public Vector3 GetShootPosition() {
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
+		return rigidbody2D.position;
+	}
 
 	private void Move() {
         //UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
@@ -88,14 +98,13 @@ public class StgPlayer : StgGameObject {
 		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
 		MhCommon.Assert(attack != null, "StgPlayer::Attack() StgPlayerAttack null");
+
 		// 発射位置を設定
-		attack.SetAttackPosition(rigidbody2D.position);
 		attack.Update();
 	}
 
 	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
 	private StgPlayerAttack attack;
-	//private StgGameObjectSubject stgGameObjectSubject;
 	private bool isDragRaw;
 }
