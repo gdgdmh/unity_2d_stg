@@ -55,7 +55,9 @@ public class StgPlayer : StgGameObject {
 	public Vector3 GetShootPosition() {
 		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
-		return rigidbody2D.position;
+		Vector3 position = rigidbody2D.position;
+		position.y += kShootOffsetY; // 自機の本体分ずらす
+		return position;
 	}
 
 	private void Move() {
@@ -102,6 +104,8 @@ public class StgPlayer : StgGameObject {
 		// 発射位置を設定
 		attack.Update();
 	}
+
+	private static readonly float kShootOffsetY = 1.0f;
 
 	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
