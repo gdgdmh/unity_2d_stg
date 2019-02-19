@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StgGameObject : MonoBehaviour {
+public class StgGameObject : MonoBehaviour, IStgGameObjectAreaOverDestroyable {
 
 	public StgGameObject() {
 	}
@@ -28,6 +28,21 @@ public class StgGameObject : MonoBehaviour {
 
 	public bool IsAlive() {
 		return health.IsAlive();
+	}
+
+	/// <summary>
+	/// エリアオーバーしているか
+	/// </summary>
+	/// <returns></returns>
+	public virtual bool CheckAreaOver() {
+		return false;
+	}
+
+	/// <summary>
+	/// エリアオーバー処理
+	/// </summary>
+	public virtual void ProcessAreaOver() {
+		Destroy(this.gameObject);
 	}
 
 	protected ObjectHealth health; // 生命力

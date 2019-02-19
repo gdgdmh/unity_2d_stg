@@ -99,6 +99,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\I2dFloatPositionable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\IStgAttack.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\System\IStgGameObjectAreaOverDestroyable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\Object2dFloatPosition.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\ObjectHealth.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObject.cs" />
