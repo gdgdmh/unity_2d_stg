@@ -26,4 +26,8 @@ public class NormalEnemy : EnemyBase
 		// 真下に進む
 		rigidbody2D.velocity = new Vector2(0.0f, -0.5f);
     }
+
+	private void OnTriggerEnter2D(Collider2D collision) {
+		MhCommon.Print("NormalEnemy::OnTriggerEnter2D");
+	}
 }
