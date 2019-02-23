@@ -47,5 +47,8 @@ public class StgPlayerBullet : StgBulletBase {
 	public override void Attack(StgGameObject stgGameObject) {
 	}
 
+	private void OnTriggerEnter2D(Collider2D collision) {
+		MhCommon.Print("StgPlayerBullet::OnTriggerEnter2D");
+	}
 
 }
