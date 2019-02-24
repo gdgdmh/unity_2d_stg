@@ -105,6 +105,10 @@ public class StgPlayer : StgGameObject {
 		attack.Update();
 	}
 
+	private void OnTriggerEnter2D(Collider2D collision) {
+		MhCommon.Print("StgPlayer::OnTriggerEnter2D");
+	}
+
 	private static readonly float kShootOffsetY = 1.0f;
 
 	private IStgPlayerController stgPlayerController;
