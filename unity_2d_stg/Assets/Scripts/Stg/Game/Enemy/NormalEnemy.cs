@@ -28,6 +28,6 @@ public class NormalEnemy : EnemyBase
     }
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		MhCommon.Print("NormalEnemy::OnTriggerEnter2D");
+		MhCommon.Print("NormalEnemy::OnTriggerEnter2D tag=" + collision.tag);
 	}
 }

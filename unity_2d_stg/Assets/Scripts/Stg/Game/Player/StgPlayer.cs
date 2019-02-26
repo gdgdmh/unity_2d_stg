@@ -106,7 +106,8 @@ public class StgPlayer : StgGameObject {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		MhCommon.Print("StgPlayer::OnTriggerEnter2D");
+		
+		MhCommon.Print("StgPlayer::OnTriggerEnter2D tag=" + collision.tag);
 	}
 
 	private static readonly float kShootOffsetY = 1.0f;

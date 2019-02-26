@@ -48,7 +48,7 @@ public class StgPlayerBullet : StgBulletBase {
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
-		MhCommon.Print("StgPlayerBullet::OnTriggerEnter2D");
+		MhCommon.Print("StgPlayerBullet::OnTriggerEnter2D tag=" + collision.tag);
 	}
 
 }
