@@ -49,6 +49,11 @@ public class StgPlayerBullet : StgBulletBase {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		MhCommon.Print("StgPlayerBullet::OnTriggerEnter2D tag=" + collision.tag);
+		if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kEnemy)) {
+			// 敵と当たったら消滅する
+			Destroy(this.gameObject);
+		}
+
 	}
 
 }
