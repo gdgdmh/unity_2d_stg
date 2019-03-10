@@ -543,3 +543,6 @@ F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Unity.CollabProxy.Editor
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Unity.TextMeshPro.pdb
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Unity.Analytics.DataPrivacy.pdb
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Boo.Lang.dll
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEditor.UI.dll
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEditor.UI.xml

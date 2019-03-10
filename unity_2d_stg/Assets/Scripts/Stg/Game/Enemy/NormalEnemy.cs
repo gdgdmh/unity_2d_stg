@@ -32,6 +32,14 @@ public class NormalEnemy : EnemyBase
 		if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayerBullet)) {
 			// プレイヤーの弾と当たったら消滅する
 			Destroy(this.gameObject);
+
+			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+
+			GameObject effect = (GameObject)Resources.Load("Prefabs/Game/Effect/Explosion");
+			MhCommon.Assert(effect != null, "NormalEnemy::OnTriggerEnter2D() Explosion null");
+			Instantiate(effect, new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0), Quaternion.identity);
+
+
 		}
 	}
 }
