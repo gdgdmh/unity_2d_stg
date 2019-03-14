@@ -87,6 +87,9 @@
     <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgBulletConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgPlayerBullet.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Bullet\StgPlayerBulletFactory.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Effect\AStgEffectFactory.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Effect\StgEffectConstant.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Effect\StgEffectFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Effect\StgExplosionEffect.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\AStgEnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\EnemyBase.cs" />
