@@ -35,9 +35,11 @@ public class NormalEnemy : EnemyBase
 
 			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 
-			GameObject effect = (GameObject)Resources.Load("Prefabs/Game/Effect/Explosion");
-			MhCommon.Assert(effect != null, "NormalEnemy::OnTriggerEnter2D() Explosion null");
+			StgEffectFactory factory = new StgEffectFactory();
+			MhCommon.Assert(factory != null, "NormalEnemy::OnTriggerEnter2D() StgEffectFactory null");
+			GameObject effect = factory.Create(StgEffectConstant.Type.kExplosion);
 			Instantiate(effect, new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0), Quaternion.identity);
+
 
 
 		}
