@@ -8,6 +8,8 @@ public class GameMainSceneTask : MonoBehaviour
     void Start() {
         SceneShare.Instance.Initialize();
 
+		//enemyRandomPopper
+
 		{
 			// 敵の生成
 			GameObject player = GameObject.Find("Player");
@@ -25,10 +27,33 @@ public class GameMainSceneTask : MonoBehaviour
 			Instantiate(bullet, new Vector3(0.0f, -3.0f, 0.0f), Quaternion.identity);
 		}
 		*/
+		{
+			if (enemyRandomPopper == null) {
+				enemyRandomPopper = this.gameObject.AddComponent<StgEnemyRandomPopper>() as StgEnemyRandomPopper;
+				MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
+				MhCommon.Print("random popper created");
+			}
+		}
+		/*
+        // 動的にスクリプトを追加
+        if (stgPlayerController == null) {
+            stgPlayerController = this.gameObject.AddComponent<StgPlayerController>() as StgPlayerController;
+            MhCommon.Assert(stgPlayerController != null, "StgPlayer::Awake() StgPlayerController AddComponent failure");
+			// 試しにcall
+			stgPlayerController.Update();
+        }
+
+		 */
     }
 
     // Update is called once per frame
     void Update() {
+
+		// 敵の湧きシステムを常に起動しておく
+		MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
+		enemyRandomPopper.TaskAppear();
         
     }
+
+	private StgEnemyRandomPopper enemyRandomPopper;
 }

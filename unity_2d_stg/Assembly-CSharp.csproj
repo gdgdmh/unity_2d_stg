@@ -93,9 +93,11 @@
     <Compile Include="Assets\Scripts\Stg\Game\Effect\StgExplosionEffect.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\AStgEnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Enemy\IStgEnemyAppearable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\NormalEnemy.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyFactory.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyRandomPopper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayer.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttack.cs" />
