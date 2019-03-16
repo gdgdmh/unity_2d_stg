@@ -76,6 +76,8 @@
     <Compile Include="Assets\Scripts\Common\System\Scene\ISceneTask.cs" />
     <Compile Include="Assets\Scripts\Common\System\Scene\SceneBase.cs" />
     <Compile Include="Assets\Scripts\Common\System\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Common\Util\DecrementCounterElapsedTime.cs" />
+    <Compile Include="Assets\Scripts\Common\Util\DecrementCounterFrame.cs" />
     <Compile Include="Assets\Scripts\Common\Util\MhCommon.cs" />
     <Compile Include="Assets\Scripts\Scene\GameMainScene\GameMainSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
