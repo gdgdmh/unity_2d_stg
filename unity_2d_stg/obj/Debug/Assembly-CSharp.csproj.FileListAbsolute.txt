@@ -418,7 +418,6 @@ F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.ProfilerModu
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SharedInternalsModule.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpatialTracking.dll
-F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpriteMaskModule.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpriteShapeModule.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.StreamingModule.dll
@@ -498,7 +497,6 @@ F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.Physics2DMod
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.ProfilerModule.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.ScreenCaptureModule.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SharedInternalsModule.xml
-F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpatialTrackingModule.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpriteMaskModule.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.SpriteShapeModule.xml
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEngine.StreamingModule.xml

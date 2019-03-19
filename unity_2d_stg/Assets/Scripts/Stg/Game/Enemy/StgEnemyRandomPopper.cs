@@ -32,8 +32,8 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 				counter.SetCounter(0.5f);
 				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kEnemyNormal);
 
-				System.Random random = new System.Random();
-				int value = random.Next(3);
+				RandomIntegerSystem random = new RandomIntegerSystem();
+				int value = random.Get(0, 2);
 				if (value == 0) {
 					Instantiate(enemy, new Vector3(0.0f, 6.0f, 0.0f), Quaternion.identity);
 				} else if (value == 1) {
@@ -41,12 +41,6 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 				} else {
 					Instantiate(enemy, new Vector3(-0.5f, 6.0f, 0.0f), Quaternion.identity);
 				}
-
-
-				/*
-Random rnd = new System.Random();    // インスタンスを生成
-int intResult = rnd.Next(10);        // 0～9の乱数を取得
-				 */
 			}
 		}
 
