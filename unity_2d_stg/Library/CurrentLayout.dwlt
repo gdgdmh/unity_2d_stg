@@ -47,7 +47,7 @@ MonoBehaviour:
   m_MinSize: {x: 638, y: 348}
   m_MaxSize: {x: 18008, y: 10024}
   vertical: 0
-  controlID: 29
+  controlID: 102
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -121,8 +121,8 @@ MonoBehaviour:
     y: 698
     width: 908
     height: 228
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 124}
+  m_MaxSize: {x: 4002, y: 4024}
   m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
@@ -150,7 +150,7 @@ MonoBehaviour:
     y: 0
     width: 1359
     height: 976
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 398}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &7
 MonoBehaviour:
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {fileID: 15}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 1
+  m_LastSelected: 2
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -359,9 +359,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1392
-    y: 85
-    width: 343
+    x: 1336
+    y: 86
+    width: 449
     height: 906
   m_PersistentViewDataDictionary: {fileID: 0}
   m_InitialOpenURL: https://public-cdn.cloud.unity3d.com/editor/production/cloud/hub
@@ -391,9 +391,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 617
-    y: 85
-    width: 771
+    x: 655
+    y: 86
+    width: 677
     height: 678
   m_PersistentViewDataDictionary: {fileID: 0}
   m_LockTracker:
@@ -463,20 +463,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Common/System/Random
+    - Assets/Scripts/Stg/Game
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Common/System/Random
+  - Assets/Scripts/Stg/Game
   m_LastFoldersGridSize: 16
   m_LastProjectPath: F:\data\github\unity_2d_stg\unity_2d_stg
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e62e0000
-    m_LastClickedID: 12006
-    m_ExpandedIDs: 00000000d22b0000062c0000562c0000622c0000a02c0000a82c0000ae2c0000bc2c0000da2c0000e42c00000c2d0000102d00002a2d00005e2d0000722d0000c22d00002c2e0000542e0000d62e000000ca9a3b
+    scrollPos: {x: 0, y: 11}
+    m_SelectedIDs: 14270000
+    m_LastClickedID: 10004
+    m_ExpandedIDs: 000000008c260000c42600001427000020270000442700005e27000066270000702700007e270000a4270000ae2700000228000006280000242800005828000070280000c02800003629000066290000242a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -504,7 +504,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000d22b0000062c0000562c0000622c0000a02c0000a82c0000ae2c0000bc2c0000da2c0000e42c00000c2d0000102d00002a2d00005e2d0000722d0000c22d00002c2e0000542e0000d62e0000
+    m_ExpandedIDs: 000000008c260000c426000014270000202700005e27000066270000702700007e270000a4270000ae2700000228000006280000242800005828000070280000c02800003629000066290000242a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -531,8 +531,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000ac3500006a2a0000b62d0000bc2d0000d22d0000000000008c260000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000ac3500006a2a0000b62d0000bc2d0000d22d0000000000008c2600004a290000ee2b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -623,9 +623,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f82e0000
+      m_SelectedIDs: 842a0000
       m_LastClickedID: 0
-      m_ExpandedIDs: 7efaffff
+      m_ExpandedIDs: d6fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -776,7 +776,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
