@@ -103,6 +103,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyRandomPopper.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Number\DisplayNumber002.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayer.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttack.cs" />

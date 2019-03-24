@@ -41,6 +41,8 @@ public class GameMainSceneTask : MonoBehaviour
 				MhCommon.Print("random popper created");
 			}
 		}
+
+		//number002 = this.gameObject.AddComponent<DisplayNumber002>() as DisplayNumber002;
 		/*
         // 動的にスクリプトを追加
         if (stgPlayerController == null) {
@@ -79,4 +81,6 @@ public class GameMainSceneTask : MonoBehaviour
 	private StgEnemyRandomPopper enemyRandomPopper;
 	private DecrementCounterFrame frame1;
 	private DecrementCounterElapsedTime frame2;
+
+	//private DisplayNumber002 number002;
 }
