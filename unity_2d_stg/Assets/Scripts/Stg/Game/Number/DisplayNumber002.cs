@@ -41,56 +41,22 @@ public class DisplayNumber002 : MonoBehaviour {
 
 		int[] dummyNums = {1, 2, 3, 0, 0, 0, 0, 0, 0, 0};
 		int count = 0;
-		foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
-			spriteRenderer.sprite = numSprites[dummyNums[count]];
-			++count;
+		basePosition.x = 2.0f;
+		basePosition.y = 0;
+		basePosition.z = 0;
+		offset.x = -0.4f;
+		offset.y = 0;
+		offset.z = 0;
+
+		// SpriteRendererの位置を設定
+		ApplyPosition();
+		{
+			Vector3 position = basePosition;
+			foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
+				spriteRenderer.sprite = numSprites[dummyNums[count]];
+				++count;
+			}
 		}
-
-		/*
-		Component obj = this.gameObject.GetComponent("Num1");
-		MhCommon.Assert(obj != null, "DisplayNumber002::Start null");
-		GameObject obj2 = (GameObject)obj.gameObject;
-		MhCommon.Assert(obj2 != null, "DisplayNumber002::Start null2");
-		*/
-
-		/*
-		if (firstTime) {
-			MhCommon.Print("start called");
-			sprite = Resources.Load<Sprite>("Textures/num002/num002_01");
-			renderer = this.gameObject.GetComponent<SpriteRenderer>();
-
-			
-
-			//sprit
-
-			//renderer2 = renderer;
-			//Instantiate(renderer, new Vector3(0, 1, 0), Quaternion.identity);
-			firstTime = false;
-		}
-		*/
-
-		//sprite = this.gameObject.GetComponent<Sprite>();
-		//sprite = Resources.Load<Sprite>("Textures/num002/num002_00");
-		//MhCommon.Assert(sprite != null, "DisplayNumber002::Start() null");
-		//MhCommon.Print(sprite.ToString());
-//フォルダごとまとめて読込みたい場合
-//Sprite[] image = Resources.LoadAll<Sprite> ("Images/enemy/");
-		//renderer.sprite = sprite;
-
-		//MhCommon.Print("aaaa");
-		//Instantiate(renderer, new Vector3(0, 0, 0), Quaternion.identity);
-
-		/*
-		//renderer = gameObject.AddComponent<SpriteRenderer>() as SpriteRenderer;
-		sprite = Resources.Load<Sprite>("Textures/num002/num002_00");
-		MhCommon.Assert(sprite != null, "DisplayNumber002::Start() null");
-		MhCommon.Print(sprite.ToString());
-//フォルダごとまとめて読込みたい場合
-//Sprite[] image = Resources.LoadAll<Sprite> ("Images/enemy/");
-		renderer.sprite = sprite;
-
-		Instantiate(renderer, new Vector3(0, 0, 0), Quaternion.identity);
-		*/
 	}
 
 	/// <summary>
@@ -100,11 +66,47 @@ public class DisplayNumber002 : MonoBehaviour {
 	public void Set(int num) {
 	}
 
+	/// <summary>
+	/// 基準位置を設定(1桁目を基準とする)
+	/// </summary>
+	/// <param name="position"></param>
+	public void SetBasePosition(Vector3 position) {
+		basePosition = position;
+	}
+
+	/// <summary>
+	/// 数字間のオフセットを指定
+	/// </summary>
+	/// <param name="offset">オフセット</param>
+	public void SetOffset(Vector3 offset) {
+		this.offset = offset;
+	}
+
+	/// <summary>
+	/// 基準位置やオフセットを適用する
+	/// </summary>
+	public void ApplyPosition() {
+		Vector3 position = basePosition;
+		foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
+			spriteRenderer.transform.position = position;
+			position.x += offset.x;
+			position.y += offset.y;
+			position.z += offset.z;
+			//MhCommon.Print(spriteRenderer.transform.position.x);
+		}
+
+	}
+
 	static readonly string kDefaultGameObjectFormat = "Num{0:00}";
 	static readonly int kNumSpriteNum = 10;
 	static readonly int kDisplaySpriteNum = 10;
 	protected SpriteRenderer[] numSpriteRenderers;
 	protected Sprite[] numSprites;
+
+	protected Vector3 basePosition; // 基準位置(1桁目の位置)
+	protected Vector3 offset;		// 1桁ごとにずらすオフセット
+	//protected Vector3 
+
 	// 画像を持っている(0～9)
 	// 
 
