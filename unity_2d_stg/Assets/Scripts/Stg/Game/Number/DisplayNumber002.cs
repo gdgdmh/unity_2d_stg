@@ -39,7 +39,7 @@ public class DisplayNumber002 : MonoBehaviour {
 			MhCommon.Assert(numSpriteRenderers[i - 1] != null, "DisplayNumber002::Start() SpriteRenderer not set=" + i);
 		}
 
-		int[] dummyNums = {1, 2, 3, 0, 0, 0, 0, 0, 0, 0};
+		int[] dummyNums = GetNumArray(1234);//{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		int count = 0;
 		basePosition.x = 2.0f;
 		basePosition.y = 0;
@@ -50,6 +50,7 @@ public class DisplayNumber002 : MonoBehaviour {
 
 		// SpriteRendererの位置を設定
 		ApplyPosition();
+
 		{
 			Vector3 position = basePosition;
 			foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
@@ -95,6 +96,47 @@ public class DisplayNumber002 : MonoBehaviour {
 			//MhCommon.Print(spriteRenderer.transform.position.x);
 		}
 
+	}
+
+	/// <summary>
+	/// 各桁が格納された配列を取得する
+	/// </summary>
+	/// <param name="num"></param>
+	/// <returns></returns>
+	protected int[] GetNumArray(int num) {
+		int[] result = new int[kDisplaySpriteNum];
+		MhCommon.Assert(result != null, "DisplayNumber002::GetNumArray array null");
+		// 初期化
+		for (int i = 0; i < kDisplaySpriteNum; ++i) {
+			result[i] = 0;
+		}
+		// 負の値なら反転
+		if (num < 0) {
+			num *= -1;
+		}
+
+		int count = 0;
+		while (num > 0) {
+			int digit = num % 10;
+			num = num / 10;
+			result[count] = digit;
+			++count;
+		}
+
+		/*
+		{
+			int temp = 123;
+			int tempCount = 0;
+			while (temp > 0) {
+				int aaa = temp % 10;
+				temp = temp / 10;
+				MhCommon.Print(aaa);
+			}
+		}
+
+		 * */
+
+		return result;
 	}
 
 	static readonly string kDefaultGameObjectFormat = "Num{0:00}";
