@@ -44,7 +44,7 @@ public class DisplayNumber002 : MonoBehaviour {
 		basePosition.x = 2.0f;
 		basePosition.y = 0;
 		basePosition.z = 0;
-		offset.x = -0.4f;
+		offset.x = -0.32f;
 		offset.y = 0;
 		offset.z = 0;
 
