@@ -39,8 +39,6 @@ public class DisplayNumber002 : MonoBehaviour {
 			MhCommon.Assert(numSpriteRenderers[i - 1] != null, "DisplayNumber002::Start() SpriteRenderer not set=" + i);
 		}
 
-		int[] dummyNums = GetNumArray(1234);//{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		int count = 0;
 		basePosition.x = 2.0f;
 		basePosition.y = 0;
 		basePosition.z = 0;
@@ -51,6 +49,8 @@ public class DisplayNumber002 : MonoBehaviour {
 		// SpriteRendererの位置を設定
 		ApplyPosition();
 
+		Set(1256);
+		/*
 		{
 			Vector3 position = basePosition;
 			foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
@@ -58,6 +58,7 @@ public class DisplayNumber002 : MonoBehaviour {
 				++count;
 			}
 		}
+		*/
 	}
 
 	/// <summary>
@@ -65,6 +66,13 @@ public class DisplayNumber002 : MonoBehaviour {
 	/// </summary>
 	/// <param name="num"></param>
 	public void Set(int num) {
+		int[] setNums = GetNumArray(num);
+		int count = 0;
+		foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
+			spriteRenderer.sprite = numSprites[setNums[count]];
+			++count;
+		}
+
 	}
 
 	/// <summary>

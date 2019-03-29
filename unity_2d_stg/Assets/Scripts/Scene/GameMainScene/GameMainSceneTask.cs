@@ -59,6 +59,27 @@ public class GameMainSceneTask : MonoBehaviour
 		frame2 = new DecrementCounterElapsedTime();
 		frame2.SetCounter(10);
 		*/
+
+		{
+			// DisplayNumber002 のスクリプトを取得
+			num002Object = GameObject.Find("DisplayNumberScript");
+			MhCommon.Assert(num002Object != null, "GameMainSceneTask::DisplayNumberScript Find Failure");
+			displayNumber002Script = num002Object.GetComponent<DisplayNumber002>();
+			MhCommon.Assert(displayNumber002Script != null, "GameMainSceneTask::DisplayNumberScript Find Failure");
+			// 555に設定
+			displayNumber002Script.Set(555);
+		}
+
+		/*
+		basePosition.x = 2.0f;
+		basePosition.y = 0;
+		basePosition.z = 0;
+		offset.x = -0.32f;
+		offset.y = 0;
+		offset.z = 0;
+
+		 * 
+		*/
     }
 
     // Update is called once per frame
@@ -81,6 +102,8 @@ public class GameMainSceneTask : MonoBehaviour
 	private StgEnemyRandomPopper enemyRandomPopper;
 	private DecrementCounterFrame frame1;
 	private DecrementCounterElapsedTime frame2;
+	private GameObject num002Object;
+	private DisplayNumber002 displayNumber002Script;
 
 	//private DisplayNumber002 number002;
 }
