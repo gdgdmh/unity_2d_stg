@@ -68,6 +68,9 @@ public class GameMainSceneTask : MonoBehaviour
 			MhCommon.Assert(displayNumber002Script != null, "GameMainSceneTask::DisplayNumberScript Find Failure");
 			// 555に設定
 			displayNumber002Script.Set(555);
+			displayNumber002Script.SetBasePosition(new Vector3(2.5f, 4.5f, 0));
+			displayNumber002Script.SetOffset(new Vector3(-0.32f, 0, 0));
+			displayNumber002Script.ApplyPosition();
 		}
 
 		/*

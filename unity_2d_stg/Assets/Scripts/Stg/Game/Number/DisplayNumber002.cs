@@ -39,17 +39,17 @@ public class DisplayNumber002 : MonoBehaviour {
 			MhCommon.Assert(numSpriteRenderers[i - 1] != null, "DisplayNumber002::Start() SpriteRenderer not set=" + i);
 		}
 
-		basePosition.x = 2.0f;
-		basePosition.y = 0;
-		basePosition.z = 0;
-		offset.x = -0.32f;
+		basePosition.x = 0.0f;//2.0f;
+		basePosition.y = 0.0f;
+		basePosition.z = 0.0f;
+		offset.x = 0;//-0.32f;
 		offset.y = 0;
 		offset.z = 0;
 
 		// SpriteRendererの位置を設定
 		ApplyPosition();
 
-		Set(1256);
+		Set(0);
 		/*
 		{
 			Vector3 position = basePosition;
@@ -122,7 +122,7 @@ public class DisplayNumber002 : MonoBehaviour {
 		if (num < 0) {
 			num *= -1;
 		}
-
+		// 配列に各桁の数値を設定
 		int count = 0;
 		while (num > 0) {
 			int digit = num % 10;
@@ -130,20 +130,6 @@ public class DisplayNumber002 : MonoBehaviour {
 			result[count] = digit;
 			++count;
 		}
-
-		/*
-		{
-			int temp = 123;
-			int tempCount = 0;
-			while (temp > 0) {
-				int aaa = temp % 10;
-				temp = temp / 10;
-				MhCommon.Print(aaa);
-			}
-		}
-
-		 * */
-
 		return result;
 	}
 
