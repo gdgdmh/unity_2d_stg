@@ -62,7 +62,7 @@ public class GameMainSceneTask : MonoBehaviour
 
 		{
 			// DisplayNumber002 のスクリプトを取得
-			num002Object = GameObject.Find("DisplayNumberScript");
+			num002Object = GameObject.Find("DisplayNumber002");
 			MhCommon.Assert(num002Object != null, "GameMainSceneTask::DisplayNumberScript Find Failure");
 			displayNumber002Script = num002Object.GetComponent<DisplayNumber002>();
 			MhCommon.Assert(displayNumber002Script != null, "GameMainSceneTask::DisplayNumberScript Find Failure");
