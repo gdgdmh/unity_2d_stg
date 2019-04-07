@@ -120,6 +120,9 @@
     <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObjectTag.cs" />
     <Compile Include="Assets\Scripts\Stg\Input\InputSystem.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\ApplicationConstant.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\ConstantData\StgEnemyConstantData.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\ConstantData\StgEnemyConstantDefine.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\GameConstantData.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\GameScoreData.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\GameTemporaryData.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\SceneShare.cs" />

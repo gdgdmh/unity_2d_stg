@@ -27,6 +27,8 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
         inputSystem.SetDisplaySize(ApplicationConstant.GetDisplayWidth(), ApplicationConstant.GetDisplayHeight());
 		gameTemporaryData = new GameTemporaryData();
 		gameTemporaryData.Initialize();
+		gameConstantData = new GameConstantData();
+		gameConstantData.Initialize();
     }
 
     public InputSystem GetInput() {
@@ -35,6 +37,10 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 
 	public GameTemporaryData GetGameTemporaryData() {
 		return gameTemporaryData;
+	}
+
+	public GameConstantData GetGameConstantData() {
+		return gameConstantData;
 	}
 
     // Use this for initialization
@@ -48,5 +54,6 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
     private InputSystem inputSystem;
     private ApplicationConstant applicationConstant;
 	private GameTemporaryData gameTemporaryData; // ゲーム保持一時データ
+	private GameConstantData gameConstantData; // ゲーム定数データ
 
 }
