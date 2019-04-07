@@ -10,11 +10,14 @@ public class GameTemporaryData {
 	public GameTemporaryData() {
 	}
 
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	public void Initialize() {
 		score = new GameScoreData();
 		score.Initialize();
 	}
 
 
-	private GameScoreData score;
+	private GameScoreData score; // ゲーム中のスコア
 }

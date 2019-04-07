@@ -47,6 +47,6 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 
     private InputSystem inputSystem;
     private ApplicationConstant applicationConstant;
-	private GameTemporaryData gameTemporaryData;
+	private GameTemporaryData gameTemporaryData; // ゲーム保持一時データ
 
 }
