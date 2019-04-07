@@ -11,7 +11,7 @@ public class ManagedInteger {
 	/// <summary>
 	/// コンストラクタ(値は0 最大値、最小値は型の最大、最小値が設定)
 	/// </summary>
-	ManagedInteger() {
+	public ManagedInteger() {
 		value = 0;
 		maxValue = System.Int32.MaxValue;
 		minValue = System.Int32.MinValue;

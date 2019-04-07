@@ -120,6 +120,8 @@
     <Compile Include="Assets\Scripts\Stg\Game\System\StgGameObjectTag.cs" />
     <Compile Include="Assets\Scripts\Stg\Input\InputSystem.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\ApplicationConstant.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\GameScoreData.cs" />
+    <Compile Include="Assets\Scripts\Stg\ShareData\GameTemporaryData.cs" />
     <Compile Include="Assets\Scripts\Stg\ShareData\SceneShare.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>F:/data/github/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
