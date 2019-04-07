@@ -14,4 +14,11 @@ public class EnemyBase : StgGameObject {
     // Update is called once per frame
     public override void Update() {
     }
+
+	/// <summary>
+	/// スコアの加算
+	/// </summary>
+	public void AdditionalScore(int score) {
+		SceneShare.Instance.GetGameTemporaryData().GetScoreData().AdditionalScore(score);
+	}
 }

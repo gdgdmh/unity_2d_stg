@@ -40,8 +40,7 @@ public class NormalEnemy : EnemyBase
 			GameObject effect = factory.Create(StgEffectConstant.Type.kExplosion);
 			Instantiate(effect, new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0), Quaternion.identity);
 
-
-
+			AdditionalScore(100);
 		}
 	}
 }

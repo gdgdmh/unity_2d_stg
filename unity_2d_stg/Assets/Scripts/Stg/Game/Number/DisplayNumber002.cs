@@ -10,6 +10,7 @@ public class DisplayNumber002 : MonoBehaviour {
 
 	public DisplayNumber002() {
 		isStartFirstTime = true;
+		number = 0;
 	}
 
 	private void Awake() {
@@ -73,7 +74,11 @@ public class DisplayNumber002 : MonoBehaviour {
 			spriteRenderer.sprite = numSprites[setNums[count]];
 			++count;
 		}
+		number = num;
+	}
 
+	public int Get() {
+		return number;
 	}
 
 	/// <summary>
@@ -114,7 +119,6 @@ public class DisplayNumber002 : MonoBehaviour {
 			position.z += offset.z;
 			//MhCommon.Print(spriteRenderer.transform.position.x);
 		}
-
 	}
 
 	/// <summary>
@@ -160,7 +164,7 @@ public class DisplayNumber002 : MonoBehaviour {
 
 	protected Vector3 basePosition; // 基準位置(1桁目の位置)
 	protected Vector3 offset;		// 1桁ごとにずらすオフセット
-
+	protected int number;
 	protected bool isStartFirstTime; // Start()を初回だけ実行する
 	//protected Vector3 
 

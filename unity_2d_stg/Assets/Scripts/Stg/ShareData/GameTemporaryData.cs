@@ -18,6 +18,9 @@ public class GameTemporaryData {
 		score.Initialize();
 	}
 
+	public GameScoreData GetScoreData() {
+		return score;
+	}
 
 	private GameScoreData score; // ゲーム中のスコア
 }
