@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class GameMainSceneTask : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start() {
+
+	private void Awake() {
         SceneShare.Instance.Initialize();
+		
+	}
+
+	// Start is called before the first frame update
+	void Start() {
 
 		//enemyRandomPopper
 
@@ -60,6 +65,8 @@ public class GameMainSceneTask : MonoBehaviour
 		frame2.SetCounter(10);
 		*/
 
+
+		/*
 		{
 			// DisplayNumber002 のスクリプトを取得
 			num002Object = GameObject.Find("DisplayNumber002");
@@ -72,6 +79,7 @@ public class GameMainSceneTask : MonoBehaviour
 			displayNumber002Script.SetOffset(new Vector3(-0.32f, 0, 0));
 			displayNumber002Script.ApplyPosition();
 		}
+		*/
 
 		/*
 		basePosition.x = 2.0f;

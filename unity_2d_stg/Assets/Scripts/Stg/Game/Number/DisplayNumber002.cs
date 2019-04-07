@@ -9,10 +9,10 @@ using UnityEngine;
 public class DisplayNumber002 : MonoBehaviour {
 
 	public DisplayNumber002() {
+		isStartFirstTime = true;
 	}
 
-	public void Start() {
-
+	private void Awake() {
 		numSprites = new Sprite[kNumSpriteNum];
 		for (int i = 0; i < kNumSpriteNum; ++i) {
 			numSprites[i] = Resources.Load<Sprite>("Textures/num002/num002_" + string.Format("{0:00}", i));
@@ -39,6 +39,12 @@ public class DisplayNumber002 : MonoBehaviour {
 			MhCommon.Assert(numSpriteRenderers[i - 1] != null, "DisplayNumber002::Start() SpriteRenderer not set=" + i);
 		}
 
+		// SpriteRendererに設定されているtransformを取得する
+		numTransforms = new Transform[kDisplaySpriteNum];
+		for (int i = 0; i < kDisplaySpriteNum; ++i) {
+			numTransforms[i] = numSpriteRenderers[i].transform;
+		}
+
 		basePosition.x = 0.0f;//2.0f;
 		basePosition.y = 0.0f;
 		basePosition.z = 0.0f;
@@ -50,15 +56,10 @@ public class DisplayNumber002 : MonoBehaviour {
 		ApplyPosition();
 
 		Set(0);
-		/*
-		{
-			Vector3 position = basePosition;
-			foreach (SpriteRenderer spriteRenderer in numSpriteRenderers) {
-				spriteRenderer.sprite = numSprites[dummyNums[count]];
-				++count;
-			}
-		}
-		*/
+
+	}
+
+	public void Start() {
 	}
 
 	/// <summary>
@@ -81,6 +82,16 @@ public class DisplayNumber002 : MonoBehaviour {
 	/// <param name="position"></param>
 	public void SetBasePosition(Vector3 position) {
 		basePosition = position;
+	}
+
+	/// <summary>
+	/// SpriteRendererのScaleを設定する
+	/// </summary>
+	public void SetScale(Vector3 scale) {
+		for (int i = 0; i < kDisplaySpriteNum; ++i) {
+			numTransforms[i].localScale = scale;
+			//numTransforms[i] = numSpriteRenderers[i].transform;
+		}
 	}
 
 	/// <summary>
@@ -114,19 +125,25 @@ public class DisplayNumber002 : MonoBehaviour {
 	protected int[] GetNumArray(int num) {
 		int[] result = new int[kDisplaySpriteNum];
 		MhCommon.Assert(result != null, "DisplayNumber002::GetNumArray array null");
+		int displayNum = num;
 		// 初期化
 		for (int i = 0; i < kDisplaySpriteNum; ++i) {
 			result[i] = 0;
 		}
 		// 負の値なら反転
-		if (num < 0) {
-			num *= -1;
+		if (displayNum < 0) {
+			displayNum *= -1;
 		}
+		// MinValueのときは反転できないのでMaxValueとする
+		if (displayNum == System.Int32.MinValue) {
+			displayNum = System.Int32.MaxValue;
+		}
+
 		// 配列に各桁の数値を設定
 		int count = 0;
-		while (num > 0) {
-			int digit = num % 10;
-			num = num / 10;
+		while (displayNum > 0) {
+			int digit = displayNum % 10;
+			displayNum = displayNum / 10;
 			result[count] = digit;
 			++count;
 		}
@@ -136,11 +153,14 @@ public class DisplayNumber002 : MonoBehaviour {
 	static readonly string kDefaultGameObjectFormat = "Num{0:00}";
 	static readonly int kNumSpriteNum = 10;
 	static readonly int kDisplaySpriteNum = 10;
-	protected SpriteRenderer[] numSpriteRenderers;
-	protected Sprite[] numSprites;
+	protected SpriteRenderer[] numSpriteRenderers;	// 各桁のSpriteRenderer
+	protected Sprite[] numSprites;					// 数字のスプライトオブジェクト
+	protected Transform[] numTransforms;			// 各桁のtransform
 
 	protected Vector3 basePosition; // 基準位置(1桁目の位置)
 	protected Vector3 offset;		// 1桁ごとにずらすオフセット
+
+	protected bool isStartFirstTime; // Start()を初回だけ実行する
 	//protected Vector3 
 
 	// 画像を持っている(0～9)
