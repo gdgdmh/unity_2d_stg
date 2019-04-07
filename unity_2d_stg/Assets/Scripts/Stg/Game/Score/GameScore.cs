@@ -25,7 +25,7 @@ public class GameScore : MonoBehaviour {
 			displayNumber002 = displayNumber.GetComponent<DisplayNumber002>();
 			MhCommon.Assert(displayNumber002 != null, "GameScore::Awake DisplayNumber002(Component Script DisplayNumber002) Find Failure");
 			// 555に設定
-			displayNumber002.Set(System.Int32.MinValue);
+			displayNumber002.Set(0);
 			displayNumber002.SetBasePosition(new Vector3(2.5f, 4.5f, 0));
 			displayNumber002.SetOffset(new Vector3((-0.32f / 2), 0, 0));
 			displayNumber002.SetScale(new Vector3(0.5f, 0.5f, 1.0f));

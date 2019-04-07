@@ -119,9 +119,10 @@ public class DisplayNumber002 : MonoBehaviour {
 
 	/// <summary>
 	/// 各桁が格納された配列を取得する
+	/// 123ならint[] = (1,2,3)となる
 	/// </summary>
-	/// <param name="num"></param>
-	/// <returns></returns>
+	/// <param name="num">配列に格納するもととなる数値</param>
+	/// <returns>各桁の数値が格納されたint配列</returns>
 	protected int[] GetNumArray(int num) {
 		int[] result = new int[kDisplaySpriteNum];
 		MhCommon.Assert(result != null, "DisplayNumber002::GetNumArray array null");
