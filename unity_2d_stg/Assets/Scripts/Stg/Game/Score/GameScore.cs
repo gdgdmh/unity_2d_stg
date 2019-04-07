@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// スコア表示(GameObject displayNumberを設定すること)
+/// </summary>
 public class GameScore : MonoBehaviour {
 
 	private void Awake() {
@@ -17,7 +20,7 @@ public class GameScore : MonoBehaviour {
 	void Start() {
 		{
 			// DisplayNumber002 のGameObjectとスクリプトを取得
-			displayNumber = GameObject.Find("DisplayNumber002");
+			//displayNumber = GameObject.Find("DisplayNumber002");
 			MhCommon.Assert(displayNumber != null, "GameScore::Awake DisplayNumber002 Find Failure");
 			displayNumber002 = displayNumber.GetComponent<DisplayNumber002>();
 			MhCommon.Assert(displayNumber002 != null, "GameScore::Awake DisplayNumber002(Component Script DisplayNumber002) Find Failure");
@@ -41,6 +44,6 @@ public class GameScore : MonoBehaviour {
     void Update() {
     }
 
-	private GameObject displayNumber;
+	public GameObject displayNumber;
 	private DisplayNumber002 displayNumber002;
 }
