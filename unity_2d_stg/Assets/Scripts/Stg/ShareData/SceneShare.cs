@@ -21,6 +21,7 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
     private void OnDestroy() {
     }
 
+    // シーン間共有データ
     public void Initialize() {
         inputSystem = new InputSystem();
         inputSystem.Initialize();
@@ -32,8 +33,12 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
         stgEnemyConstantData = new StgEnemyConstantData();
         stgEnemyConstantData.Initialize();
         stgEnemyConstantData.InitializeValue();
+        gameResourcePathData = new GameResourcePathData();
+        gameResourcePathData.Initialize();
+        gameResourcePathData.InitializeValue();
     }
 
+    // 各インスタンスへのアクセス
     public InputSystem GetInput() {
         return inputSystem;
     }
@@ -50,6 +55,10 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
         return stgEnemyConstantData;
     }
 
+    public GameResourcePathData GetGameResourcePathData() {
+        return gameResourcePathData;
+    }
+
     // Use this for initialization
     //void Start () {
 	//}
@@ -63,5 +72,6 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 	private GameTemporaryData gameTemporaryData; // ゲーム保持一時データ
 	private GameConstantData gameConstantData; // ゲーム定数データ
     private StgEnemyConstantData stgEnemyConstantData; // 敵定数データ
+    private GameResourcePathData gameResourcePathData; // ゲーム中のリソースパスデータ
 
 }
