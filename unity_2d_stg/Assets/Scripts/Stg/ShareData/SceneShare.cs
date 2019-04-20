@@ -29,6 +29,9 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 		gameTemporaryData.Initialize();
 		gameConstantData = new GameConstantData();
 		gameConstantData.Initialize();
+        stgEnemyConstantData = new StgEnemyConstantData();
+        stgEnemyConstantData.Initialize();
+        stgEnemyConstantData.InitializeValue();
     }
 
     public InputSystem GetInput() {
@@ -43,6 +46,10 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
 		return gameConstantData;
 	}
 
+    public StgEnemyConstantData GetStgEnemyConstantData() {
+        return stgEnemyConstantData;
+    }
+
     // Use this for initialization
     //void Start () {
 	//}
@@ -55,5 +62,6 @@ public class SceneShare : SingletonMonoBehaviour<SceneShare> {
     private ApplicationConstant applicationConstant;
 	private GameTemporaryData gameTemporaryData; // ゲーム保持一時データ
 	private GameConstantData gameConstantData; // ゲーム定数データ
+    private StgEnemyConstantData stgEnemyConstantData; // 敵定数データ
 
 }

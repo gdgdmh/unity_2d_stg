@@ -14,7 +14,7 @@ public class StgEnemyConstantData {
 	}
 
 	/// <summary>
-	/// 仮の値を初期化
+	/// 仮の値を設定(本来は外部データなどで初期化するを想定)
 	/// </summary>
 	public void InitializeValue() {
 		MhCommon.Assert(constantDatas != null, "StgEnemyConstantData::InitializeValue() constantDatas null please call Inintialize");
@@ -22,6 +22,14 @@ public class StgEnemyConstantData {
         
 	}
 
+    /// <summary>
+    /// 値の取得
+    /// </summary>
+    /// <param name="type">取得する値のタイプ</param>
+    /// <returns></returns>
+    public float Get(StgEnemyConstantDefine.Type type) {
+        return constantDatas[(int)type];
+    }
 
 	private float[] constantDatas;
 }
