@@ -12,7 +12,7 @@ public class StgEnemyFactory : AStgEnemyFactory {
 
 	public override GameObject Create(StgEnemyConstant.Type type) {
 		if (type == StgEnemyConstant.Type.kEnemyNormal) {
-			GameObject enemy = (GameObject)Resources.Load("Prefabs/Game/Enemy/Enemy1");
+			GameObject enemy = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kNormalEnemyPrefab));
 			MhCommon.Assert(enemy != null, "StgEnemyFactory::Create() kEnemyNormal null");
 			return enemy;
 		} else {

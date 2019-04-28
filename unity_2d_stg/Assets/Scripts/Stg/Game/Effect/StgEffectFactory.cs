@@ -14,7 +14,7 @@ public class StgEffectFactory : AStgEffectFactory {
 	/// <returns>成功ならエフェクト、失敗したらnull</returns>
 	public override GameObject Create(StgEffectConstant.Type type) {
 		if (type == StgEffectConstant.Type.kExplosion) {
-			GameObject effect = (GameObject)Resources.Load("Prefabs/Game/Effect/Explosion");
+			GameObject effect = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kExplosionPrefab));
 			MhCommon.Assert(effect != null, "StgEffectFactory::Create() kExplosion null");
 			return effect;
 		} else {

@@ -18,7 +18,7 @@ public class StgPlayerBulletFactory : AStgBulletFactory {
 	/// <returns>成功したら弾ベースクラス失敗したらnull</returns>
 	public override GameObject Create(StgBulletConstant.Type type) {
 		if (type == StgBulletConstant.Type.kPlayerNormal) {
-			GameObject bullet = (GameObject)Resources.Load("Prefabs/Game/Bullet/PlayerBullet");
+			GameObject bullet = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kPlayerBulletPrefab));
 			MhCommon.Assert(bullet != null, "StgPlayerBulletFactory::Create() kPlayerNormal null");
 			return bullet;
 		} else {
