@@ -540,4 +540,6 @@ F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.pdb
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Assembly-CSharp.dll
 F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Assembly-CSharp.pdb
 F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csproj.CopyComplete
-F:\data\github\unity_2d_stg\unity_2d_stg\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\Boo.Lang.dll
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEditor.UI.dll
+F:\data\github\unity_2d_stg\unity_2d_stg\Temp\bin\Debug\UnityEditor.UI.xml

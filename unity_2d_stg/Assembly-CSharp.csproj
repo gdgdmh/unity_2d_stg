@@ -109,6 +109,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Score\GameScore.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Score\IAddableScore.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\I2dFloatPositionable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\IStgAttack.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\System\IStgGameObjectAreaOverDestroyable.cs" />

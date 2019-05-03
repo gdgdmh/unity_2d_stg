@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBase : StgGameObject {
+public class EnemyBase : StgGameObject, IAddableScore {
 
 	public EnemyBase() {
 	}
