@@ -21,6 +21,8 @@ public class GameResourcePathData {
         constantDatas[(int)GameResourcePathDefine.Type.kNormalEnemyPrefab] = "Prefabs/Game/Enemy/Enemy1";
         constantDatas[(int)GameResourcePathDefine.Type.kPlayerBulletPrefab] = "Prefabs/Game/Bullet/PlayerBullet";
         constantDatas[(int)GameResourcePathDefine.Type.kExplosionPrefab] = "Prefabs/Game/Effect/Explosion";
+        constantDatas[(int)GameResourcePathDefine.Type.kExplosion002Prefab] = "Prefabs/Game/Effect/Explosion002";
+        constantDatas[(int)GameResourcePathDefine.Type.kExplosion003Prefab] = "Prefabs/Game/Effect/Explosion003";
 	}
 
     /// <summary>

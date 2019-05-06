@@ -6,6 +6,8 @@ public class StgEffectConstant {
 	// プレイヤーの弾の種類
     public enum Type : int {
 		kExplosion,
+        kExplosion002,
+        kExplosion003,
 		kUnknown
     };
 }

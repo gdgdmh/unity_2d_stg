@@ -17,6 +17,14 @@ public class StgEffectFactory : AStgEffectFactory {
 			GameObject effect = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kExplosionPrefab));
 			MhCommon.Assert(effect != null, "StgEffectFactory::Create() kExplosion null");
 			return effect;
+        } else if (type == StgEffectConstant.Type.kExplosion002) {
+			GameObject effect = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kExplosion002Prefab));
+			MhCommon.Assert(effect != null, "StgEffectFactory::Create() kExplosion002 null");
+			return effect;
+        } else if (type == StgEffectConstant.Type.kExplosion003) {
+			GameObject effect = (GameObject)Resources.Load(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kExplosion003Prefab));
+			MhCommon.Assert(effect != null, "StgEffectFactory::Create() kExplosion003 null");
+			return effect;
 		} else {
 			// kUnknownもしくは定義されているが実装されていないtypeが指定された
 			MhCommon.Assert(false, "StgEffectFactory::Create() StgEffectConstant.Type invalid type=" + type);

@@ -34,13 +34,37 @@ public class NormalEnemy : EnemyBase
 			Destroy(this.gameObject);
 
 			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+            MhCommon.Assert(rigidbody2D != null, "NormalEnemy::OnTriggerEnter2D() rigidbody2D null");
+            CreateRandomEffect(rigidbody2D.position.x, rigidbody2D.position.y);
 
+            /*
 			StgEffectFactory factory = new StgEffectFactory();
 			MhCommon.Assert(factory != null, "NormalEnemy::OnTriggerEnter2D() StgEffectFactory null");
 			GameObject effect = factory.Create(StgEffectConstant.Type.kExplosion);
 			Instantiate(effect, new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0), Quaternion.identity);
+            */
 
 			AdditionalScore((int)(SceneShare.Instance.GetStgEnemyConstantData().Get(StgEnemyConstantDefine.Type.kNormalEnemyScore)));
 		}
 	}
+
+    private void CreateRandomEffect(float x, float y) {
+        StgEffectFactory factory = new StgEffectFactory();
+        MhCommon.Assert(factory != null, "NormalEnemy::CreateRandomEffect() StgEffectFactory null");
+        RandomIntegerSystem random = new RandomIntegerSystem();
+        MhCommon.Assert(random != null, "NormalEnemy::CreateRandomEffect() RandomIntegerSystem null");
+        int value = random.Get(1, 3);
+        StgEffectConstant.Type type = StgEffectConstant.Type.kExplosion;
+        MhCommon.Assert((value >= 1) && (value <= 3), "NormalEnemy::CreateRandomEffect() random range failure");
+        if (value == 1) {
+            type = StgEffectConstant.Type.kExplosion;
+        } else if (value == 2) {
+            type = StgEffectConstant.Type.kExplosion002;
+        } else {
+            type = StgEffectConstant.Type.kExplosion003;
+        }
+		GameObject effect = factory.Create(type);
+        MhCommon.Assert(effect != null, "NormalEnemy::CreateRandomEffect() effect null");
+		Instantiate(effect, new Vector3(x, y, 0), Quaternion.identity);
+    }
 }

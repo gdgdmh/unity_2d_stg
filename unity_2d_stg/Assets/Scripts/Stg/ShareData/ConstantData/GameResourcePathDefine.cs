@@ -9,6 +9,8 @@ public class GameResourcePathDefine {
 		kNormalEnemyPrefab, // 通常の敵のPrefab
         kPlayerBulletPrefab,// プレイヤーの弾のPrefab
         kExplosionPrefab,   // 爆発エフェクトのPrefab
+        kExplosion002Prefab,// 爆発エフェクト002のPrefab
+        kExplosion003Prefab,// 爆発エフェクト003のPrefab
 		kMaxDefine,
     };
 }
