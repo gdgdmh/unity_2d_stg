@@ -164,6 +164,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 809940852}
+  - component: {fileID: 809940853}
   m_Layer: 0
   m_Name: PlayerHealth
   m_TagString: Untagged
@@ -186,6 +187,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &809940853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809940851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1a436e734ecfd54282ed6c6c14697fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &905259265
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,8 +650,9 @@ GameObject:
   - component: {fileID: 1754452087}
   - component: {fileID: 1754452089}
   - component: {fileID: 1754452088}
+  - component: {fileID: 1754452090}
   m_Layer: 0
-  m_Name: Image
+  m_Name: Gauge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,6 +714,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1754452086}
   m_CullTransparentMesh: 0
+--- !u!114 &1754452090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1754452086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae20e1c012b20f45863d716eaacf008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gaugeName: Gauge
 --- !u!1001 &1768050190
 PrefabInstance:
   m_ObjectHideFlags: 0
