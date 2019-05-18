@@ -28,7 +28,7 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 		if (!counter.IsTimeOver()) {
 			counter.Update();
 			if (counter.IsTimeOver()) {
-				MhCommon.Print("reset");
+				//MhCommon.Print("reset");
 				counter.SetCounter(0.5f);
 				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kEnemyNormal);
 
