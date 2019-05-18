@@ -28,6 +28,9 @@ public class StgPlayer : StgGameObject {
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 		}
 
+        healthObservable = new StgPlayerHealthObservable();
+
+
 		//if (stgGameObjectSubject == null) {
 		//	stgGameObjectSubject = new StgGameObjectSubject();
 		//}
@@ -50,6 +53,8 @@ public class StgPlayer : StgGameObject {
 		// 攻撃処理
 		Attack();
 
+        // HP変更通知
+        //healthObservable.NotifyObservers(10, 10, 0);
     }
 
 	public Vector3 GetShootPosition() {
@@ -59,6 +64,14 @@ public class StgPlayer : StgGameObject {
 		position.y += kShootOffsetY; // 自機の本体分ずらす
 		return position;
 	}
+
+    /// <summary>
+    /// 体力変化のオブザーバーを登録
+    /// </summary>
+    /// <param name="observer">登録するオブザーバー</param>
+    public void SetHealthObserver(IStgPlayerHealthObserver observer) {
+        healthObservable.Add(observer);
+    }
 
 	private void Move() {
         //UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
@@ -115,5 +128,6 @@ public class StgPlayer : StgGameObject {
 	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
 	private StgPlayerAttack attack;
+    private StgPlayerHealthObservable healthObservable;
 	private bool isDragRaw;
 }
