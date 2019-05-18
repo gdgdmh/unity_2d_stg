@@ -7,10 +7,8 @@ public class StgPlayerHealth : MonoBehaviour, IStgPlayerHealthObserver {
     // Start is called before the first frame update
     void Start() {
         // HPゲージ取得
-       CanvasImageGauge gauge = GameObject.Find("Gauge").GetComponent<CanvasImageGauge>();
-        // 0.2にテストで設定
-        //gauge.SetGaugeRaw(0.2f);
-        gauge.SetGaugeRaw(1.0f);
+       gauge = GameObject.Find("Gauge").GetComponent<CanvasImageGauge>();
+       gauge.SetGaugeRaw(1.0f);
 
         MhCommon.Assert(player != null, "StgPlayerHealth::Start() player null");
         playerScript = this.player.GetComponent<StgPlayer>();
@@ -24,7 +22,8 @@ public class StgPlayerHealth : MonoBehaviour, IStgPlayerHealthObserver {
 
     public void UpdateHealth(int maxHealth, int currentHealth, int diffHealth) {
         // 更新
-        MhCommon.Print("StgPlayerHealth::UpdateHealth() called");
+        MhCommon.Print("StgPlayerHealth::UpdateHealth() called max=" + maxHealth + " cur=" + currentHealth + " diff=" + diffHealth);
+        gauge.SetGaugePercent(CalcPercent.Get((float)maxHealth, (float)currentHealth));
     }
 
     //public void SetPlayer(ref GameObject player) {
@@ -35,4 +34,5 @@ public class StgPlayerHealth : MonoBehaviour, IStgPlayerHealthObserver {
 
 	public GameObject player;
     private StgPlayer playerScript;
+    private CanvasImageGauge gauge;
 }

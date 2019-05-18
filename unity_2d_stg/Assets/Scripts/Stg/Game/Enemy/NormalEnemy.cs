@@ -29,7 +29,8 @@ public class NormalEnemy : EnemyBase
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		//MhCommon.Print("NormalEnemy::OnTriggerEnter2D tag=" + collision.tag);
-		if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayerBullet)) {
+		if ((collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayerBullet))
+            ||(collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayer))) {
 			// プレイヤーの弾と当たったら消滅する
 			Destroy(this.gameObject);
 

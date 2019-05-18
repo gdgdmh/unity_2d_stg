@@ -9,6 +9,10 @@ public class StgPlayer : StgGameObject {
     }
 
     private void Awake() {
+        Initialize();
+        health.SetMaxHealth(2);
+        health.SetHealth(2);
+
         // 動的にスクリプトを追加
         if (stgPlayerController == null) {
             stgPlayerController = this.gameObject.AddComponent<StgPlayerController>() as StgPlayerController;
@@ -27,7 +31,6 @@ public class StgPlayer : StgGameObject {
 			attack.SetPlayer(ref player);
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 		}
-
         healthObservable = new StgPlayerHealthObservable();
 
 
@@ -53,8 +56,6 @@ public class StgPlayer : StgGameObject {
 		// 攻撃処理
 		Attack();
 
-        // HP変更通知
-        //healthObservable.NotifyObservers(10, 10, 0);
     }
 
 	public Vector3 GetShootPosition() {
@@ -120,7 +121,19 @@ public class StgPlayer : StgGameObject {
 
 	private void OnTriggerEnter2D(Collider2D collision) {
 		
-		MhCommon.Print("StgPlayer::OnTriggerEnter2D tag=" + collision.tag);
+		//MhCommon.Print("StgPlayer::OnTriggerEnter2D tag=" + collision.tag);
+        if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kEnemy)) {
+            MhCommon.Assert(health != null, "StgPlayer::OnTriggerEnter2D health null");
+            int beforeHealth = health.GetHealth();
+            health.Sub(-1);
+            if (health.GetHealth() <= 0) {
+                health.SetHealth(0);
+            }
+            // HP変更通知
+            healthObservable.NotifyObservers(health.GetMaxHealth(), health.GetHealth(), beforeHealth - health.GetHealth());
+            MhCommon.Print("StgPlayer::OnTriggerEnter2D health=" + health.GetHealth());
+
+        }
 	}
 
 	private static readonly float kShootOffsetY = 1.0f;
