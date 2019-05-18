@@ -61,7 +61,7 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 		Instantiate(bullet, attackPositon, Quaternion.identity);
 	}
 
-	private static readonly float kAttackInterval = 2.0f; // 攻撃の再間隔時間(sec)
+	private static readonly float kAttackInterval = 1.0f; // 攻撃の再間隔時間(sec)
 	protected GameObject player;
 	protected StgPlayer playerScript;
 	private float attackInterval = kAttackInterval; // 現在の攻撃再間隔時間
