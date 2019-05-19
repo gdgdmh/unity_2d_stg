@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Effect\StgEffectFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Effect\StgExplosionEffect.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\AStgEnemyFactory.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Enemy\DiagonalMoveEnemy.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\IStgEnemyAppearable.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\NormalEnemy.cs" />

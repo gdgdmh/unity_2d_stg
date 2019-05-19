@@ -30,8 +30,8 @@ public class GameMainSceneTask : MonoBehaviour
     void Update() {
 
 		// 敵の湧きシステムを常に起動しておく
-		MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
-		enemyRandomPopper.TaskAppear();
+		//MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
+		//enemyRandomPopper.TaskAppear();
     }
 
 	private StgEnemyRandomPopper enemyRandomPopper;
