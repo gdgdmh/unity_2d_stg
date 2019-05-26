@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiagonalMoveEnemy : EnemyBase {
+public class StraightMoveEnemy : EnemyBase {
 
-    public DiagonalMoveEnemy() {
+    public StraightMoveEnemy() {
         this.angle = kAngle;
         this.speed = kSpeedY;
         SetDirection(angle, speed);
     }
 
-    public DiagonalMoveEnemy(float angle, float speed) {
+    public StraightMoveEnemy(float angle, float speed) {
         this.angle = angle;
         this.speed = speed;
         SetDirection(angle, speed);
