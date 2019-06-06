@@ -19,6 +19,7 @@ public class GameResourcePathData {
 	public void InitializeValue() {
 		MhCommon.Assert(constantDatas != null, "GameResourcePathData::InitializeValue() constantDatas null please call Inintialize");
         constantDatas[(int)GameResourcePathDefine.Type.kNormalEnemyPrefab] = "Prefabs/Game/Enemy/Enemy1";
+        constantDatas[(int)GameResourcePathDefine.Type.kStraightMoveEnemyPrefab] = "Prefabs/Game/Enemy/StraightMoveEnemy";
         constantDatas[(int)GameResourcePathDefine.Type.kPlayerBulletPrefab] = "Prefabs/Game/Bullet/PlayerBullet";
         constantDatas[(int)GameResourcePathDefine.Type.kExplosionPrefab] = "Prefabs/Game/Effect/Explosion";
         constantDatas[(int)GameResourcePathDefine.Type.kExplosion002Prefab] = "Prefabs/Game/Effect/Explosion002";

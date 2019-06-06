@@ -6,6 +6,7 @@ public static class StgEnemyConstant {
 	// プレイヤーの弾の種類
     public enum Type : int {
 		kEnemyNormal,
+        kStraightMoveEnemy,
 		kUnknown
     };
 }

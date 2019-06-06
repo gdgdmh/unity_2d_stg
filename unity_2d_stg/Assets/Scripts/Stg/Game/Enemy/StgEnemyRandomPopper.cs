@@ -30,7 +30,7 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 			if (counter.IsTimeOver()) {
 				//MhCommon.Print("reset");
 				counter.SetCounter(0.5f);
-				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kEnemyNormal);
+				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kStraightMoveEnemy);//StgEnemyConstant.Type.kEnemyNormal);
 
 				RandomIntegerSystem random = new RandomIntegerSystem();
 				int value = random.Get(0, 2);
