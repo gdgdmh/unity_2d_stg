@@ -106,6 +106,8 @@
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyFactory.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyJsonDataPopper.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyPopperConstant.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyPopperData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyRandomPopper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StraightMoveEnemy.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Number\DisplayNumber002.cs" />
