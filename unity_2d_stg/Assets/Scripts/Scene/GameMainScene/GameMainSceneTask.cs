@@ -13,6 +13,7 @@ public class GameMainSceneTask : MonoBehaviour
 	// Start is called before the first frame update
 	void Start() {
 		{
+            // 敵出現システムの初期化
 			if (enemyRandomPopper == null) {
 				// プレイヤーのGameObjectを取得
 				GameObject player = GameObject.Find("Player");
