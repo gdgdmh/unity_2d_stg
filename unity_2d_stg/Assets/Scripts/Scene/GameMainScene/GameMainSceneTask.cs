@@ -35,9 +35,9 @@ public class GameMainSceneTask : MonoBehaviour
 		enemyRandomPopper.TaskAppear();
     }
 
-	private StgEnemyRandomPopper enemyRandomPopper;
-	private DecrementCounterFrame frame1;
-	private DecrementCounterElapsedTime frame2;
-	private GameObject num002Object;
-	private DisplayNumber002 displayNumber002Script;
+	private StgEnemyRandomPopper enemyRandomPopper; // 敵をランダム出現システム
+	private DecrementCounterFrame frame1; // フレームカウンタ
+	private DecrementCounterElapsedTime frame2; // フレームカウンタ(ElapsedTime)
+	private GameObject num002Object; // 数字表示
+	private DisplayNumber002 displayNumber002Script; // 数字表示用のスクリプト
 }
