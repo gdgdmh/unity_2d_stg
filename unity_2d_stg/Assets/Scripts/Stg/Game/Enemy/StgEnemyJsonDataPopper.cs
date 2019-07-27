@@ -5,6 +5,8 @@ using UnityEngine;
 public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 
     public StgEnemyJsonDataPopper() {
+        this.player = null;
+
     }
 
 	public void SetPlayer(GameObject player) {

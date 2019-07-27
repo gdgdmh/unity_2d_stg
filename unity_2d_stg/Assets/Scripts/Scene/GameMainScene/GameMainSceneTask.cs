@@ -24,6 +24,13 @@ public class GameMainSceneTask : MonoBehaviour
 				enemyRandomPopper.SetPlayer(player);
 				MhCommon.Print("random popper created");
 			}
+            // ステージデータ読み込み
+            {
+                stgEnemyLoadResourceStageJson = new StgEnemyLoadResourceStageJson();
+                stgEnemyLoadResourceStageJson.SetResourcePath("");
+                stgEnemyLoadResourceStageJson.Load();
+
+            }
 		}
     }
 
@@ -40,4 +47,5 @@ public class GameMainSceneTask : MonoBehaviour
 	private DecrementCounterElapsedTime frame2; // フレームカウンタ(ElapsedTime)
 	private GameObject num002Object; // 数字表示
 	private DisplayNumber002 displayNumber002Script; // 数字表示用のスクリプト
+    private StgEnemyLoadResourceStageJson stgEnemyLoadResourceStageJson;
 }

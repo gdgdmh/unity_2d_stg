@@ -12,6 +12,7 @@ public class GameResourcePathDefine {
         kExplosionPrefab,   // 爆発エフェクトのPrefab
         kExplosion002Prefab,// 爆発エフェクト002のPrefab
         kExplosion003Prefab,// 爆発エフェクト003のPrefab
+        kStageData01, // ステージデータ
 		kMaxDefine,
     };
 }
