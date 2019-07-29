@@ -74,12 +74,14 @@
     <Compile Include="Assets\Scripts\Common\Input\TouchInterface.cs" />
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchAction.cs" />
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchDragAction.cs" />
+    <Compile Include="Assets\Scripts\Common\System\Exception\UnityResourceNotFoundException.cs" />
     <Compile Include="Assets\Scripts\Common\System\ManagedVariable\ManagedInteger.cs" />
     <Compile Include="Assets\Scripts\Common\System\Random\ARandomInteger.cs" />
     <Compile Include="Assets\Scripts\Common\System\Random\RandomIntegerSystem.cs" />
     <Compile Include="Assets\Scripts\Common\System\Scene\ISceneTask.cs" />
     <Compile Include="Assets\Scripts\Common\System\Scene\SceneBase.cs" />
     <Compile Include="Assets\Scripts\Common\System\SingletonMonoBehaviour.cs" />
+    <Compile Include="Assets\Scripts\Common\System\String\LoadTextAsset.cs" />
     <Compile Include="Assets\Scripts\Common\Util\CalcPercent.cs" />
     <Compile Include="Assets\Scripts\Common\Util\CalcPercentToValue.cs" />
     <Compile Include="Assets\Scripts\Common\Util\DecrementCounterElapsedTime.cs" />
