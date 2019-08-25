@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchAction.cs" />
     <Compile Include="Assets\Scripts\Common\Input\UnitySingleTouchDragAction.cs" />
     <Compile Include="Assets\Scripts\Common\System\Exception\UnityResourceNotFoundException.cs" />
+    <Compile Include="Assets\Scripts\Common\System\Json\LoadJson.cs" />
     <Compile Include="Assets\Scripts\Common\System\ManagedVariable\ManagedInteger.cs" />
     <Compile Include="Assets\Scripts\Common\System\Random\ARandomInteger.cs" />
     <Compile Include="Assets\Scripts\Common\System\Random\RandomIntegerSystem.cs" />
@@ -87,6 +88,9 @@
     <Compile Include="Assets\Scripts\Common\Util\DecrementCounterElapsedTime.cs" />
     <Compile Include="Assets\Scripts\Common\Util\DecrementCounterFrame.cs" />
     <Compile Include="Assets\Scripts\Common\Util\MhCommon.cs" />
+    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSON.cs" />
+    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSONBinary.cs" />
+    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSONUnity.cs" />
     <Compile Include="Assets\Scripts\Scene\GameMainScene\GameMainSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
     <Compile Include="Assets\Scripts\Scene\TestScene\TestSceneTask.cs" />
@@ -113,6 +117,9 @@
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyPopperData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyRandomPopper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StraightMoveEnemy.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchData.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDataArray.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDatas.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Number\DisplayNumber002.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerHealthObserver.cs" />

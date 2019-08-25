@@ -27,8 +27,9 @@ public class GameMainSceneTask : MonoBehaviour
             // ステージデータ読み込み
             {
                 stgEnemyLoadResourceStageJson = new StgEnemyLoadResourceStageJson();
-                stgEnemyLoadResourceStageJson.SetResourcePath("");
-                stgEnemyLoadResourceStageJson.Load();
+                stgEnemyLoadResourceStageJson.Initialize(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kStageData01));
+                //stgEnemyLoadResourceStageJson.SetResourcePath("");
+                //stgEnemyLoadResourceStageJson.Load();
 
             }
 		}

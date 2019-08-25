@@ -4,41 +4,31 @@ using UnityEngine;
 
 public class StgEnemyLoadResourceStageJson {
     public StgEnemyLoadResourceStageJson() {
-        resourcePath = "";
     }
 
-    public StgEnemyLoadResourceStageJson(string resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
-    public void SetResourcePath(string resourcePath) {
-        this.resourcePath = resourcePath;
-    }
-
-    public bool Load() {
-        // stageData1のパスを取得
-        string path = SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kStageData01);
-        // ロード
-        TextAsset data = (TextAsset)Resources.Load(path);
-        // 改行されているときのために文字列結合
-        {
-            System.IO.StringReader reader = new System.IO.StringReader(data.text);
-            //List<string> stringDatas = new List<string>();
-            string jsonString = "";
-            while (reader.Peek() != -1) {
-                // 1行ずつ読み込み
-                string line = reader.ReadLine();
-                jsonString += line;
-            }
-            // 表示
-            MhCommon.Print(jsonString);
+    public void Initialize(string resourcePath) {
+        LoadTextAsset textAsset = new LoadTextAsset();
+        textAsset.SetResourcePath(resourcePath);
+        bool result = textAsset.Load(true);
+        StgStageJsonEnemyLaunchDatas jsonDatas = new StgStageJsonEnemyLaunchDatas();
+        //T jsonItem = default(T);
+        if (result) {
+            //var data = JsonUtility.FromJson<StgStageJsonEnemyLaunchDataArray>(textAsset.Get());
+            var data = textAsset.Get();
+            //LoadJson.Load
+            SimpleJSON.JSONNode node = SimpleJSON.JSONNode.Parse(data);
+            var title = node["stage_data"]["0"]["enemy_type"];
+            data = null;
         }
-        return true;
+        //return jsonItem;
+
+        //StgStageJsonEnemyLaunchDatas jsonDatas = LoadJson.LoadTest<StgStageJsonEnemyLaunchDatas, StgStageJsonEnemyLaunchData>(resourcePath);
+        //StgStageJsonEnemyLaunchData[] jsonDatas = LoadJson.LoadTest<StgStageJsonEnemyLaunchDatas, StgStageJsonEnemyLaunchData>(resourcePath);
+
+        jsonDatas = null;
     }
 
     public StgEnemyPopperData[] Get() {
         return null;
     }
-
-    private string resourcePath;
 }
