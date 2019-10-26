@@ -17,8 +17,41 @@ public class StgEnemyLoadResourceStageJson {
             var data = textAsset.Get();
             //LoadJson.Load
             SimpleJSON.JSONNode node = SimpleJSON.JSONNode.Parse(data);
+
             var title = node["stage_data"]["0"]["enemy_type"];
-            data = null;
+            var test_data = node["stage_data"]["10000"]["enemy_type"];
+            //foreach (SimpleJSON.JSONNode node["stage_data"] in aaa) {
+            //}
+            StgStageJsonEnemyLaunchData[] launchDatas = new StgStageJsonEnemyLaunchData[node.Count];
+
+            for (int i = 0; i < node.Count; ++i) {
+                StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
+                launchData.enemy_type = node["stage_data"][i]["enemy_type"];
+                launchData.frame = node["stage_data"][i]["frame"];
+                launchData.x = node["stage_data"][i]["x"];
+                launchData.y = node["stage_data"][i]["y"];
+                launchData.z = node["stage_data"][i]["z"];
+                launchDatas[i] = launchData;
+            }
+            var aaa = 10;
+            /*
+            StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
+            launchData.enemy_type = node["stage_data"];
+            launchData.frame = ;
+            launchData.x = ;
+            launchData.y = ;
+            launchData.z = ;
+            */
+
+            /*
+    public string enemy_type;
+    public int frame;
+    public float x;
+    public float y;
+    public float z;         
+            */
+
+            //data = null;
         }
         //return jsonItem;
 
