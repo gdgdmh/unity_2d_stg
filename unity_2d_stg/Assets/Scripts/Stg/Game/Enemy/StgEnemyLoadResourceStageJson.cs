@@ -33,6 +33,7 @@ public class StgEnemyLoadResourceStageJson {
                 launchData.z = node["stage_data"][i]["z"];
                 launchDatas[i] = launchData;
             }
+
             var aaa = 10;
             /*
             StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
