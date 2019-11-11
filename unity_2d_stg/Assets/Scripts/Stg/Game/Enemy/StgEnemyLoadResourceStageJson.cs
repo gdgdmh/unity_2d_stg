@@ -16,6 +16,35 @@ public class StgEnemyLoadResourceStageJson {
             //var data = JsonUtility.FromJson<StgStageJsonEnemyLaunchDataArray>(textAsset.Get());
             var data = textAsset.Get();
             //LoadJson.Load
+
+            //Utf8Json utf8Json = new Utf8Json();
+
+            /*
+ public class NewBehaviourScript : MonoBehaviour {
+	void Start () {
+        var json2 = JsonSerializer.Deserialize<dynamic>(@"{""foo"":""json"",""bar"":100,""nest"":{""foobar"":true}}");
+
+        var r1 = json2["foo"]; // "json" - dynamic(string)
+        var r2 = json2["bar"]; // 100 - dynamic(double), it can cast to int or other number.
+        var r3 = json2["nest"]["foobar"]; // true
+    }
+}
+            */
+            var json2 = Utf8Json.JsonSerializer.Deserialize<dynamic>(data);
+            //RuntimeBinderException: Cannot implicitly convert type 'System.Collections.Generic.Dictionary<string,object>
+            System.Collections.Generic.Dictionary<string,object> json3 = json2["stage_data"];
+
+            foreach (KeyValuePair<string,object> item in json3) {
+                var key = item.Key;
+                var val = item.Value;
+                int bbb = 10;
+            }
+
+            //for (int i = 0; i < ; ++i) {
+            //}
+
+
+            /*
             SimpleJSON.JSONNode node = SimpleJSON.JSONNode.Parse(data);
 
             var title = node["stage_data"]["0"]["enemy_type"];
@@ -33,8 +62,13 @@ public class StgEnemyLoadResourceStageJson {
                 launchData.z = node["stage_data"][i]["z"];
                 launchDatas[i] = launchData;
             }
+            */
 
             var aaa = 10;
+
+
+
+
             /*
             StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
             launchData.enemy_type = node["stage_data"];
