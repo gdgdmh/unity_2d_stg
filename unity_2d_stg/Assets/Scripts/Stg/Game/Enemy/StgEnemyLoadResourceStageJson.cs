@@ -24,6 +24,27 @@ public class StgEnemyLoadResourceStageJson {
                 foreach (KeyValuePair<string, object> stageData in stageParameters) {
                     var key = stageData.Key;
                     var val = stageData.Value;
+                    StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
+                    switch (key)
+                    {
+                        case "enemy_type":
+                            launchData.enemy_type = (string)val;
+                            break;
+                        case "frame":
+                            launchData.frame = (int)val;
+                            break;
+                        case "x":
+                            launchData.x = (float)val;
+                            break;
+                        case "y":
+                            launchData.y = (float)val;
+                            break;
+                        case "z":
+                            launchData.z = (float)val;
+                            break;
+                        default:
+                            break;
+                    }
 
                     int bbb = 10;
                 }
