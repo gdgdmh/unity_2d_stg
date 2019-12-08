@@ -21,26 +21,26 @@ public class StgEnemyLoadResourceStageJson {
 
             foreach (KeyValuePair<string, object> stageDatas in json3) {
                 Dictionary<string, object> stageParameters = (Dictionary<string, object>)stageDatas.Value;
+                StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
                 foreach (KeyValuePair<string, object> stageData in stageParameters) {
                     var key = stageData.Key;
-                    var val = stageData.Value;
-                    StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
+                    string val = (string)stageData.Value;
                     switch (key)
                     {
                         case "enemy_type":
                             launchData.enemy_type = (string)val;
                             break;
                         case "frame":
-                            launchData.frame = (int)val;
+                            launchData.frame = int.Parse(val);
                             break;
                         case "x":
-                            launchData.x = (float)val;
+                            launchData.x = float.Parse(val);
                             break;
                         case "y":
-                            launchData.y = (float)val;
+                            launchData.y = float.Parse(val);
                             break;
                         case "z":
-                            launchData.z = (float)val;
+                            launchData.z = float.Parse(val);
                             break;
                         default:
                             break;
