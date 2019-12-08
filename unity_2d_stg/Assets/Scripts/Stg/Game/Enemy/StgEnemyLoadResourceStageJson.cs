@@ -32,12 +32,28 @@ public class StgEnemyLoadResourceStageJson {
             */
             var json2 = Utf8Json.JsonSerializer.Deserialize<dynamic>(data);
             //RuntimeBinderException: Cannot implicitly convert type 'System.Collections.Generic.Dictionary<string,object>
-            System.Collections.Generic.Dictionary<string,object> json3 = json2["stage_data"];
+            System.Collections.Generic.Dictionary<string, object> json3 = json2["stage_data"];
 
-            foreach (KeyValuePair<string,object> item in json3) {
-                var key = item.Key;
-                var val = item.Value;
-                int bbb = 10;
+            foreach (KeyValuePair<string, object> item in json3) {
+                //var key = item.Key;
+                //var val = item.Value;
+
+                Dictionary<string, object> stageParameters = (Dictionary<string, object>)item.Value;
+                foreach (KeyValuePair<string, object> stageData in stageParameters) {
+                    var key = stageData.Key;
+                    var val = stageData.Value;
+
+                    int bbb = 10;
+
+                }
+
+                //KeyValuePair<string, object> stageParameters = (System.Collections.Generic.KeyValuePair<string, object>)item.Value;
+
+                //foreach (KeyValuePair<string,object> stageParameter in stageParameters) {
+                //}
+                //var ad = item.Value;
+                //int bbb = 10;
+
             }
 
             //for (int i = 0; i < ; ++i) {
