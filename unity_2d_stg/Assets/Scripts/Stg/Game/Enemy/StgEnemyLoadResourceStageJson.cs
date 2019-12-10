@@ -25,8 +25,7 @@ public class StgEnemyLoadResourceStageJson {
                 foreach (KeyValuePair<string, object> stageData in stageParameters) {
                     var key = stageData.Key;
                     string val = (string)stageData.Value;
-                    switch (key)
-                    {
+                    switch (key) {
                         case "enemy_type":
                             launchData.enemy_type = (string)val;
                             break;
@@ -45,10 +44,13 @@ public class StgEnemyLoadResourceStageJson {
                         default:
                             break;
                     }
-
                     int bbb = 10;
                 }
+                jsonDatas.AddData(launchData);
+                //launchData.Print();
             }
+
+            jsonDatas.Print();
 
             /*
     public string enemy_type;

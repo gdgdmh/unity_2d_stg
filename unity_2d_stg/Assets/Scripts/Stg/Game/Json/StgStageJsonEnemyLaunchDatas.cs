@@ -4,5 +4,25 @@ using UnityEngine;
 
 [SerializeField]
 public class StgStageJsonEnemyLaunchDatas {
-    public StgStageJsonEnemyLaunchData[] stage_data;
+
+    public StgStageJsonEnemyLaunchDatas() {
+
+    }
+
+    public void Initialize() {
+
+    }
+
+    public void AddData(StgStageJsonEnemyLaunchData data) {
+        stage_data.Add(data);
+    }
+
+    public void Print() {
+        foreach (StgStageJsonEnemyLaunchData data in stage_data) {
+            data.Print();
+        }
+    }
+
+    private List<StgStageJsonEnemyLaunchData> stage_data = new List<StgStageJsonEnemyLaunchData>();
+
 }
