@@ -37,10 +37,14 @@ public class GameMainSceneTask : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        float elapsedTime = Time.deltaTime;
 
-		// 敵の湧きシステムを常に起動しておく
-		MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
+        // 敵の湧きシステムを常に起動しておく
+        MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
 		enemyRandomPopper.TaskAppear();
+
+
+        stgEnemyLoadResourceStageJson.Task(elapsedTime);
     }
 
 	private StgEnemyRandomPopper enemyRandomPopper; // 敵をランダム出現システム

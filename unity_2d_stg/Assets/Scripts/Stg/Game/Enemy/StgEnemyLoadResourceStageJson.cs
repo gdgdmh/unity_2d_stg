@@ -44,29 +44,23 @@ public class StgEnemyLoadResourceStageJson {
                         default:
                             break;
                     }
-                    int bbb = 10;
                 }
                 jsonDatas.AddData(launchData);
-                //launchData.Print();
             }
-
+            // debug
             jsonDatas.Print();
-
-            /*
-    public string enemy_type;
-    public int frame;
-    public float x;
-    public float y;
-    public float z;         
-            */
+        } else {
+            jsonDatas = null;
+            throw new System.ArgumentException(string.Format("resource={0} json parse failure", resourcePath));
         }
-        //StgStageJsonEnemyLaunchDatas jsonDatas = LoadJson.LoadTest<StgStageJsonEnemyLaunchDatas, StgStageJsonEnemyLaunchData>(resourcePath);
-        //StgStageJsonEnemyLaunchData[] jsonDatas = LoadJson.LoadTest<StgStageJsonEnemyLaunchDatas, StgStageJsonEnemyLaunchData>(resourcePath);
+    }
 
-        jsonDatas = null;
+    public void Task(float elapsedTime) {
     }
 
     public StgEnemyPopperData[] Get() {
         return null;
     }
+
+    private StgStageJsonEnemyLaunchDatas launchDatas;
 }
