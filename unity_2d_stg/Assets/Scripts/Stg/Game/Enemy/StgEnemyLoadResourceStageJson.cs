@@ -58,8 +58,8 @@ public class StgEnemyLoadResourceStageJson {
     public void Task(float elapsedTime) {
     }
 
-    public StgEnemyPopperData[] Get() {
-        return null;
+    public StgStageJsonEnemyLaunchDatas Get() {
+        return launchDatas;
     }
 
     private StgStageJsonEnemyLaunchDatas launchDatas;
