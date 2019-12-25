@@ -10,8 +10,6 @@ public class StgEnemyLoadResourceStageJson {
         LoadTextAsset textAsset = new LoadTextAsset();
         textAsset.SetResourcePath(resourcePath);
         bool result = textAsset.Load(true);
-        StgStageJsonEnemyLaunchDatas jsonDatas = new StgStageJsonEnemyLaunchDatas();
-        //T jsonItem = default(T);
         if (result) {
             // テキストデータ取得
             var data = textAsset.Get();
@@ -45,12 +43,10 @@ public class StgEnemyLoadResourceStageJson {
                             break;
                     }
                 }
-                jsonDatas.AddData(launchData);
+                launchDatas.AddData(launchData);
             }
-            // debug
-            jsonDatas.Print();
         } else {
-            jsonDatas = null;
+            launchDatas.Initialize();
             throw new System.ArgumentException(string.Format("resource={0} json parse failure", resourcePath));
         }
     }
