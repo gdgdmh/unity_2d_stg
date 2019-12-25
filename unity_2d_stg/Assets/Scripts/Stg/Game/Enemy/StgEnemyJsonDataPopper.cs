@@ -15,6 +15,11 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 		enemyFactory = new StgEnemyFactory(player);
 	}
 
+    public void SetJsonEnemyLaunchDatas(StgStageJsonEnemyLaunchDatas stgStageJsonEnemyLaunchDatas) {
+
+        //StgStageJsonEnemyLaunchDatas
+    }
+
     // Start is called before the first frame update
     public void Start() {        
     }
@@ -48,5 +53,6 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 
 	private GameObject player;
 	private StgEnemyFactory enemyFactory;
+    private StgStageJsonEnemyLaunchDatas StgStageJsonEnemyLaunchDatas = new StgStageJsonEnemyLaunchDatas();
 
 }

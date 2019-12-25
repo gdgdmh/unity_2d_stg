@@ -30,6 +30,13 @@ public class GameMainSceneTask : MonoBehaviour
                 stgEnemyLoadResourceStageJson.Initialize(SceneShare.Instance.GetGameResourcePathData().Get(GameResourcePathDefine.Type.kStageData01));
                 //stgEnemyLoadResourceStageJson.SetResourcePath("");
                 //stgEnemyLoadResourceStageJson.Load();
+                stgEnemyJsonDataPopper = this.gameObject.AddComponent<StgEnemyJsonDataPopper>() as StgEnemyJsonDataPopper;
+                MhCommon.Assert(stgEnemyJsonDataPopper != null, "GameMainSceneTask::Start() StgEnemyJsonDataPopper AddComponent failure");
+                // プレイヤーのGameObjectを取得
+                GameObject player = GameObject.Find("Player");
+                MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
+                stgEnemyJsonDataPopper.SetPlayer(player);
+                stgEnemyJsonDataPopper.SetJsonEnemyLaunchDatas(stgEnemyLoadResourceStageJson.Get());
 
             }
 		}
@@ -40,11 +47,13 @@ public class GameMainSceneTask : MonoBehaviour
         float elapsedTime = Time.deltaTime;
 
         // 敵の湧きシステムを常に起動しておく
-        MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
-		enemyRandomPopper.TaskAppear();
+        //MhCommon.Assert(enemyRandomPopper != null, "GameMainSceneTask::Start() StgEnemyRandomPopper AddComponent failure");
+        //enemyRandomPopper.TaskAppear();
 
 
-        stgEnemyLoadResourceStageJson.Task(elapsedTime);
+        stgEnemyJsonDataPopper.TaskAppear();
+
+        //stgEnemyLoadResourceStageJson.Task(elapsedTime);
     }
 
 	private StgEnemyRandomPopper enemyRandomPopper; // 敵をランダム出現システム
@@ -53,4 +62,5 @@ public class GameMainSceneTask : MonoBehaviour
 	private GameObject num002Object; // 数字表示
 	private DisplayNumber002 displayNumber002Script; // 数字表示用のスクリプト
     private StgEnemyLoadResourceStageJson stgEnemyLoadResourceStageJson;
+    private StgEnemyJsonDataPopper stgEnemyJsonDataPopper;
 }
