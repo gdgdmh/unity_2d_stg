@@ -23,6 +23,10 @@ public class StgStageJsonEnemyLaunchDatas {
         }
     }
 
+    public StgStageJsonEnemyLaunchData Get(int index) {
+        return stage_data[index];
+    }
+
     private List<StgStageJsonEnemyLaunchData> stage_data = new List<StgStageJsonEnemyLaunchData>();
 
 }
