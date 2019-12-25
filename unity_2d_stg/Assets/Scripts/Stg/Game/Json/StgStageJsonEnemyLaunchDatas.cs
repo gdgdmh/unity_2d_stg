@@ -6,7 +6,6 @@ using UnityEngine;
 public class StgStageJsonEnemyLaunchDatas {
 
     public StgStageJsonEnemyLaunchDatas() {
-
     }
 
     /// <summary>
@@ -51,5 +50,4 @@ public class StgStageJsonEnemyLaunchDatas {
     }
 
     private List<StgStageJsonEnemyLaunchData> stage_data = new List<StgStageJsonEnemyLaunchData>();
-
 }
