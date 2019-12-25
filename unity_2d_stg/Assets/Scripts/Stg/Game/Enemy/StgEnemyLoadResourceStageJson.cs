@@ -62,5 +62,5 @@ public class StgEnemyLoadResourceStageJson {
         return launchDatas;
     }
 
-    private StgStageJsonEnemyLaunchDatas launchDatas;
+    private StgStageJsonEnemyLaunchDatas launchDatas = new StgStageJsonEnemyLaunchDatas();
 }
