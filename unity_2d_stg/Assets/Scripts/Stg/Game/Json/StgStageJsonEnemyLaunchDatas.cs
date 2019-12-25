@@ -10,7 +10,7 @@ public class StgStageJsonEnemyLaunchDatas {
     }
 
     public void Initialize() {
-
+        stage_data.Clear();
     }
 
     public void AddData(StgStageJsonEnemyLaunchData data) {
