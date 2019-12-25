@@ -17,6 +17,7 @@ public class StgEnemyLoadResourceStageJson {
             var json2 = Utf8Json.JsonSerializer.Deserialize<dynamic>(data);
             System.Collections.Generic.Dictionary<string, object> json3 = json2["stage_data"];
 
+            // 読み込んだjsonデータを敵の出撃データとしてリストに保持する
             foreach (KeyValuePair<string, object> stageDatas in json3) {
                 Dictionary<string, object> stageParameters = (Dictionary<string, object>)stageDatas.Value;
                 StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
