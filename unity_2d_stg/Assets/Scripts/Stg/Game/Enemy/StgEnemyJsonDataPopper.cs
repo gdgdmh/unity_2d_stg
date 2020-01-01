@@ -17,11 +17,15 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 
     public void SetJsonEnemyLaunchDatas(StgStageJsonEnemyLaunchDatas stgStageJsonEnemyLaunchDatas) {
         this.stgStageJsonEnemyLaunchDatas = stgStageJsonEnemyLaunchDatas;
-        this.stgStageJsonEnemyLaunchDatas.Print();
+        //this.stgStageJsonEnemyLaunchDatas.Print();
+
+        StgStageJsonEnemyLaunchData d = stgStageJsonEnemyLaunchDatas.Get(4);
+        d.Print();
     }
 
     // Start is called before the first frame update
-    public void Start() {        
+    public void Start() {
+		totalTime = 0.0f;
     }
 
     // Update is called once per frame
@@ -29,7 +33,13 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
     }
 
 	public void TaskAppear() {
-        /*
+		float elapsedTime = Time.deltaTime;
+
+		// 総合経過時間を加算
+		totalTime += elapsedTime;
+		//Debug.Log(string.Format("time={0}", totalTime));
+
+		/*
 		if (!counter.IsTimeOver()) {
 			counter.Update();
 			if (counter.IsTimeOver()) {
@@ -54,5 +64,6 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 	private GameObject player;
 	private StgEnemyFactory enemyFactory;
     private StgStageJsonEnemyLaunchDatas stgStageJsonEnemyLaunchDatas = new StgStageJsonEnemyLaunchDatas();
+	private float totalTime;
 
 }
