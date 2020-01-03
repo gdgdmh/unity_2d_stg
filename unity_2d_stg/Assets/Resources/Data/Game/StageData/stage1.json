@@ -1,43 +1,43 @@
 {
     "stage_data": {
         "0": {
-            "enemy_type": "normal",
-            "time": "10",
+            "enemy_type": "normal_enemy",
+            "time": "3",
             "x": "0",
             "y": "6",
             "z": "0"
         },
         "1": {
-            "enemy_type": "normal",
-            "time": "10",
+            "enemy_type": "normal_enemy",
+            "time": "3",
             "x": "0.6",
             "y": "6",
             "z": "0"
         },
         "2": {
-            "enemy_type": "normal",
-            "time": "10",
+            "enemy_type": "normal_enemy",
+            "time": "3",
             "x": "-0.6",
             "y": "6",
             "z": "0"
         },
         "3": {
-            "enemy_type": "normal",
-            "time": "20",
+            "enemy_type": "normal_enemy",
+            "time": "7",
             "x": "0.4",
             "y": "6",
             "z": "0"
         },
         "4": {
-            "enemy_type": "normal",
-            "time": "20",
+            "enemy_type": "normal_enemy",
+            "time": "7",
             "x": "-0.4",
             "y": "6",
             "z": "0"
         },
         "5": {
-            "enemy_type": "normal",
-            "time": "20",
+            "enemy_type": "normal_enemy",
+            "time": "7",
             "x": "0",
             "y": "6",
             "z": "0"
