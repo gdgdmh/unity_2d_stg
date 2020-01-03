@@ -19,9 +19,6 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
         this.stgStageJsonEnemyLaunchDatas = stgStageJsonEnemyLaunchDatas;
         //this.stgStageJsonEnemyLaunchDatas.Print();
 
-        StgStageJsonEnemyLaunchData d = stgStageJsonEnemyLaunchDatas.Get(4);
-        d.Print();
-
 		currentIndex = 0;
 		maxCount = stgStageJsonEnemyLaunchDatas.GetCount();
     }
@@ -38,13 +35,16 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 	public void TaskAppear() {
 		float elapsedTime = Time.deltaTime;
 
+		if (totalTime >= kMaxTime) {
+			// 最大時間以上加算を行わない(オーバーフロー)
+			return;
+		}
 		// 総合経過時間を加算
 		totalTime += elapsedTime;
-		Debug.Log(string.Format("time={0}", totalTime));
+		//Debug.Log(string.Format("time={0}", totalTime));
 
 		// データがない or データが終端まで実行し終わっている
 		if ((maxCount == 0) || (currentIndex >= maxCount)) {
-			Debug.Log("ended");
 			return;
 		}
 
@@ -52,42 +52,24 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 		while (isContinue) {
 			if (currentIndex >= maxCount) {
 				// データが終端まで実行している
-				Debug.Log("loop end");
 				return;
 			}
 			StgStageJsonEnemyLaunchData launchData = stgStageJsonEnemyLaunchDatas.Get(currentIndex);
 			if (launchData.time <= (int)totalTime) {
-				launchData.Print();
+				// 敵の生成
+				{
+					GameObject enemy = enemyFactory.Create(StgEnemyConstant.GetStringToType(launchData.enemy_type));
+					Instantiate(enemy, new Vector3(launchData.x, launchData.y, launchData.z), Quaternion.identity);
+				}
 				++currentIndex;
-				Debug.Log("next loop");
 			} else {
-				Debug.Log("loop end by frame");
+				// 処理すべきtimeのデータがない
 				return;
 			}
 		}
-
-		/*
-		if (!counter.IsTimeOver()) {
-			counter.Update();
-			if (counter.IsTimeOver()) {
-				//MhCommon.Print("reset");
-				counter.SetCounter(0.5f);
-				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kStraightMoveEnemy);//StgEnemyConstant.Type.kEnemyNormal);
-
-				RandomIntegerSystem random = new RandomIntegerSystem();
-				int value = random.Get(0, 2);
-				if (value == 0) {
-					Instantiate(enemy, new Vector3(0.0f, 6.0f, 0.0f), Quaternion.identity);
-				} else if (value == 1) {
-					Instantiate(enemy, new Vector3(0.5f, 6.0f, 0.0f), Quaternion.identity);
-				} else {
-					Instantiate(enemy, new Vector3(-0.5f, 6.0f, 0.0f), Quaternion.identity);
-				}
-			}
-		}
-        */
 	}
 
+	private static readonly float kMaxTime = 999999; // 最大時間
 	private GameObject player;				// プレイヤー
 	private StgEnemyFactory enemyFactory;	// 敵生成システム
     private StgStageJsonEnemyLaunchDatas stgStageJsonEnemyLaunchDatas = new StgStageJsonEnemyLaunchDatas(); // 敵出現データ
