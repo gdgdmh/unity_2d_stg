@@ -10,4 +10,10 @@ interface IStgEnemyAppearable {
 	/// 敵を出現させる
 	/// </summary>
 	void TaskAppear();
+
+	/// <summary>
+	/// 出現処理が終了したか
+	/// </summary>
+	/// <returns>終了したらtrue</returns>
+	bool IsEnd();
 }

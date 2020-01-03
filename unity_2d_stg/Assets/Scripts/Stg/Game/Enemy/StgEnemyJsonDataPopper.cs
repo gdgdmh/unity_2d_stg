@@ -35,16 +35,16 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 	public void TaskAppear() {
 		float elapsedTime = Time.deltaTime;
 
-		if (totalTime >= kMaxTime) {
-			// 最大時間以上加算を行わない(オーバーフロー)
+		if (IsTimeOver()) {
+			// 経過時間オーバーなので処理しない
 			return;
 		}
 		// 総合経過時間を加算
 		totalTime += elapsedTime;
 		//Debug.Log(string.Format("time={0}", totalTime));
 
-		// データがない or データが終端まで実行し終わっている
-		if ((maxCount == 0) || (currentIndex >= maxCount)) {
+		if (IsDataEnd()) {
+			// データ実行終了 or データがない
 			return;
 		}
 
@@ -67,6 +67,30 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 				return;
 			}
 		}
+	}
+
+	public bool IsEnd() {
+		if ((IsDataEnd()) || (IsTimeOver())) {
+			// データ処理済み or 経過時間オーバーなら終了していると見なす
+			return true;
+		}
+		return false;
+	}
+
+	private bool IsDataEnd() {
+		// データがない or データが終端まで実行し終わっている
+		if ((maxCount == 0) || (currentIndex >= maxCount)) {
+			return true;
+		}
+		return false;
+	}
+
+	private bool IsTimeOver() {
+		if (totalTime >= kMaxTime) {
+			// 最大時間以上加算を行わない(オーバーフロー)
+			return true;
+		}
+		return false;
 	}
 
 	private static readonly float kMaxTime = 999999; // 最大時間

@@ -43,20 +43,12 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 				}
 			}
 		}
-
-		//MhCommon.Print("TaskAppear");
 	}
-	/*
-		{
-			// 敵の生成
-			GameObject player = GameObject.Find("Player");
-			MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
-			StgEnemyFactory factory = new StgEnemyFactory(player);
-			GameObject enemy = factory.Create(StgEnemyConstant.Type.kEnemyNormal);
-			Instantiate(enemy, new Vector3(0.0f, 4.0f, 0.0f), Quaternion.identity);
-		}
 
-	*/
+	public bool IsEnd() {
+		// 無限に出る想定なので終了はしない
+		return false;
+	}
 
 	private GameObject player;
 	private DecrementCounterElapsedTime counter;
