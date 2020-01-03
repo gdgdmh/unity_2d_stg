@@ -29,7 +29,7 @@ public class StgEnemyLoadResourceStageJson {
                             launchData.enemy_type = (string)val;
                             break;
                         case "time":
-                            launchData.time = int.Parse(val);
+                            launchData.time = float.Parse(val);
                             break;
                         case "x":
                             launchData.x = float.Parse(val);

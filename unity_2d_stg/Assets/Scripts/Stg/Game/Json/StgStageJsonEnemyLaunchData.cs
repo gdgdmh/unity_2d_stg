@@ -8,7 +8,7 @@ using UnityEngine;
 [SerializeField]
 public class StgStageJsonEnemyLaunchData {
     public string enemy_type; // 敵のタイプ
-    public int time; // 出現時間
+    public float time; // 出現時間
     public float x; // 出現位置X
     public float y; // 出現位置Y
     public float z; // 出現位置Z

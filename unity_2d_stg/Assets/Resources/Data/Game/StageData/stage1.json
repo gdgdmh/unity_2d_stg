@@ -16,7 +16,7 @@
         },
         "2": {
             "enemy_type": "normal_enemy",
-            "time": "3",
+            "time": "3.5",
             "x": "-0.6",
             "y": "6",
             "z": "0"
