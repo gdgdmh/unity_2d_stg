@@ -120,6 +120,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyPopperData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StgEnemyRandomPopper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Enemy\StraightMoveEnemy.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemBase.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDataArray.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDatas.cs" />
