@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StgItemBase : MonoBehaviour, IAddableScore {
+public class StgItemBase : StgGameObject {
 
-    // Start is called before the first frame update
-    void Start() {
-        
-    }
+    public StgItemBase() {
+	}
 
-    // Update is called once per frame
-    void Update() {
-        
-    }
+	public override void Initialize() {
+	}
+
+	public override void Start() {
+	}
+
+	// Update is called once per frame
+	public override void Update() {
+	}
+
+	protected bool isAlive = false;
 }
