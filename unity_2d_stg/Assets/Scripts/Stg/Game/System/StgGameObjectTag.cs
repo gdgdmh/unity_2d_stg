@@ -6,11 +6,12 @@ public static class StgGameObjectTag {
 	public enum Type : int {
 		kPlayer,
 		kEnemy,
-		kPlayerBullet
+		kPlayerBullet,
+		kItem
 	};
 	
 	public static string ToString(Type type) {
-		string[] names = {"player", "enemy", "player_bullet"};
+		string[] names = {"player", "enemy", "player_bullet", "item"};
 		return names[(int)type];
 	}
 
