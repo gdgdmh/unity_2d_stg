@@ -7,7 +7,7 @@ TagManager:
   - player
   - enemy
   - player_bullet
-  - item
+  - item_powerup
   layers:
   - Default
   - TransparentFX

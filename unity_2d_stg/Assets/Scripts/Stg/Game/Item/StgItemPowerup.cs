@@ -31,7 +31,6 @@ public class StgItemPowerup : StgItemBase, IAddableScore {
 	// 当たり判定
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayer)) {
-			Debug.Log("hit!!!!");
 			Destroy(this.gameObject);
 		}
 	}

@@ -74,6 +74,14 @@ public class StgPlayer : StgGameObject {
         healthObservable.Add(observer);
     }
 
+	/// <summary>
+	/// パワーアップ処理
+	/// </summary>
+	public void Powerup() {
+		//
+		Debug.Log("Powerup");
+	}
+
 	private void Move() {
         //UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
 		UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
@@ -132,8 +140,10 @@ public class StgPlayer : StgGameObject {
             // HP変更通知
             healthObservable.NotifyObservers(health.GetMaxHealth(), health.GetHealth(), beforeHealth - health.GetHealth());
             MhCommon.Print("StgPlayer::OnTriggerEnter2D health=" + health.GetHealth());
-
-        }
+        } else if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kItemPowerup)) {
+			// パワーアップアイテム取得処理
+			Powerup();
+		}
 	}
 
 	private static readonly float kShootOffsetY = 1.0f;
