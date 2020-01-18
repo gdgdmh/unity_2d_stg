@@ -130,6 +130,9 @@
     <Compile Include="Assets\Scripts\Stg\Game\Player\IStgPlayerHealthObserver.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayer.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackNew.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackPower1State.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackState.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerHealthObservable.cs" />
