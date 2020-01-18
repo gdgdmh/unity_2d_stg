@@ -58,7 +58,7 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 		Vector3 shootPosition = playerScript.GetShootPosition();
 		attackPositon = shootPosition;
 
-		Instantiate(bullet, attackPositon, Quaternion.identity);
+		Object.Instantiate(bullet, attackPositon, Quaternion.identity);
 	}
 
 	private static readonly float kAttackInterval = 1.0f; // 攻撃の再間隔時間(sec)
