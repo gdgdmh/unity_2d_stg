@@ -24,14 +24,14 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
     // Update is called once per frame
     public void Update() {
 		// 一定時間ごとに攻撃
-		float elapsedTime = Time.deltaTime;
-		attackInterval -= elapsedTime;
-		if (attackInterval <= 0.0f) {
+		//float elapsedTime = Time.deltaTime;
+		//attackInterval -= elapsedTime;
+		//if (attackInterval <= 0.0f) {
 			// 攻撃処理
-			AttackProcess();
+		//	AttackProcess();
 			// 攻撃再間隔設定
-			ResetAttackTime();
-		}
+		//	ResetAttackTime();
+		//}
     }
 
 	/// <summary>

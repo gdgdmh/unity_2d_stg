@@ -20,6 +20,11 @@ public class StgPlayerAttackNew {
 	}
 
 	public void Update() {
+		/*
+		state = state->handleInput(this, input);
+
+		*/
+
 		// 一定時間ごとに攻撃
 		float elapsedTime = Time.deltaTime;
 		attackInterval -= elapsedTime;

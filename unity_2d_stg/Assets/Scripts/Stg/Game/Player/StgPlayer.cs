@@ -31,7 +31,16 @@ public class StgPlayer : StgGameObject {
 			attack.SetPlayer(ref player);
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 		}
-        healthObservable = new StgPlayerHealthObservable();
+		{
+			attackNew = new StgPlayerAttackNew();
+			GameObject player = GameObject.Find("Player");
+			MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
+
+			attackNew.SetPlayer(ref player);
+			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
+
+		}
+		healthObservable = new StgPlayerHealthObservable();
 
 
 		//if (stgGameObjectSubject == null) {
@@ -123,8 +132,9 @@ public class StgPlayer : StgGameObject {
 		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
 		MhCommon.Assert(attack != null, "StgPlayer::Attack() StgPlayerAttack null");
 
+		attackNew.Update();
 		// 発射位置を設定
-		attack.Update();
+		//attack.Update();
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision) {
@@ -151,6 +161,7 @@ public class StgPlayer : StgGameObject {
 	private IStgPlayerController stgPlayerController;
     private I2dFloatPositionable position;
 	private StgPlayerAttack attack;
+	private StgPlayerAttackNew attackNew;
     private StgPlayerHealthObservable healthObservable;
 	private bool isDragRaw;
 }
