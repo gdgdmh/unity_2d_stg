@@ -36,6 +36,8 @@ public class StgPlayer : StgGameObject {
 			GameObject player = GameObject.Find("Player");
 			MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
 
+			attackNew.Start();
+
 			attackNew.SetPlayer(ref player);
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
 
@@ -132,7 +134,10 @@ public class StgPlayer : StgGameObject {
 		MhCommon.Assert(rigidbody2D != null, "StgPlayer::Attack() rigidbody2D null");
 		MhCommon.Assert(attack != null, "StgPlayer::Attack() StgPlayerAttack null");
 
-		attackNew.Update();
+		UnitySingleTouchAction touchAction = SceneShare.Instance.GetInput().GetSingleTouchAction();
+		UnitySingleTouchDragAction dragAction = SceneShare.Instance.GetInput().GetSingleTouchDragAction();
+
+		attackNew.Update(Time.deltaTime, touchAction, dragAction);
 		// 発射位置を設定
 		//attack.Update();
 	}

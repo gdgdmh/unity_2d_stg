@@ -5,26 +5,34 @@ using UnityEngine;
 public class StgPlayerAttackNew {
 
 	public StgPlayerAttackNew() {
+		/*
 		ResetAttackTime();
 		attackPositon = new Vector3(0.0f, -3.0f, 0.0f);
+		*/
 	}
 
 	public void SetPlayer(ref GameObject player) {
 		MhCommon.Print("SetPlayer");
 		this.player = player;
-		MhCommon.Assert(this.player != null, "StgPlayerAttack::SetPlayer() player null");
+		MhCommon.Assert(this.player != null, "StgPlayerAttackNew::SetPlayer() player null");
 	}
 
 	public void Start() {
+		/*
 		ResetAttackTime();
+		*/
+		attackStateContext.Initialize();
 	}
 
-	public void Update() {
+	public void Update(float elapsedTime, UnitySingleTouchAction touchAction, UnitySingleTouchDragAction dragAction) {
+
+		attackStateContext.Update(elapsedTime, touchAction, dragAction);
 		/*
 		state = state->handleInput(this, input);
 
 		*/
 
+		/*
 		// 一定時間ごとに攻撃
 		float elapsedTime = Time.deltaTime;
 		attackInterval -= elapsedTime;
@@ -34,13 +42,17 @@ public class StgPlayerAttackNew {
 			// 攻撃再間隔設定
 			ResetAttackTime();
 		}
+		*/
 	}
 
 	private void ResetAttackTime() {
+		/*
 		attackInterval = kAttackInterval;
+		*/
 	}
 
 	private void AttackProcess() {
+		/*
 		// PlayerBulletを動的生成
 		StgPlayerBulletFactory factory = new StgPlayerBulletFactory(player);
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
@@ -52,9 +64,9 @@ public class StgPlayerAttackNew {
 		MhCommon.Assert(playerScript != null, "StgPlayerAttack::AttackProcess() playerScript null");
 		Vector3 shootPosition = playerScript.GetShootPosition();
 		attackPositon = shootPosition;
-
-		// 
+ 
 		Object.Instantiate(bullet, attackPositon, Quaternion.identity);
+		*/
 	}
 
 	private static readonly float kAttackInterval = 1.0f; // 攻撃の再間隔時間(sec)
@@ -62,4 +74,7 @@ public class StgPlayerAttackNew {
 	protected StgPlayer playerScript;
 	private float attackInterval = kAttackInterval; // 現在の攻撃再間隔時間
 	private Vector3 attackPositon; // 攻撃位置
+
+	private StgPlayerAttackStateContext attackStateContext = new StgPlayerAttackStateContext();
+	//private StgPlayerAttackState state = new StgPlayerAttackState();
 }
