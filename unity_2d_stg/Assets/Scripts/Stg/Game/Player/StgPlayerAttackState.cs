@@ -17,6 +17,13 @@ public class StgPlayerAttackState {
 	}
 
 	/// <summary>
+	/// プレイヤーの設定
+	/// </summary>
+	/// <param name="player"></param>
+	public virtual void SetPlayer(ref GameObject player) {
+	}
+
+	/// <summary>
 	/// ステータスがアクティブ状態に切り替わった時のイベント
 	/// </summary>
 	public virtual void OnStateActive(state beforeState) {

@@ -36,10 +36,11 @@ public class StgPlayer : StgGameObject {
 			GameObject player = GameObject.Find("Player");
 			MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
 
-			attackNew.Start();
-
 			attackNew.SetPlayer(ref player);
 			MhCommon.Assert(attack != null, "StgPlayer::Awake() StgPlayerAttack new failure");
+
+			attackNew.Start();
+
 
 		}
 		healthObservable = new StgPlayerHealthObservable();
