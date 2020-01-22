@@ -14,7 +14,7 @@ public class StgPlayerAttackPower2State : StgPlayerAttackState {
 
 	public override void SetPlayer(ref GameObject player) {
 		this.player = player;
-		MhCommon.Assert(this.player != null, "StgPlayerAttackPower1State::SetPlayer() player null");
+		MhCommon.Assert(this.player != null, "StgPlayerAttackPower2State::SetPlayer() player null");
 	}
 
 	public override void OnStateActive(state beforeState) {
@@ -56,7 +56,7 @@ public class StgPlayerAttackPower2State : StgPlayerAttackState {
 			// SetPlayerの時点ではStgPlayerを取得できないのでここで一度だけ取得する
 			playerScript = this.player.GetComponent<StgPlayer>();
 		}
-		MhCommon.Assert(playerScript != null, "StgPlayerAttack::AttackProcess() playerScript null");
+		MhCommon.Assert(playerScript != null, "StgPlayerAttackPower2State::AttackProcess() playerScript null");
 		Vector3 shootPosition = playerScript.GetShootPosition();
 		attackPositon = shootPosition;
 
