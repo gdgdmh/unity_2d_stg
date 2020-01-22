@@ -7,7 +7,10 @@ public class StgPlayerAttackState {
 	public enum state {
 		Power1,
 		Power2,
-		Power3
+		Power3,
+		Power4,
+		Power5,
+		Power6
 	}
 
 	/// <summary>
