@@ -22,6 +22,10 @@ public class StgPlayerAttackNew {
 		attackStateContext.Update(elapsedTime, touchAction, dragAction);
 	}
 
+	public void Powerup() {
+		attackStateContext.Powerup();
+	}
+
 	protected GameObject player;
 	private StgPlayerAttackStateContext attackStateContext;
 }

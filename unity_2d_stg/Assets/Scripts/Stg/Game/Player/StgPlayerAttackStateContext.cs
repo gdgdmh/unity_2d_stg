@@ -7,6 +7,8 @@ public class StgPlayerAttackStateContext {
 	public StgPlayerAttackStateContext(ref GameObject player) {
 		power1.Initialize();
 		power1.SetPlayer(ref player);
+		power2.Initialize();
+		power2.SetPlayer(ref player);
 
 	}
 
@@ -36,6 +38,11 @@ public class StgPlayerAttackStateContext {
 	/// パワーアップ処理
 	/// </summary>
 	public void Powerup() {
+		if (currentState == StgPlayerAttackState.state.Power1) {
+			SetCurrentState(StgPlayerAttackState.state.Power2);
+		} else if (currentState == StgPlayerAttackState.state.Power2) {
+
+		}
 	}
 
 	/// <summary>
@@ -63,6 +70,8 @@ public class StgPlayerAttackStateContext {
 		switch (state) {
 			case StgPlayerAttackState.state.Power1:
 				return power1;
+			case StgPlayerAttackState.state.Power2:
+				return power2;
 			default:
 				break;
 		}
@@ -73,5 +82,6 @@ public class StgPlayerAttackStateContext {
 	private StgPlayerAttackState.state currentState;	// 現在のステータス(定義)
 
 	private StgPlayerAttackPower1State power1 = new StgPlayerAttackPower1State();
+	private StgPlayerAttackPower2State power2 = new StgPlayerAttackPower2State();
 
 }

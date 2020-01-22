@@ -132,6 +132,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttack.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackNew.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackPower1State.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackPower2State.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackState.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerAttackStateContext.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />

@@ -92,6 +92,7 @@ public class StgPlayer : StgGameObject {
 	public void Powerup() {
 		//
 		Debug.Log("Powerup");
+		attackNew.Powerup();
 	}
 
 	private void Move() {

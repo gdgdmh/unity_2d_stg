@@ -10,7 +10,6 @@ public class StgPlayerAttackPower1State : StgPlayerAttackState {
 
 	public override void Initialize() {
 		base.Initialize();
-		Debug.Log("StgPlayerAttackPower1State::Initialize");
 	}
 
 	public override void SetPlayer(ref GameObject player) {
@@ -26,12 +25,11 @@ public class StgPlayerAttackPower1State : StgPlayerAttackState {
 
 	public override void OnStateNonActive(state nextState) {
 		base.OnStateNonActive(nextState);
-		Debug.Log("StgPlayerAttackPower1State::Update");
+		Debug.Log("StgPlayerAttackPower1State::OnStateNonActive");
 	}
 
 	public override state Update(float elapsedTime, UnitySingleTouchAction touchAction, UnitySingleTouchDragAction dragAction) {
 		base.Update(elapsedTime, touchAction, dragAction);
-		Debug.Log("StgPlayerAttackPower1State::Update");
 		// 一定時間ごとに攻撃
 		//float elapsedTime = Time.deltaTime;
 		attackInterval -= elapsedTime;
