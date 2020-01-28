@@ -56,7 +56,7 @@ public class StgPlayerAttackPower1State : StgPlayerAttackState {
 			// SetPlayerの時点ではStgPlayerを取得できないのでここで一度だけ取得する
 			playerScript = this.player.GetComponent<StgPlayer>();
 		}
-		MhCommon.Assert(playerScript != null, "StgPlayerAttack::AttackProcess() playerScript null");
+		MhCommon.Assert(playerScript != null, "StgPlayerAttackPower1State::AttackProcess() playerScript null");
 		Vector3 shootPosition = playerScript.GetShootPosition();
 		attackPositon = shootPosition;
  
