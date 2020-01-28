@@ -11,6 +11,8 @@ public class StgPlayerAttackStateContext {
 		power2.SetPlayer(ref player);
 		power3.Initialize();
 		power3.SetPlayer(ref player);
+		power4.Initialize();
+		power4.SetPlayer(ref player);
 
 	}
 
@@ -18,8 +20,8 @@ public class StgPlayerAttackStateContext {
 	/// 初期化
 	/// </summary>
 	public void Initialize() {
-		current = power2;
-		currentState = StgPlayerAttackState.state.Power2;
+		current = power3;
+		currentState = StgPlayerAttackState.state.Power3;
 		current.OnStateActive(currentState);
 	}
 
@@ -45,6 +47,7 @@ public class StgPlayerAttackStateContext {
 		} else if (currentState == StgPlayerAttackState.state.Power2) {
 			SetCurrentState(StgPlayerAttackState.state.Power3);
 		} else if (currentState == StgPlayerAttackState.state.Power3) {
+			SetCurrentState(StgPlayerAttackState.state.Power4);
 		} else if (currentState == StgPlayerAttackState.state.Power4) {
 		} else if (currentState == StgPlayerAttackState.state.Power5) {
 		} else if (currentState == StgPlayerAttackState.state.Power6) {
@@ -80,6 +83,8 @@ public class StgPlayerAttackStateContext {
 				return power2;
 			case StgPlayerAttackState.state.Power3:
 				return power3;
+			case StgPlayerAttackState.state.Power4:
+				return power4;
 			default:
 				break;
 		}
@@ -92,5 +97,6 @@ public class StgPlayerAttackStateContext {
 	private StgPlayerAttackPower1State power1 = new StgPlayerAttackPower1State();
 	private StgPlayerAttackPower2State power2 = new StgPlayerAttackPower2State();
 	private StgPlayerAttackPower3State power3 = new StgPlayerAttackPower3State();
+	private StgPlayerAttackPower4State power4 = new StgPlayerAttackPower4State();
 
 }
