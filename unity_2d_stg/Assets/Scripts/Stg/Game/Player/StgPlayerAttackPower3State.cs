@@ -15,18 +15,18 @@ public class StgPlayerAttackPower3State : StgPlayerAttackState {
 
 	public override void SetPlayer(ref GameObject player) {
 		this.player = player;
-		MhCommon.Assert(this.player != null, "StgPlayerAttackPower1State::SetPlayer() player null");
+		MhCommon.Assert(this.player != null, "StgPlayerAttackPower3State::SetPlayer() player null");
 	}
 
 	public override void OnStateActive(state beforeState) {
 		base.OnStateActive(beforeState);
-		Debug.Log("StgPlayerAttackPower2State::OnStateActive");
+		Debug.Log("StgPlayerAttackPower3State::OnStateActive");
 		ResetAttackTime();
 	}
 
 	public override void OnStateNonActive(state nextState) {
 		base.OnStateNonActive(nextState);
-		Debug.Log("StgPlayerAttackPower2State::OnStateNonActive");
+		Debug.Log("StgPlayerAttackPower3State::OnStateNonActive");
 	}
 
 	public override state Update(float elapsedTime, UnitySingleTouchAction touchAction, UnitySingleTouchDragAction dragAction) {
@@ -56,7 +56,7 @@ public class StgPlayerAttackPower3State : StgPlayerAttackState {
 			// SetPlayerの時点ではStgPlayerを取得できないのでここで一度だけ取得する
 			playerScript = this.player.GetComponent<StgPlayer>();
 		}
-		MhCommon.Assert(playerScript != null, "StgPlayerAttack::AttackProcess() playerScript null");
+		MhCommon.Assert(playerScript != null, "StgPlayerAttackPower3State::AttackProcess() playerScript null");
 		Vector3 shootPosition = playerScript.GetShootPosition();
 		attackPositions[0] = shootPosition;
 		attackPositions[1] = shootPosition;
