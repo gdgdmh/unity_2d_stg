@@ -50,7 +50,7 @@ public class StgPlayerAttackPower4State : StgPlayerAttackState {
 
 	private void AttackProcess() {
 		// PlayerBulletを動的生成
-		StgPlayerBulletFactory factory = new StgPlayerBulletFactory(player);
+		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
 
 		if (playerScript == null) {
 			// SetPlayerの時点ではStgPlayerを取得できないのでここで一度だけ取得する

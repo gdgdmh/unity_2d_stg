@@ -47,7 +47,7 @@ public class StgPlayerAttack : MonoBehaviour, IStgAttack {
 
 	private void AttackProcess() {
 		// PlayerBulletを動的生成
-		StgPlayerBulletFactory factory = new StgPlayerBulletFactory(player);
+		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
 
 		if (playerScript == null) {

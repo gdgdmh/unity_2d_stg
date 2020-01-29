@@ -4,10 +4,7 @@ using UnityEngine;
 
 public class StgPlayerBulletFactory : AStgBulletFactory {
 
-	public StgPlayerBulletFactory(GameObject player) {
-		this.player = player;
-		StgPlayer playerScript = this.player.GetComponent<StgPlayer>();
-		MhCommon.Assert(playerScript != null, "StgPlayerBulletFactory::StgPlayerBulletFactory() playerScript null");
+	public StgPlayerBulletFactory() {
 	}
 
 	/// <summary>
@@ -27,7 +24,4 @@ public class StgPlayerBulletFactory : AStgBulletFactory {
 			return null;
 		}
 	}
-
-	protected GameObject player;
-	protected StgPlayer playerScript;
 }
