@@ -6,6 +6,9 @@ public class StgItemPowerup : StgItemBase, IAddableScore {
 	public StgItemPowerup() {
 	}
 
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	public override void Initialize() {
 		base.Initialize();
 		//Debug.Log("init");
@@ -16,6 +19,9 @@ public class StgItemPowerup : StgItemBase, IAddableScore {
 		//Debug.Log("start");
 	}
 
+	/// <summary>
+	/// 更新処理
+	/// </summary>
 	public override void Update() {
 		base.Update();
 		//Debug.Log("update");
@@ -24,14 +30,20 @@ public class StgItemPowerup : StgItemBase, IAddableScore {
 	/// <summary>
 	/// スコアの加算
 	/// </summary>
+	/// <param name="score">加算されるスコア</param>
 	public void AdditionalScore(int score) {
 		SceneShare.Instance.GetGameTemporaryData().GetScoreData().AdditionalScore(score);
 	}
 
-	// 当たり判定
+	/// <summary>
+	/// 当たり判定処理
+	/// </summary>
+	/// <param name="collision">当たり判定対象</param>
 	private void OnTriggerEnter2D(Collider2D collision) {
 		if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayer)) {
+			// プレイヤーと触れた時に消滅、スコアを加算
 			Destroy(this.gameObject);
+			AdditionalScore(StgItemConstant.kScorePowerup);
 		}
 	}
 }
