@@ -37,7 +37,11 @@ public class GameMainSceneTask : MonoBehaviour
                 MhCommon.Assert(player != null, "GameMainSceneTask::Start() player null");
                 stgEnemyJsonDataPopper.SetPlayer(player);
                 stgEnemyJsonDataPopper.SetJsonEnemyLaunchDatas(stgEnemyLoadResourceStageJson.Get());
-
+            }
+			{
+                StgItemFactory factory = new StgItemFactory();
+                GameObject item = factory.Create(StgItemConstant.Type.kPowerup);
+                GameObject.Instantiate(item, new Vector3(0, 0, 0), Quaternion.identity);
             }
 		}
     }
