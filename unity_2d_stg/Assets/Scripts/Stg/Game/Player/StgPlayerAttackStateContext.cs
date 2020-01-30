@@ -24,8 +24,8 @@ public class StgPlayerAttackStateContext {
 	/// 初期化
 	/// </summary>
 	public void Initialize() {
-		current = power1;
-		currentState = StgPlayerAttackState.state.Power1;
+		current = power4;
+		currentState = StgPlayerAttackState.state.Power4;
 		current.OnStateActive(currentState);
 	}
 

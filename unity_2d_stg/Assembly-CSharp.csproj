@@ -142,6 +142,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerController.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerHealth.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerHealthObservable.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerInterval2WayShoot.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Player\StgPlayerIntervalShoot.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Score\GameScore.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Score\IAddableScore.cs" />
