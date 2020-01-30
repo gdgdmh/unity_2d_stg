@@ -7,11 +7,12 @@ public static class StgGameObjectTag {
 		kPlayer,
 		kEnemy,
 		kPlayerBullet,
-		kItemPowerup
+		kItemPowerup,
+		kItemScoreup
 	};
 	
 	public static string ToString(Type type) {
-		string[] names = {"player", "enemy", "player_bullet", "item_powerup"};
+		string[] names = {"player", "enemy", "player_bullet", "item_powerup", "item_scoreup"};
 		return names[(int)type];
 	}
 

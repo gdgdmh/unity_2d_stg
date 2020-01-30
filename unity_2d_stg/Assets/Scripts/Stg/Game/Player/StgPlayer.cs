@@ -160,6 +160,8 @@ public class StgPlayer : StgGameObject {
         } else if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kItemPowerup)) {
 			// パワーアップアイテム取得処理
 			Powerup();
+		} else if (collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kItemScoreup)) {
+			// スコアアイテム
 		}
 	}
 
