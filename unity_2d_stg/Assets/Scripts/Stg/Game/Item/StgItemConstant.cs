@@ -8,4 +8,7 @@ public static class StgItemConstant {
 		kScoreup,
 		kUnknown
 	};
+
+	public static readonly int kScorePowerup = 100;
+	public static readonly int kScoreScoreup = 500;
 }
