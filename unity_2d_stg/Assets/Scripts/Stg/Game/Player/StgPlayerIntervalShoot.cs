@@ -86,7 +86,7 @@ public class StgPlayerIntervalShoot {
 	/// 発射位置を計算する
 	/// </summary>
 	/// <returns>発射位置(位置とオフセットを加味した位置)</returns>
-	private Vector3 CalcShootPosition() {
+	protected Vector3 CalcShootPosition() {
 		// 発射位置の設定 + オフセット設定
 		Vector3 position = shootPosition;
 		position += offset;
@@ -95,6 +95,6 @@ public class StgPlayerIntervalShoot {
 
 	private float shootInterval = 1.0f;
 	private float currentShootInterval = 1.0f; // 現在の攻撃再間隔時間
-	private Vector3 shootPosition; // 発射位置
-	private Vector3 offset; // オフセット
+	protected Vector3 shootPosition; // 発射位置
+	protected Vector3 offset; // オフセット
 }
