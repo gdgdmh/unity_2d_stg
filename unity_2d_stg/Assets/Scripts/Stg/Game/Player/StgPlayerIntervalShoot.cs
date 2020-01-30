@@ -6,17 +6,17 @@ using UnityEngine;
 /// プレイヤーの弾を発射する(インターバル設定)
 /// 発射位置はshotPositionとoffsetの足しあわせによって確定
 /// </summary>
-public class StgPlayerIntervalShot {
-	public StgPlayerIntervalShot() {
+public class StgPlayerIntervalShoot {
+	public StgPlayerIntervalShoot() {
 	}
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
 	public void Initialize() {
-		shotInterval = 1.0f;
-		currentShotInterval = shotInterval;
-		shotPosition = new Vector3(0.0f, 0.0f, 0.0f);
+		shootInterval = 1.0f;
+		currentShootInterval = shootInterval;
+		shootPosition = new Vector3(0.0f, 0.0f, 0.0f);
 		offset = new Vector3(0.0f, 0.0f, 0.0f);
 	}
 
@@ -28,10 +28,10 @@ public class StgPlayerIntervalShot {
 	/// <param name="dragAction">ドラッグ情報</param>
 	public void Update(float elapsedTime, UnitySingleTouchAction touchAction, UnitySingleTouchDragAction dragAction) {
 		// 一定時間ごとに攻撃
-		currentShotInterval -= elapsedTime;
-		if (currentShotInterval <= 0.0f) {
+		currentShootInterval -= elapsedTime;
+		if (currentShootInterval <= 0.0f) {
 			// 攻撃処理
-			ExecuteShot();
+			ExecuteShoot();
 			// 攻撃再間隔設定
 			ResetInterval();
 		}
@@ -41,7 +41,7 @@ public class StgPlayerIntervalShot {
 	/// 発射間隔のリセット
 	/// </summary>
 	public void ResetInterval() {
-		currentShotInterval = shotInterval;
+		currentShootInterval = shootInterval;
 	}
 
 	/// <summary>
@@ -49,35 +49,35 @@ public class StgPlayerIntervalShot {
 	/// </summary>
 	/// <param name="interval">発射間隔</param>
 	public void SetInterval(float interval) {
-		shotInterval = interval;
+		shootInterval = interval;
 	}
 
 	/// <summary>
 	/// 発射位置の設定
 	/// </summary>
 	/// <param name="position">発射位置</param>
-	public void SetShotPosition(Vector3 position) {
-		shotPosition = position;
+	public void SetShootPosition(Vector3 position) {
+		shootPosition = position;
 	}
 
 	/// <summary>
 	/// 発射位置オフセットの設定
 	/// </summary>
 	/// <param name="offset">発射位置のオフセット</param>
-	public void SetShotOffset(Vector3 offset) {
+	public void SetShootOffset(Vector3 offset) {
 		this.offset = offset;
 	}
 
 	/// <summary>
 	/// 発射処理
 	/// </summary>
-	protected virtual void ExecuteShot() {
+	protected virtual void ExecuteShoot() {
 		// PlayerBulletを動的生成
 		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
 
 		// 発射位置の設定 + オフセット設定
-		Vector3 position = CalcShotPosition();
+		Vector3 position = CalcShootPosition();
 
 		Object.Instantiate(bullet, position, Quaternion.identity);
 	}
@@ -86,15 +86,15 @@ public class StgPlayerIntervalShot {
 	/// 発射位置を計算する
 	/// </summary>
 	/// <returns>発射位置(位置とオフセットを加味した位置)</returns>
-	private Vector3 CalcShotPosition() {
+	private Vector3 CalcShootPosition() {
 		// 発射位置の設定 + オフセット設定
-		Vector3 position = shotPosition;
+		Vector3 position = shootPosition;
 		position += offset;
 		return position;
 	}
 
-	private float shotInterval = 1.0f;
-	private float currentShotInterval = 1.0f; // 現在の攻撃再間隔時間
-	private Vector3 shotPosition; // 発射位置
+	private float shootInterval = 1.0f;
+	private float currentShootInterval = 1.0f; // 現在の攻撃再間隔時間
+	private Vector3 shootPosition; // 発射位置
 	private Vector3 offset; // オフセット
 }
