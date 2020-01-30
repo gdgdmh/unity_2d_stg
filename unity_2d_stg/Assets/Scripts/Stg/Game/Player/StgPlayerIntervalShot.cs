@@ -31,7 +31,7 @@ public class StgPlayerIntervalShot {
 		currentShotInterval -= elapsedTime;
 		if (currentShotInterval <= 0.0f) {
 			// 攻撃処理
-			AttackProcess();
+			ExecuteShot();
 			// 攻撃再間隔設定
 			ResetInterval();
 		}
@@ -68,16 +68,29 @@ public class StgPlayerIntervalShot {
 		this.offset = offset;
 	}
 
-	private void AttackProcess() {
+	/// <summary>
+	/// 発射処理
+	/// </summary>
+	protected virtual void ExecuteShot() {
 		// PlayerBulletを動的生成
 		StgPlayerBulletFactory factory = new StgPlayerBulletFactory();
 		GameObject bullet = factory.Create(StgBulletConstant.Type.kPlayerNormal);
 
 		// 発射位置の設定 + オフセット設定
-		Vector3 position = shotPosition;
-		position += offset;
+		Vector3 position = CalcShotPosition();
 
 		Object.Instantiate(bullet, position, Quaternion.identity);
+	}
+
+	/// <summary>
+	/// 発射位置を計算する
+	/// </summary>
+	/// <returns>発射位置(位置とオフセットを加味した位置)</returns>
+	private Vector3 CalcShotPosition() {
+		// 発射位置の設定 + オフセット設定
+		Vector3 position = shotPosition;
+		position += offset;
+		return position;
 	}
 
 	private float shotInterval = 1.0f;
