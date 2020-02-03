@@ -39,18 +39,19 @@ public class GameMainSceneTask : MonoBehaviour
                 stgEnemyJsonDataPopper.SetJsonEnemyLaunchDatas(stgEnemyLoadResourceStageJson.Get());
             }
 			{
-				// パワーアップアイテム
-                StgItemFactory factory = new StgItemFactory();
-                GameObject item = factory.Create(StgItemConstant.Type.kPowerup);
-                GameObject.Instantiate(item, new Vector3(0, 0, 0), Quaternion.identity);
+                // パワーアップアイテム
+                StgItemDropper dropper = new StgItemDropper();
+                dropper.SetPosition(new Vector3(0, 0, 0));
+                dropper.SetType(StgItemConstant.Type.kPowerup);
+                dropper.Drop();
             }
             {
-				// スコアアイテム
-                StgItemFactory factory = new StgItemFactory();
-                GameObject item = factory.Create(StgItemConstant.Type.kScoreup);
-                GameObject.Instantiate(item, new Vector3(0.5f, 0, 0), Quaternion.identity);
+                // スコアアイテム
+                StgItemDropper dropper = new StgItemDropper();
+                dropper.SetPosition(new Vector3(0.5f, 0, 0));
+                dropper.SetType(StgItemConstant.Type.kScoreup);
+                dropper.Drop();
             }
-
         }
     }
 
