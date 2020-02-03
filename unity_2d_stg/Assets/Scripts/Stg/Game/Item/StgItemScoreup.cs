@@ -24,7 +24,11 @@ public class StgItemScoreup : StgItemBase, IAddableScore {
 	/// </summary>
 	public override void Update() {
 		base.Update();
-		//Debug.Log("update");
+
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		MhCommon.Assert(rigidbody2D != null, "StgItemScoreup::Update transform null");
+		// 真下に進む
+		rigidbody2D.velocity = new Vector2(0.0f, -1.2f);
 	}
 
 	/// <summary>
