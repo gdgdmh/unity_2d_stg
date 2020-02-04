@@ -33,6 +33,11 @@ public class StgItemMultiDropper : IStgItemDroppable {
 	/// </summary>
 	public IEnumerable<GameObject> Drop() {
 		List<GameObject> list = new List<GameObject>();
+
+		if (dropList.Count == 0) {
+			// リストが空
+			return list;
+		}
 		foreach (StgItemDropper dropper in dropList) {
 			// アイテムのドロップ
 			IEnumerable<GameObject> datas = dropper.Drop();
