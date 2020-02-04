@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StgItemMultiDropper {
+public class StgItemMultiDropper : IStgItemDroppable {
 
 	public StgItemMultiDropper() {
 		Initialize();
@@ -31,10 +31,17 @@ public class StgItemMultiDropper {
 	/// <summary>
 	/// アイテムのドロップ
 	/// </summary>
-	public void Drop() {
+	public IEnumerable<GameObject> Drop() {
+		List<GameObject> list = new List<GameObject>();
 		foreach (StgItemDropper dropper in dropList) {
-			dropper.Drop();
+			// アイテムのドロップ
+			IEnumerable<GameObject> datas = dropper.Drop();
+			// ドロップしたアイテムリストを返すために追加
+			foreach (GameObject item in datas) {
+				list.Add(item);
+			}
 		}
+		return list;
 	}
 
 	private List<StgItemDropper> dropList = new List<StgItemDropper>();

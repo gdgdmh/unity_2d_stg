@@ -36,14 +36,17 @@ public class StgItemDropper : IStgItemDroppable {
 	/// アイテムのドロップ
 	/// </summary>
 	/// <returns>ドロップしたアイテム</returns>
-	public GameObject Drop() {
+	public IEnumerable<GameObject> Drop() {
 		StgItemFactory factory = new StgItemFactory();
 		GameObject item = factory.Create(type);
 		if (item == null) {
 			throw new System.NullReferenceException("StgItemDropper::Drop() StgItemFactory Item Create Failure");
 		}
 		GameObject.Instantiate(item, position, Quaternion.identity);
-		return item;
+
+		List<GameObject> list = new List<GameObject>();
+		list.Add(item);
+		return list;
 	}
 
 	private Vector3 position; // ドロップ位置

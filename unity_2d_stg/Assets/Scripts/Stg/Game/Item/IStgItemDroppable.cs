@@ -10,5 +10,5 @@ interface IStgItemDroppable {
 	/// アイテムをドロップする
 	/// </summary>
 	/// <returns>ドロップしたアイテム</returns>
-	GameObject Drop();
+	IEnumerable<GameObject> Drop();
 }
