@@ -43,6 +43,7 @@ public class GameMainSceneTask : MonoBehaviour
                 StgItemMultiDropper dropper = new StgItemMultiDropper();
                 dropper.SetParameter(new Vector3(0, 0, 0), StgItemConstant.Type.kPowerup);
                 dropper.SetParameter(new Vector3(0.5f, 0, 0), StgItemConstant.Type.kScoreup);
+                dropper.Print();
                 dropper.Drop();
             }
         }

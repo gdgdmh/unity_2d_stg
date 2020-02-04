@@ -44,5 +44,14 @@ public class StgItemMultiDropper : IStgItemDroppable {
 		return list;
 	}
 
+	/// <summary>
+	/// データの中身を出力する
+	/// </summary>
+	public void Print() {
+		foreach (StgItemDropper drop in dropList) {
+			drop.Print();
+		}
+	}
+
 	private List<StgItemDropper> dropList = new List<StgItemDropper>();
 }

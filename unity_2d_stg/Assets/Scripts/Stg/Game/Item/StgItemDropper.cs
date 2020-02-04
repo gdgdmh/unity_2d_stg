@@ -49,6 +49,13 @@ public class StgItemDropper : IStgItemDroppable {
 		return list;
 	}
 
+	/// <summary>
+	/// データの中身を出力する
+	/// </summary>
+	public void Print() {
+		Debug.Log(string.Format("StgItemDropper::Print() position={0} type={1}", position, type));
+	}
+
 	private Vector3 position; // ドロップ位置
 	private StgItemConstant.Type type; // アイテムのタイプ
 }
