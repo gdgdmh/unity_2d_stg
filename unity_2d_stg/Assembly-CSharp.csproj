@@ -125,6 +125,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemConstant.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemDropper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemFactory.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemMultiDropper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemPowerup.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemScoreup.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchData.cs" />
