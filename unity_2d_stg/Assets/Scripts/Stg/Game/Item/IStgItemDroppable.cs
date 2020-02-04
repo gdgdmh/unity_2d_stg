@@ -9,5 +9,6 @@ interface IStgItemDroppable {
 	/// <summary>
 	/// アイテムをドロップする
 	/// </summary>
-	void Drop();
+	/// <returns>ドロップしたアイテム</returns>
+	GameObject Drop();
 }
