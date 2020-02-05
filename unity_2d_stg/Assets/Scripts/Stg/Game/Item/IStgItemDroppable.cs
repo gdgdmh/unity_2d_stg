@@ -6,6 +6,7 @@ using UnityEngine;
 /// アイテムドロップするインターフェース
 /// </summary>
 interface IStgItemDroppable {
+
 	/// <summary>
 	/// アイテムをドロップする
 	/// </summary>

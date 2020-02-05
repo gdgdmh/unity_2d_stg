@@ -25,6 +25,14 @@ public class StgItemDropper : IStgItemDroppable {
 	}
 
 	/// <summary>
+	/// 出現位置の取得
+	/// </summary>
+	/// <returns>出現位置</returns>
+	public Vector3 GetPosition() {
+		return position;
+	}
+
+	/// <summary>
 	/// アイテムのタイプの設定
 	/// </summary>
 	/// <param name="type">アイテムのタイプ</param>

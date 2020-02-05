@@ -18,7 +18,7 @@ public class StgItemMultiDropper : IStgItemDroppable {
 	/// <summary>
 	/// パラメータの設定
 	/// </summary>
-	/// <param name="position">出現位置</param>
+	/// <param name="position">ドロップ位置</param>
 	/// <param name="type">アイテムのタイプ</param>
 	public void SetParameter(Vector3 position, StgItemConstant.Type type) {
 		// データ追加
@@ -26,6 +26,14 @@ public class StgItemMultiDropper : IStgItemDroppable {
 		dropper.SetPosition(position);
 		dropper.SetType(type);
 		dropList.Add(dropper);
+	}
+
+	/// <summary>
+	/// ドロップ位置オフセットの設定
+	/// </summary>
+	/// <param name="offset">オフセット</param>
+	public void SetOffset(Vector3 offset) {
+		this.offset = offset;
 	}
 
 	/// <summary>
@@ -39,6 +47,8 @@ public class StgItemMultiDropper : IStgItemDroppable {
 			return list;
 		}
 		foreach (StgItemDropper dropper in dropList) {
+			// オフセットと対象の位置の適用
+			dropper.SetPosition(dropper.GetPosition() + offset);
 			// アイテムのドロップ
 			IEnumerable<GameObject> datas = dropper.Drop();
 			// ドロップしたアイテムリストを返すために追加
@@ -59,4 +69,5 @@ public class StgItemMultiDropper : IStgItemDroppable {
 	}
 
 	private List<StgItemDropper> dropList = new List<StgItemDropper>();
+	protected Vector3 offset = new Vector3();
 }
