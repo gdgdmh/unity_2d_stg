@@ -12,6 +12,7 @@ public class NormalEnemy : EnemyBase
 
 	// Start is called before the first frame update
 	public override void Start() {
+		itemDropper.SetParameter(new Vector3(0,0,0), StgItemConstant.Type.kPowerup);
     }
 
     /// <summary>
@@ -33,10 +34,9 @@ public class NormalEnemy : EnemyBase
 	/// 当たり判定処理
 	/// </summary>
 	/// <param name="collision">対象</param>
-	private void OnTriggerEnter2D(Collider2D collision) {
-		//MhCommon.Print("NormalEnemy::OnTriggerEnter2D tag=" + collision.tag);
-		if ((collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayerBullet))
-            ||(collision.tag == StgGameObjectTag.ToString(StgGameObjectTag.Type.kPlayer))) {
+	protected override void OnTriggerEnter2D(Collider2D collision) {
+		base.OnTriggerEnter2D(collision);
+		if (IsHit(collision.tag)) {
 			// プレイヤーの弾と当たったら消滅する
 			Destroy(this.gameObject);
 
