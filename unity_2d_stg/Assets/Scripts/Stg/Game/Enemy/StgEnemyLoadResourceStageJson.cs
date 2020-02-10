@@ -26,7 +26,7 @@ public class StgEnemyLoadResourceStageJson {
                     string val = (string)stageData.Value;
                     switch (key) {
                         case "enemy_type":
-                            launchData.enemy_type = (string)val;
+                            launchData.enemy_type = val as string;
                             break;
                         case "time":
                             launchData.time = float.Parse(val);
@@ -40,12 +40,25 @@ public class StgEnemyLoadResourceStageJson {
                         case "z":
                             launchData.z = float.Parse(val);
                             break;
+                        case "item_drop_type":
+                            launchData.item_drop_type = val as string;
+                            break;
+                        case "item_drop_offset_x":
+                            launchData.item_drop_offset_x = float.Parse(val);
+                            break;
+                        case "item_drop_offset_y":
+                            launchData.item_drop_offset_y = float.Parse(val);
+                            break;
+                        case "item_drop_offset_z":
+                            launchData.item_drop_offset_z = float.Parse(val);
+                            break;
                         default:
                             break;
                     }
                 }
                 launchDatas.AddData(launchData);
             }
+            launchDatas.Print();
         } else {
             launchDatas.Initialize();
             throw new System.ArgumentException(string.Format("resource={0} json parse failure", resourcePath));

@@ -5,21 +5,33 @@
             "time": "3",
             "x": "0",
             "y": "6",
-            "z": "0"
+            "z": "0",
+            "item_drop_type": "powerup",
+            "item_drop_offset_x": "0",
+            "item_drop_offset_y": "-0.1",
+            "item_drop_offset_z": "0"
         },
         "1": {
             "enemy_type": "normal_enemy",
             "time": "3",
             "x": "0.6",
             "y": "6",
-            "z": "0"
+            "z": "0",
+            "item_drop_type": "scoreup",
+            "item_drop_offset_x": "0.2",
+            "item_drop_offset_y": "0.1",
+            "item_drop_offset_z": "0"
         },
         "2": {
             "enemy_type": "normal_enemy",
             "time": "3.5",
             "x": "-0.6",
             "y": "6",
-            "z": "0"
+            "z": "0",
+            "item_drop_type": "scoreup",
+            "item_drop_offset_x": "-0.2",
+            "item_drop_offset_y": "0.1",
+            "item_drop_offset_z": "0"
         },
         "3": {
             "enemy_type": "normal_enemy",
@@ -33,7 +45,11 @@
             "time": "7",
             "x": "-0.4",
             "y": "6",
-            "z": "0"
+            "z": "0",
+            "item_drop_type": "scoreup",
+            "item_drop_offset_x": "-0.5",
+            "item_drop_offset_y": "0.3",
+            "item_drop_offset_z": "0"
         },
         "5": {
             "enemy_type": "normal_enemy",
