@@ -128,6 +128,7 @@
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemMultiDropper.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemPowerup.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Item\StgItemScoreup.cs" />
+    <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyDropData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchData.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDataArray.cs" />
     <Compile Include="Assets\Scripts\Stg\Game\Json\StgStageJsonEnemyLaunchDatas.cs" />
