@@ -9,8 +9,8 @@ public static class StgItemConstant {
 		kUnknown
 	};
 
-	public static readonly string kStringItemPowerup = "normal_enemy";
-	public static readonly string kStringItemScoreup = "straight_move_enemy";
+	public static readonly string kStringItemPowerup = "powerup";
+	public static readonly string kStringItemScoreup = "scoreup";
 	public static readonly string kUnknown = "";
 
 	public static Type GetStringToType(string itemType) {

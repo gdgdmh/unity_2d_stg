@@ -59,6 +59,18 @@ public class StgItemMultiDropper : IStgItemDroppable {
 		return list;
 	}
 
+	public void Copy(StgItemMultiDropper source) {
+		Initialize();
+		offset = source.offset;
+		foreach (StgItemDropper drop in source.dropList) {
+			SetParameter(drop.GetPosition(), drop.GetItemType());
+		}
+	}
+
+	public int GetCount() {
+		return dropList.Count;
+	}
+
 	/// <summary>
 	/// データの中身を出力する
 	/// </summary>
@@ -66,6 +78,7 @@ public class StgItemMultiDropper : IStgItemDroppable {
 		foreach (StgItemDropper drop in dropList) {
 			drop.Print();
 		}
+		Debug.Log(string.Format("offset x={0} y={1}", offset.x, offset.y));
 	}
 
 	private List<StgItemDropper> dropList = new List<StgItemDropper>();

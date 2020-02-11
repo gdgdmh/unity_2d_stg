@@ -12,7 +12,6 @@ public class NormalEnemy : EnemyBase
 
 	// Start is called before the first frame update
 	public override void Start() {
-		itemDropper.SetParameter(new Vector3(0,0,0), StgItemConstant.Type.kPowerup);
     }
 
     /// <summary>
@@ -48,6 +47,7 @@ public class NormalEnemy : EnemyBase
 			// スコア加算
 			AdditionalScore((int)(SceneShare.Instance.GetStgEnemyConstantData().Get(StgEnemyConstantDefine.Type.kNormalEnemyScore)));
 
+			ttt = 0;
 			// アイテムドロップ
 			itemDropper.SetOffset(new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0));
 			Drop();

@@ -7,6 +7,10 @@ public class EnemyBase : StgGameObject, IAddableScore, IStgItemDroppable {
 	public EnemyBase() {
 	}
 
+	public void Awake() {
+		ttt = -1;
+	}
+
 	public override void Initialize() {
 		base.Initialize();
 	}
@@ -24,9 +28,12 @@ public class EnemyBase : StgGameObject, IAddableScore, IStgItemDroppable {
 			// ヒットエフェクト
 			Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
 			MhCommon.Assert(rigidbody2D != null, "EnemyBase::OnTriggerEnter2D() rigidbody2D null");
+			/*
 			// アイテムドロップ
 			itemDropper.SetOffset(new Vector3(rigidbody2D.position.x, rigidbody2D.position.y, 0));
+			itemDropper.Print();
 			Drop();
+			*/
 		}
 	}
 
@@ -37,11 +44,23 @@ public class EnemyBase : StgGameObject, IAddableScore, IStgItemDroppable {
 		SceneShare.Instance.GetGameTemporaryData().GetScoreData().AdditionalScore(score);
 	}
 
+	public void SetItemDropper(StgItemMultiDropper dropper) {
+		itemDropper.Copy(dropper);
+		ttt = 1;
+	}
+
+	public int GetCount() {
+		return itemDropper.GetCount();
+	}
+
 	/// <summary>
 	/// アイテムドロップ
 	/// </summary>
 	public IEnumerable<GameObject> Drop() {
-		return itemDropper.Drop();
+		if (GetCount() > 0) {
+			return itemDropper.Drop();
+		}
+		return null;
 	}
 
 	/// <summary>
@@ -57,4 +76,5 @@ public class EnemyBase : StgGameObject, IAddableScore, IStgItemDroppable {
 	}
 
 	protected StgItemMultiDropper itemDropper = new StgItemMultiDropper(); // アイテムドロップ
+	protected int ttt = 0;
 }

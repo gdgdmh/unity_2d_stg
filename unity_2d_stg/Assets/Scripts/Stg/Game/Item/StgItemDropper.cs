@@ -40,6 +40,10 @@ public class StgItemDropper : IStgItemDroppable {
 		this.type = type;
 	}
 
+	public StgItemConstant.Type GetItemType() {
+		return type;
+	}
+
 	/// <summary>
 	/// アイテムのドロップ
 	/// </summary>

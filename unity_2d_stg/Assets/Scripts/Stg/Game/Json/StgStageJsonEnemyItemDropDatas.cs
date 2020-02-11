@@ -51,5 +51,13 @@ public class StgStageJsonEnemyItemDropDatas {
 		return dropList.Count;
 	}
 
+	public void Copy(StgStageJsonEnemyItemDropDatas source) {
+		// データの中身をコピーする
+		Initialize();
+		foreach (StgStageJsonEnemyItemDropData data in source.dropList) {
+			AddData(data);
+		}
+	}
+
     private List<StgStageJsonEnemyItemDropData> dropList = new List<StgStageJsonEnemyItemDropData>(); // アイテムドロップデータ
 }

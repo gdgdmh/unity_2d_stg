@@ -89,8 +89,7 @@ public class StgEnemyLoadResourceStageJson {
 									}
                                     itemDropDatas.AddData(itemDropData);
 								}
-                                launchData.enemyItemDropDatas = itemDropDatas;
-                                launchData.Print();
+                                launchData.enemyItemDropDatas.Copy(itemDropDatas);
                                 break;
                             default:
                                 break;
