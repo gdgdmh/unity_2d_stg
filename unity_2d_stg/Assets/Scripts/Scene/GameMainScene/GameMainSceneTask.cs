@@ -46,27 +46,6 @@ public class GameMainSceneTask : MonoBehaviour
                 dropper.Print();
                 dropper.Drop();
             }
-			// testcode
-			{
-                string json = "{\"type\": \"Apple\", \"size\": \"small\"}";
-                Dictionary<string, object> deserializeData =  Utf8Json.JsonSerializer.Deserialize<dynamic>(json);
-				foreach (KeyValuePair<string, object> pairData in deserializeData) {
-                    //Debug.Log(string.Format("key={0} value={1}", pairData.Key, pairData.Value));
-				}
-            }
-			// testcode2
-			{
-                string json = "{\"stock_data\":[{\"type\":\"apple\",\"size\":\"small\"},{\"type\":\"pear\",\"size\":\"large\"}]}";
-                var deserializeData = Utf8Json.JsonSerializer.Deserialize<dynamic>(json);
-                List<object> stockData = deserializeData["stock_data"];
-
-                foreach (object dictionaryData in stockData) {
-                    Dictionary<string, object> dictionary = dictionaryData as Dictionary<string, object>;
-					foreach (KeyValuePair<string, object> pairData in dictionary) {
-                        //Debug.Log(string.Format("key={0} value={1}", pairData.Key, pairData.Value));
-                    }
-                }
-            }
         }
     }
 
