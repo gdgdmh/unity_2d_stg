@@ -23,37 +23,79 @@ public class StgEnemyLoadResourceStageJson {
                 StgStageJsonEnemyLaunchData launchData = new StgStageJsonEnemyLaunchData();
                 foreach (KeyValuePair<string, object> stageData in stageParameters) {
                     var key = stageData.Key;
-                    string val = (string)stageData.Value;
-                    switch (key) {
-                        case "enemy_type":
-                            launchData.enemy_type = val as string;
-                            break;
-                        case "time":
-                            launchData.time = float.Parse(val);
-                            break;
-                        case "x":
-                            launchData.x = float.Parse(val);
-                            break;
-                        case "y":
-                            launchData.y = float.Parse(val);
-                            break;
-                        case "z":
-                            launchData.z = float.Parse(val);
-                            break;
-                        case "item_drop_type":
-                            launchData.item_drop_type = val as string;
-                            break;
-                        case "item_drop_offset_x":
-                            launchData.item_drop_offset_x = float.Parse(val);
-                            break;
-                        case "item_drop_offset_y":
-                            launchData.item_drop_offset_y = float.Parse(val);
-                            break;
-                        case "item_drop_offset_z":
-                            launchData.item_drop_offset_z = float.Parse(val);
-                            break;
-                        default:
-                            break;
+                    string val = stageData.Value as string;
+					if (val != null) {
+						// 値がstringへ変換できた
+                        switch (key) {
+                            case "enemy_type":
+                                launchData.enemy_type = val as string;
+                                break;
+                            case "time":
+                                launchData.time = float.Parse(val);
+                                break;
+                            case "x":
+                                launchData.x = float.Parse(val);
+                                break;
+                            case "y":
+                                launchData.y = float.Parse(val);
+                                break;
+                            case "z":
+                                launchData.z = float.Parse(val);
+                                break;
+                            default:
+                                break;
+                        }
+
+                    } else {
+                        StgStageJsonEnemyItemDropDatas itemDropDatas = new StgStageJsonEnemyItemDropDatas();
+                        // key,value形式
+                        switch (key) {
+							case "item_drop_data":
+                                
+                                List<object> itemDropList = stageData.Value as List<object>;
+								foreach (object test in itemDropList) {
+                                    Dictionary<string, object> items = test as Dictionary<string, object>;
+                                    StgStageJsonEnemyItemDropData itemDropData = new StgStageJsonEnemyItemDropData();
+                                    foreach (KeyValuePair<string, object> item in items) {
+                                        string itemValue = item.Value as string;
+										switch (item.Key) {
+                                            case "type":
+                                                itemDropData.Type = StgItemConstant.GetStringToType(itemValue);
+                                                break;
+                                            case "offset_x":
+												{
+                                                    Vector3 offset = itemDropData.Offset;
+                                                    offset.x = float.Parse(itemValue);
+                                                    itemDropData.Offset = offset;
+                                                }
+                                                break;
+                                            case "offset_y":
+												{
+                                                    Vector3 offset = itemDropData.Offset;
+                                                    offset.y = float.Parse(itemValue);
+                                                    itemDropData.Offset = offset;
+                                                }
+                                                break;
+                                            case "offset_z":
+												{
+                                                    Vector3 offset = itemDropData.Offset;
+                                                    offset.z = float.Parse(itemValue);
+                                                    itemDropData.Offset = offset;
+                                                }
+                                                break;
+                                            default:
+                                                break;
+										}
+									}
+                                    itemDropDatas.AddData(itemDropData);
+								}
+                                launchData.enemyItemDropDatas = itemDropDatas;
+                                launchData.Print();
+                                break;
+                            default:
+                                break;
+                        }
+                        
                     }
                 }
                 launchDatas.AddData(launchData);

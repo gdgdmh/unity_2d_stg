@@ -9,6 +9,19 @@ public static class StgItemConstant {
 		kUnknown
 	};
 
+	public static readonly string kStringItemPowerup = "normal_enemy";
+	public static readonly string kStringItemScoreup = "straight_move_enemy";
+	public static readonly string kUnknown = "";
+
+	public static Type GetStringToType(string itemType) {
+		if (itemType == kStringItemPowerup) {
+			return Type.kPowerup;
+		} else if (itemType == kStringItemScoreup) {
+			return Type.kScoreup;
+		}
+		return Type.kUnknown;
+	}
+
 	public static readonly int kScorePowerup = 100;
 	public static readonly int kScoreScoreup = 500;
 }
