@@ -6,6 +6,20 @@
             "x": "0",
             "y": "6",
             "z": "0",
+            "item_drop_data": [
+                {
+                    "type": "powerup",
+                    "offset_x": "0",
+                    "offset_y": "-0.1",
+                    "offset_z": "0"
+                },
+                {
+                    "type": "scoreup",
+                    "offset_x": "0.1",
+                    "offset_y": "0.1",
+                    "offset_z": "0"
+                }
+            ],
             "item_drop_type": "powerup",
             "item_drop_offset_x": "0",
             "item_drop_offset_y": "-0.1",
