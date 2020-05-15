@@ -91,9 +91,6 @@
     <Compile Include="Assets\Scripts\Common\Util\DecrementCounterElapsedTime.cs" />
     <Compile Include="Assets\Scripts\Common\Util\DecrementCounterFrame.cs" />
     <Compile Include="Assets\Scripts\Common\Util\MhCommon.cs" />
-    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSON.cs" />
-    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSONBinary.cs" />
-    <Compile Include="Assets\Scripts\Library\SimpleJSON\SimpleJSONUnity.cs" />
     <Compile Include="Assets\Scripts\Scene\GameMainScene\GameMainSceneTask.cs" />
     <Compile Include="Assets\Scripts\Scene\InitSceneScript.cs" />
     <Compile Include="Assets\Scripts\Scene\TestScene\TestSceneTask.cs" />
@@ -234,19 +231,19 @@
     <Compile Include="Assets\Scripts\Utf8Json\Shims\Reflection.cs" />
     <Compile Include="Assets\Scripts\Utf8Json\Unity\ResolverAndFormatters.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>/Applications/2018.3.14f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -450,19 +447,19 @@
       <HintPath>/Applications/2018.3.14f1/Unity.app/Contents/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements.Editor">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Advertisements">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.ads@2.3.1/Runtime/UnityEngine.Advertisements.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>/Users/mh/GitFork/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>/Users/mh/Git/unity_2d_stg/unity_2d_stg/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>/Applications/2018.3.14f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
