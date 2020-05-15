@@ -31,15 +31,20 @@ public class StgEnemyRandomPopper : MonoBehaviour, IStgEnemyAppearable {
 				//MhCommon.Print("reset");
 				counter.SetCounter(0.5f);
 				GameObject enemy = enemyFactory.Create(StgEnemyConstant.Type.kStraightMoveEnemy);//StgEnemyConstant.Type.kEnemyNormal);
+				EnemyBase enemyBase = enemy.GetComponent<EnemyBase>();
 
 				RandomIntegerSystem random = new RandomIntegerSystem();
 				int value = random.Get(0, 2);
 				if (value == 0) {
-					Instantiate(enemy, new Vector3(0.0f, 6.0f, 0.0f), Quaternion.identity);
+					enemyBase.SetPosition(new Vector2(0.0f, 6.0f));
+					//Instantiate(enemy, new Vector3(0.0f, 6.0f, 0.0f), Quaternion.identity);
 				} else if (value == 1) {
-					Instantiate(enemy, new Vector3(0.5f, 6.0f, 0.0f), Quaternion.identity);
-				} else {
-					Instantiate(enemy, new Vector3(-0.5f, 6.0f, 0.0f), Quaternion.identity);
+					enemyBase.SetPosition(new Vector2(0.5f, 6.0f));
+					//Instantiate(enemy, new Vector3(0.5f, 6.0f, 0.0f), Quaternion.identity);
+				}
+				else {
+					enemyBase.SetPosition(new Vector2(-0.5f, 6.0f));
+					//Instantiate(enemy, new Vector3(-0.5f, 6.0f, 0.0f), Quaternion.identity);
 				}
 			}
 		}

@@ -60,10 +60,11 @@ public class StgEnemyJsonDataPopper : MonoBehaviour, IStgEnemyAppearable {
 				{
 					GameObject enemy = enemyFactory.Create(StgEnemyConstant.GetStringToType(launchData.enemy_type), launchData.enemyItemDropDatas);
 
-					Instantiate(enemy, new Vector3(launchData.x, launchData.y, launchData.z), Quaternion.identity);
+					//Instantiate(enemy, new Vector3(launchData.x, launchData.y, launchData.z), Quaternion.identity);
 
 					// ドロップアイテム設定
 					NormalEnemy enemyBase = enemy.GetComponent<NormalEnemy>();
+					enemyBase.SetPosition(new Vector2(launchData.x, launchData.y));
 					StgItemMultiDropper dropper = new StgItemMultiDropper();
 					for (int i = 0; i < launchData.enemyItemDropDatas.GetCount(); ++i) {
 						StgStageJsonEnemyItemDropData dropData = launchData.enemyItemDropDatas.Get(i);

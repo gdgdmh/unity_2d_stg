@@ -19,6 +19,13 @@ public class EnemyBase : StgGameObject, IAddableScore, IStgItemDroppable {
     public override void Update() {
     }
 
+    public void SetPosition(Vector2 v) {
+		Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+		MhCommon.Assert(rigidbody2D != null, "EnemyBase::SetPosition() rigidbody2D null");
+		rigidbody2D.position = v;
+	}
+
+
 	/// <summary>
 	/// 当たり判定
 	/// </summary>
